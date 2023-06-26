@@ -1,0 +1,20 @@
+.nav {
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #000;
+  height: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__link {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  padding-right: 40px;
+}
+
+.nav__link:nth-of-type(3) {
+  padding-right: 0;
+}

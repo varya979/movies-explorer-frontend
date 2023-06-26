@@ -1,0 +1,98 @@
+.about-me {
+  font-family: 'Inter', Arial, sans-serif;
+  padding: 0 70px;
+}
+
+.about-me__article-cover {
+  display: flex;
+  justify-content: space-between;
+  padding: 66px 0 100px;
+}
+
+.about-me__name {
+
+}
+
+.about-me__article {
+  max-width: 600px;
+}
+
+.about-me__title {
+  font-size: 50px;
+  font-weight: 400;
+  letter-spacing: -2px;
+  margin: 0;
+  padding-bottom: 18px;
+}
+
+.about-me__subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  padding-bottom: 26px;
+}
+
+.about-me__paragraph {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0;
+  padding-bottom: 99px;
+  max-width: 599px;
+}
+
+.about-me__link-github {
+  margin: 0;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.about-me__photo {
+  width: 270px;
+  height: 327px;
+}
+
+.about-me__links {
+
+}
+
+.about-me__links-title {
+  color: #A0A0A0;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0;
+  padding-bottom: 50px;
+}
+
+.about-me__links-list {
+  margin: 0;
+  padding: 0;
+}
+
+.about-me__link-item {
+  list-style: none;
+  border-bottom: 1px solid #E8E8E8 ;
+  height: 66px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-bottom: 23px;
+}
+
+.about-me__link-title {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -1.2px;
+  margin: 0;
+}
+
+.about-me__link {
+  padding: 17px 5px 0 0;
+}
+
+.about-me__link-image {
+
+}

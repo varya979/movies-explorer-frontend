@@ -1,0 +1,38 @@
+.search {
+  font-family: 'Inter', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.search__form {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 40px;
+  background: #F9F9F9;
+}
+
+.search__input {
+  border: none;
+  border-radius: 40px;
+  background: #F9F9F9;
+  padding-left: 22px;
+  width: 100%;
+  height: 46px;
+  font-size: 13px;
+}
+
+.search__button {
+  border: none;
+  background: transparent;
+  padding-right: 6px;
+}
+
+.search__button-image {
+
+}
+
+.search__line {
+  border-bottom: 1px solid #E8E8E8;
+  width: 100%;
+  margin: 0;
+}
