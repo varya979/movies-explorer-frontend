@@ -25,7 +25,7 @@ export default function AboutMe() {
         <ul className="about-me__links-list">
           <li className="about-me__link-item">
             <p className="about-me__link-title">Статичный сайт</p>
-            <a href="https://github.com/varya979" className="about-me__link opacity">
+            <a href="https://github.com/varya979/russian-travel" className="about-me__link opacity">
               <img src={anchor} className="about-me__link-image opacity" alt="ссылка перехода на сайт"></img>
             </a>
           </li>
@@ -37,7 +37,7 @@ export default function AboutMe() {
           </li>
           <li className="about-me__link-item">
             <p className="about-me__link-title">Одностраничное приложение</p>
-            <a href="https://github.com/varya979" className="about-me__link opacity">
+            <a href="https://github.com/varya979/mesto" className="about-me__link opacity">
               <img src={anchor} className="about-me__link-archor opacity" alt="ссылка перехода на сайт"></img>
             </a>
           </li>

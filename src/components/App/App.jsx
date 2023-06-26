@@ -9,6 +9,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 export default function App() {
 
@@ -45,6 +46,7 @@ export default function App() {
         {/* <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} /> */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
