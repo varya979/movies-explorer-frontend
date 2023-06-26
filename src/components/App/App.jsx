@@ -1,12 +1,14 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import { moviesArr } from '../../utils/movies_array';
+import { moviesArr } from "../../utils/movies_array";
+import { isLikedMovies } from "../../utils/saved-movies_array";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
 
 export default function App() {
 
@@ -32,8 +34,15 @@ export default function App() {
           </>
         }
         />
-        {/* <Route path="/saved-movies" element={<SavedMovies />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/saved-movies" element={
+          <>
+            <Header loggedIn={!loggedIn} />
+            <SavedMovies location={location} isLikedMovies={isLikedMovies}/>
+            <Footer />
+          </>
+        }
+        />
+        {/* <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} /> */}
       </Routes>

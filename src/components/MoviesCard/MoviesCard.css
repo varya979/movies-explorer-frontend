@@ -5,6 +5,7 @@
   background: #FDFDFD;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
   height: 281px;
+  cursor: pointer;
 }
 
 .movies__image {
@@ -55,7 +56,6 @@
   height: 30px;
   border: 0;
   padding: 0;
-  /* margin: 0 0 3px 0; */
   background-color: transparent;
 }
 
@@ -64,5 +64,15 @@
 }
 
 .movies__button-delete {
+  background-image: url(../../images/movies__button-delete.svg);
+  width: 30px;
+  height: 30px;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  display: none;
+}
 
+.movies__item:hover .movies__button-delete_type_visible{
+  display: block
 }

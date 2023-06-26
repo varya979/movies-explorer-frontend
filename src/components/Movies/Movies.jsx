@@ -10,9 +10,7 @@ export default function Movies(props) {
       <SearchForm />
       {/* <Preloader /> */}
       <MoviesCardList moviesArr={props.moviesArr} location={props.location}/>
-      {props.location.pathname  === "/movies" && (
-        <button className="movies__button-more opacity" type="button">Ещё</button>
-      )}
+      <button className="movies__button-more opacity" type="button">Ещё</button>
     </main>
   );
 }

@@ -66,7 +66,7 @@ export const moviesArr = [
     "_id":"10",
     "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtJD2B8pKHHWNkwyixPxPhKHAWxzXbNYaBkA&usqp=CAU",
     "name": "Соберись перед прыжком",
-    "isLiked": true,
+    "isLiked": false,
     "duration": "1ч 10м",
   },
   {

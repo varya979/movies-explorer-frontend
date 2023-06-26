@@ -6,6 +6,10 @@ export default function MoviesCard(props) {
     props.movie.isLiked && "movies__button-like_type_active"
   }`;
 
+  const moviesDeleteButtonClassName = `movies__button-delete ${
+    props.movie.isLiked && "movies__button-delete_type_visible"
+  }`;
+
   return (
     <li className="movies__item">
       <img className="movies__image" src={props.movie.link} alt={props.movie.name}/>
@@ -23,7 +27,7 @@ export default function MoviesCard(props) {
           )}
           {props.location.pathname  === "/saved-movies" && (
             <button
-              className={`movies__button-delete opacity`}
+              className={`${moviesDeleteButtonClassName} opacity`}
               type="button"
             />
           )}
