@@ -41,7 +41,7 @@ export default function Profile(props) {
           className="profile__form"
           action="#"
           method="post"
-          noValidate
+          // noValidate
         >
           <div className="profile__input-container">
             <label className="profile__label">Имя</label>
