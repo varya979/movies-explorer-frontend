@@ -37,7 +37,7 @@ export default function AboutMe() {
           </li>
           <li className="about-me__link-item">
             <p className="about-me__link-title">Одностраничное приложение</p>
-            <a href="https://github.com/varya979/mesto" className="about-me__link opacity">
+            <a href="https://github.com/varya979/react-mesto-api-full-gha" className="about-me__link opacity">
               <img src={anchor} className="about-me__link-archor opacity" alt="ссылка перехода на сайт"></img>
             </a>
           </li>

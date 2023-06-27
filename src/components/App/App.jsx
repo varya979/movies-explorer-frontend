@@ -70,7 +70,7 @@ export default function App() {
       {/* <Popup
         name="error"
         onClose={closePopup}
-        isOpen={!openPopup}
+        isOpen={openPopup}
         children={<Figure
           img={failImg}
           alt="Рисунок крестика"
