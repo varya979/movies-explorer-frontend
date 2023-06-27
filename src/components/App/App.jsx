@@ -3,7 +3,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 import { moviesArr } from "../../utils/movies_array";
 import { isLikedMovies } from "../../utils/saved-movies_array";
-// import failImg from "../../images/fail.svg";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -12,22 +11,11 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Profile from "../Profile/Profile";
-// import Popup from "../Popup/Popup";
-// import Figure from "../Figure/Figure";
 
 export default function App() {
 
   const location = useLocation();
   const [loggedIn, setLoggedIn] = React.useState(false);
-  // const [isPopupOpen, setIsPopupOpen] = React.useState(true);
-
-  // function openPopup() {
-  //   setIsPopupOpen(true);
-  // }
-
-  // function closePopup() {
-  //   setIsPopupOpen(false);
-  // }
 
   return (
     <div className="app">
@@ -60,13 +48,12 @@ export default function App() {
         }
         />
 
-        {/* <Route path="/profile" element={
+        <Route path="/profile" element={
           <>
             <Header loggedIn={!loggedIn} />
-            <Profile />
-            <Footer />
+            <Profile name={"Виталий"}/>
           </>
-        } */}
+        }
         />
 
         {/* <Route path="/signin" element={<Login />} /> */}
@@ -75,17 +62,6 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
 
       </Routes>
-
-      {/* <Popup
-        name="error"
-        onClose={closePopup}
-        isOpen={openPopup}
-        children={<Figure
-          img={failImg}
-          alt="Рисунок крестика"
-          text="Вы ввели неправильный логин или пароль."
-        />}
-      /> */}
     </div>
   );
 }
