@@ -1,7 +1,6 @@
 import React from "react";
 
 import photo from "../../images/about-me_photo.svg";
-import anchor from "../../images/about-me_link.svg";
 
 export default function AboutMe() {
   return (
@@ -20,29 +19,6 @@ export default function AboutMe() {
         </article>
         <img src={photo} className="about-me__photo" alt="фото студента"></img>
       </div>
-      <nav className="about-me__links">
-        <h3 className="about-me__links-title">Портфолио</h3>
-        <ul className="about-me__links-list">
-          <li className="about-me__link-item">
-            <p className="about-me__link-title">Статичный сайт</p>
-            <a href="https://github.com/varya979/russian-travel" className="about-me__link opacity">
-              <img src={anchor} className="about-me__link-image opacity" alt="ссылка перехода на сайт"></img>
-            </a>
-          </li>
-          <li className="about-me__link-item">
-            <p className="about-me__link-title">Адаптивный сайт</p>
-            <a href="https://github.com/varya979" className="about-me__link opacity">
-              <img src={anchor} className="about-me__link-archor opacity" alt="ссылка перехода на сайт"></img>
-            </a>
-          </li>
-          <li className="about-me__link-item">
-            <p className="about-me__link-title">Одностраничное приложение</p>
-            <a href="https://github.com/varya979/react-mesto-api-full-gha" className="about-me__link opacity">
-              <img src={anchor} className="about-me__link-archor opacity" alt="ссылка перехода на сайт"></img>
-            </a>
-          </li>
-        </ul>
-      </nav>
     </section>
   );
 }
