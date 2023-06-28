@@ -67,7 +67,7 @@ export default function App() {
         <Route path="/profile" element={
           <>
             <Header loggedIn={loggedIn} />
-            <Profile name={"Виталий"}/>
+            <Profile />
           </>
         }
         />

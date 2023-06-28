@@ -1,0 +1,42 @@
+.profile__form-field{
+  font-family: 'Inter', Arial, sans-serif;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  padding: 0;
+}
+
+.profile__form-label {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.profile__form-input {
+  border: none;
+  outline: none;
+  font-size: 11px;
+  font-weight: 400;
+  text-align: end;
+  width: 85%;
+}
+
+.profile__form-input::placeholder {
+  color: #e0e0e0;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.profile__form-input[type="text"]:focus {
+  color: #FF3055;
+}
+
+.profile__form-input[type="email"]:focus {
+  color: #FF3055;
+}
+
+.profile__form-input:disabled {
+  background-color: #fff;
+}

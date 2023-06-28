@@ -1,25 +1,13 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-// import failImg from "../../images/fail.svg";
-
-// import Popup from "../Popup/Popup";
-// import Figure from "../Figure/Figure";
+import ProfileFormFieldset from "../ProfileFormFieldset/ProfileFormFieldset";
 
 export default function Profile(props) {
   const [name, setName] = React.useState("Виталий");
   const [email, setEmail] = React.useState("pochta@yandex.ru");
-  const [isEditProfile, setIsEditProfile] = React.useState(false);
-  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = React.useState(false);
-  // const [isPopupOpen, setIsPopupOpen] = React.useState(true);
-
-  // function openPopup() {
-  //   setIsPopupOpen(true);
-  // }
-
-  // function closePopup() {
-  //   setIsPopupOpen(false);
-  // }
+  const [isEditBtnUnlock, setIsEditBtnUnlock] = React.useState(false);
+  const [isSubmiBtnUnclock, setIsSubmiBtnUnclock] = React.useState(false);
 
   function handleChangeName(evt) {
     setName(evt.target.value);
@@ -30,63 +18,45 @@ export default function Profile(props) {
   }
 
   function handleEditButtonClick(evt) {
-    setIsEditProfile(true);
+    setIsEditBtnUnlock(true);
   }
 
   return (
     <>
       <section className="profile">
-        <h1 className="profile__title">Привет, {props.name}!</h1>
-        <form
-          className="profile__form"
-          action="#"
-          method="post"
-          // noValidate
-        >
-          <div className="profile__input-container">
-            <label className="profile__label">Имя</label>
-            {!isEditProfile ? (
-              <input
-                className="profile__input"
-                value={name}
-                disabled
-              />
-            ) : (
-              <input
-                className="profile__input"
-                placeholder="Имя"
-                type="text"
-                minLength="2"
-                maxLength="30"
-                required
-                value={name}
-                onChange={handleChangeName}
-              />
-            )}
-          </div>
-          <hr className="profile__line"/>
-          <div className="profile__input-container">
-            <label className="profile__label">E-mail</label>
-            {!isEditProfile ? (
-              <input
-                className="profile__input"
-                value={email}
-                disabled
-              />
-            ) : (
-              <input
-                className="profile__input"
-                placeholder="E-mail"
-                type="email"
-                minLength="2"
-                maxLength="30"
-                required
-                value={email}
-                onChange={handleChangeEmail}
-              />
-            )}
-          </div>
-          {!isEditProfile ? (
+        <h1 className="profile__title">Привет, {name}!</h1>
+        {!isEditBtnUnlock ? (
+          <form
+            className="profile__form"
+            action="#"
+            method="post"
+            // noValidate
+          >
+            <ProfileFormFieldset
+              labelName="Имя"
+              id="name"
+              name="name"
+              type="text"
+              minLengthValue="2"
+              maxLengthValuegth="30"
+              placeholderText="Имя"
+              value={name}
+              onChange={handleChangeName}
+              disabled={"disabled"}
+            />
+            <hr className="profile__line"/>
+            <ProfileFormFieldset
+              labelName="E-mail"
+              id="email"
+              name="email"
+              type="email"
+              minLengthValue="2"
+              maxLengthValuegth="30"
+              placeholderText="E-mail"
+              value={email}
+              onChange={handleChangeEmail}
+              disabled={"disabled"}
+            />
             <div className="profile__button-container">
               <button
                 className="profile__edit-button opacity"
@@ -98,30 +68,53 @@ export default function Profile(props) {
                 Выйти из аккаунта
               </Link>
             </div>
-          ) : (
+          </form>
+
+        ) : (
+
+          <form
+            className="profile__form"
+            action="#"
+            method="post"
+            // onSubmit={""}
+            // noValidate
+          >
+            <ProfileFormFieldset
+              labelName="Имя"
+              id="name"
+              name="name"
+              type="text"
+              minLengthValue="2"
+              maxLengthValuegth="30"
+              placeholderText="Имя"
+              value={name}
+              onChange={handleChangeName}
+            />
+            <hr className="profile__line"/>
+            <ProfileFormFieldset
+              labelName="E-mail"
+              id="email"
+              name="email"
+              type="email"
+              minLengthValue="2"
+              maxLengthValuegth="30"
+              placeholderText="E-mail"
+              value={email}
+              onChange={handleChangeEmail}
+            />
             <button
               className={
-                isSubmitButtonDisabled ?
+                isSubmiBtnUnclock ?
                   "profile__submit-button_disabled" :
                   "profile__submit-button opacity"
               }
-              type="button"
+              type="submit"
             >
-              Сохранить
+            Сохранить
             </button>
-          )}
-        </form>
+          </form>
+        )}
       </section>
-      {/* <Popup
-        name="error"
-        onClose={closePopup}
-        isOpen={openPopup}
-        children={<Figure
-          img={failImg}
-          alt="Рисунок крестика"
-          text="Вы ввели неправильный логин или пароль."
-        />}
-      /> */}
     </>
   );
 }
