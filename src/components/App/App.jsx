@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import { moviesArr } from "../../utils/movies_array";
 import { isLikedMovies } from "../../utils/saved-movies_array";
@@ -16,9 +16,22 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 
 export default function App() {
-
   const location = useLocation();
+  const navigate = useNavigate();
+
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [register, setRegister] = React.useState(false);
+
+
+  function handleLogin(evt) {
+    setLoggedIn(true);
+    navigate("/movies");
+  }
+
+  function handleRegister(evt) {
+    setRegister(true);
+    navigate("/signin");
+  }
 
   return (
     <div className="app">
@@ -35,7 +48,7 @@ export default function App() {
 
         <Route path="/movies" element={
           <>
-            <Header loggedIn={!loggedIn} />
+            <Header loggedIn={loggedIn} />
             <Movies location={location} moviesArr={moviesArr}/>
             <Footer />
           </>
@@ -44,7 +57,7 @@ export default function App() {
 
         <Route path="/saved-movies" element={
           <>
-            <Header loggedIn={!loggedIn} />
+            <Header loggedIn={loggedIn} />
             <SavedMovies location={location} isLikedMovies={isLikedMovies}/>
             <Footer />
           </>
@@ -53,7 +66,7 @@ export default function App() {
 
         <Route path="/profile" element={
           <>
-            <Header loggedIn={!loggedIn} />
+            <Header loggedIn={loggedIn} />
             <Profile name={"Виталий"}/>
           </>
         }
@@ -62,7 +75,7 @@ export default function App() {
         <Route path="/signin" element={
           <>
             <FormPageHeader title={"Рады видеть!"}/>
-            <Login />
+            <Login handleLogin={handleLogin}/>
           </>
         }
         />
@@ -70,7 +83,7 @@ export default function App() {
         <Route path="/signup" element={
           <>
             <FormPageHeader title={"Добро пожаловать!"}/>
-            <Register />
+            <Register handleRegister={handleRegister}/>
           </>
         }
         />

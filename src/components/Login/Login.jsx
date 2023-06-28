@@ -16,20 +16,11 @@ export default function Login(props) {
     setPassword(evt.target.value);
   }
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-
-    props.onUpdateUser({
-      email: email,
-      password: password,
-    });
-  }
-
   return (
     <main className="login form-page-main">
       <FormPageForm
         name="login"
-        onsubmit={handleSubmit}
+        handleClick={props.handleLogin}
         submitButtonTitle={"Войти"}
         formTitle={"Ещё не зарегистрированы?"}
         formLink={"Регистрация"}

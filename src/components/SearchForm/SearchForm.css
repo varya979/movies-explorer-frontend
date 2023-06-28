@@ -19,6 +19,17 @@
   width: 100%;
   height: 46px;
   font-size: 13px;
+  outline: none;
+}
+
+.search__input::placeholder {
+  color: #A0A0A0;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.search__input[type="text"]:focus {
+  color: #FF3055;
 }
 
 .search__button {

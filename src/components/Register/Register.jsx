@@ -21,21 +21,11 @@ export default function Register(props) {
     setPassword(evt.target.value);
   }
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-
-    props.onUpdateUser({
-      name: name,
-      email: email,
-      password: password,
-    });
-  }
-
   return (
     <main className="register form-page-main">
       <FormPageForm
         name="register"
-        onsubmit={handleSubmit}
+        handleClick={props.handleRegister}
         submitButtonTitle={"Зарегистрироваться"}
         formTitle={"Уже зарегистрированы?"}
         formLink={"Войти"}

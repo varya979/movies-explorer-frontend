@@ -10,7 +10,7 @@ export default function FormPageForm(props) {
       action="#"
       method="post"
       // noValidate
-      onSubmit={props.onSubmit}
+      onSubmit={props.handleClick}
     >
       {props.children}
       <button className={`form__button-save form__button-save_${props.pageName} opacity`} type="submit">
