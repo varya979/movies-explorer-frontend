@@ -1,0 +1,27 @@
+.form {
+  width: 100%;
+}
+
+.form__button-save {
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFF;
+  border: none;
+  border-radius: 3px;
+  height: 45px;
+  width: 100%;
+  background-color: #3456F3;
+  margin: 158px 0 3px;
+}
+
+.form__title {
+  color: #A0A0A0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.form__link {
+  color: #3456F3;
+  font-size: 14px;
+  text-decoration: none;
+}

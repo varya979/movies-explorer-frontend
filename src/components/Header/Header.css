@@ -15,10 +15,6 @@
 }
 
 .header__logo {
-  background: url(../../images/header_logo.svg);
-  width: 38px;
-  height: 38px;
-  background-repeat: no-repeat;
   padding-right: 60px;
 }
 

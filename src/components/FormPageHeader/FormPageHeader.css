@@ -1,0 +1,20 @@
+.form-page-header {
+  font-family: 'Inter', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 41px;
+  width: 31%;
+  margin: 0 auto;
+  padding: 70px 0 41px;
+}
+
+.form-page-header__logo {
+
+}
+
+.form-page-header__title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}

@@ -19,11 +19,11 @@
   appearance: none;
 }
 
-.search__checkbox-input:checked + .checkbox__span::before {
+.search__checkbox-input:checked + .search__checkbox-span::before {
   background-color: #EBEBEB;
 }
 
-.search__checkbox-input:checked + .checkbox__span::after {
+.search__checkbox-input:checked + .search__checkbox-span::after {
   background-color: #F5F5F5;
   left: 2px;
 }

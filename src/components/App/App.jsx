@@ -11,6 +11,8 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Profile from "../Profile/Profile";
+import FormPageHeader from "../FormPageHeader/FormPageHeader";
+import Login from "../Login/Login";
 
 export default function App() {
 
@@ -56,7 +58,14 @@ export default function App() {
         }
         />
 
-        {/* <Route path="/signin" element={<Login />} /> */}
+        <Route path="/signin" element={
+          <>
+            <FormPageHeader title={"Рады видеть!"}/>
+            <Login />
+          </>
+        }
+        />
+
         {/* <Route path="/signup" element={<Register />} /> */}
 
         <Route path="*" element={<NotFoundPage />} />
