@@ -26,14 +26,15 @@ export default function Login(props) {
   }
 
   return (
-    <main className="login">
+    <main className="login form-page-main">
       <FormPageForm
-        formClassName ="form__login"
         name="login"
         onsubmit={handleSubmit}
         submitButtonTitle={"Войти"}
         formTitle={"Ещё не зарегистрированы?"}
         formLink={"Регистрация"}
+        pageName={"login"}
+        url={"/signup"}
       >
         <FormPageFieldset
           labelName="E-mail"

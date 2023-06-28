@@ -5,7 +5,7 @@ export default function FormPageForm(props) {
 
   return (
     <form
-      className={`form ${props.formClassName}`}
+      className="form"
       name={props.name}
       action="#"
       method="post"
@@ -13,12 +13,12 @@ export default function FormPageForm(props) {
       onSubmit={props.onSubmit}
     >
       {props.children}
-      <button className="form__button-save opacity" type="submit">
+      <button className={`form__button-save form__button-save_${props.pageName} opacity`} type="submit">
         {props.submitButtonTitle}
       </button>
       <p className="form__title">
         {props.formTitle}&ensp;
-        <Link to="/signin" className="form__link opacity">
+        <Link to={props.url} className="form__link opacity">
           {props.formLink}
         </Link>
       </p>

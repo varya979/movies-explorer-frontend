@@ -11,7 +11,14 @@
   height: 45px;
   width: 100%;
   background-color: #3456F3;
+}
+
+.form__button-save_login {
   margin: 158px 0 3px;
+}
+
+.form__button-save_register {
+  margin: 70px 0 3px;
 }
 
 .form__title {

@@ -13,6 +13,7 @@ import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import Profile from "../Profile/Profile";
 import FormPageHeader from "../FormPageHeader/FormPageHeader";
 import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 export default function App() {
 
@@ -66,7 +67,13 @@ export default function App() {
         }
         />
 
-        {/* <Route path="/signup" element={<Register />} /> */}
+        <Route path="/signup" element={
+          <>
+            <FormPageHeader title={"Добро пожаловать!"}/>
+            <Register />
+          </>
+        }
+        />
 
         <Route path="*" element={<NotFoundPage />} />
 

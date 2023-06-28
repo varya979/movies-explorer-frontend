@@ -34,6 +34,8 @@
 @import url(./components/NotFoundPage/NotFoundPage.css);
 
 @import url(./components/Login/Login.css);
+@import url(./components/Register/Register.css);
+@import url(./components/FormPageMain/FormPageMain.css);
 @import url(./components/FormPageHeader/FormPageHeader.css);
 @import url(./components/FormPageForm/FormPageForm.css);
 @import url(./components/FormPageFieldset/FormPageFieldset.css);
