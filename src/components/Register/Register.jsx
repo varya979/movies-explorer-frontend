@@ -34,7 +34,7 @@ export default function Register(props) {
   return (
     <main className="register form-page-main">
       <FormPageForm
-        name="login"
+        name="register"
         onsubmit={handleSubmit}
         submitButtonTitle={"Зарегистрироваться"}
         formTitle={"Уже зарегистрированы?"}
@@ -49,6 +49,7 @@ export default function Register(props) {
           type="text"
           minLengthValue="2"
           maxLengthValuegth="30"
+          placeholderText="Имя"
           value={name}
           onChange={handleChangeName}
         />
@@ -59,6 +60,7 @@ export default function Register(props) {
           type="email"
           minLengthValue="2"
           maxLengthValuegth="30"
+          placeholderText="E-mail"
           value={email}
           onChange={handleChangeEmail}
         />
@@ -69,6 +71,7 @@ export default function Register(props) {
           type="password"
           minLengthValue="2"
           maxLengthValuegth="30"
+          placeholderText="Пароль"
           value={password}
           onChange={handleChangePassword}
         />

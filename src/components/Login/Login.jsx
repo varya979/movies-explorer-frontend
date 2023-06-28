@@ -43,6 +43,7 @@ export default function Login(props) {
           type="email"
           minLengthValue="2"
           maxLengthValuegth="30"
+          placeholderText="E-mail"
           value={email}
           onChange={handleChangeEmail}
         />
@@ -53,6 +54,7 @@ export default function Login(props) {
           type="password"
           minLengthValue="2"
           maxLengthValuegth="30"
+          placeholderText="Пароль"
           value={password}
           onChange={handleChangePassword}
         />

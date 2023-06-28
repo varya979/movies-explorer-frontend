@@ -54,7 +54,7 @@ export default function Profile(props) {
             ) : (
               <input
                 className="profile__input"
-                placeholder=""
+                placeholder="Имя"
                 type="text"
                 minLength="2"
                 maxLength="30"
@@ -76,7 +76,7 @@ export default function Profile(props) {
             ) : (
               <input
                 className="profile__input"
-                placeholder=""
+                placeholder="E-mail"
                 type="email"
                 minLength="2"
                 maxLength="30"

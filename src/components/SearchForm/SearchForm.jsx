@@ -8,7 +8,7 @@ export default function SearchForm() {
   return (
     <section className="search">
       <form className="search__form">
-        <input className="search__input" placeholder="Фильм"></input>
+        <input className="search__input" placeholder="Фильм" type="text"></input>
         <button className="search__button opacity">
           <img src={image} className="search__button-image" alt="рисунок лупы"></img>
         </button>
