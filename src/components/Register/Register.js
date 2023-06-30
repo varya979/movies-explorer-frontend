@@ -4,22 +4,6 @@ import FormPageForm from "../FormPageForm/FormPageForm";
 import FormPageFieldset from "../FormPageFieldset/FormPageFieldset";
 
 export default function Register(props) {
-  const [name, setName] = React.useState("Виталий");
-  const [email, setEmail] = React.useState("pochta@yandex.ru");
-  const [password, setPassword] = React.useState("123456789656575");
-
-  function handleChangeName(evt) {
-    setName(evt.target.value);
-  }
-
-  function handleChangeEmail(evt) {
-    setEmail(evt.target.value);
-  }
-
-  function handleChangePassword(evt) {
-    setPassword(evt.target.value);
-  }
-
   return (
     <main className="register form-page-main">
       <FormPageForm
@@ -43,8 +27,8 @@ export default function Register(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="Имя"
-          value={name}
-          onChange={handleChangeName}
+          value={props.name}
+          onChange={props.handleChangeName}
           isInputHasError={false}
         />
         <FormPageFieldset
@@ -55,8 +39,8 @@ export default function Register(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="E-mail"
-          value={email}
-          onChange={handleChangeEmail}
+          value={props.email}
+          onChange={props.handleChangeEmail}
           isInputHasError={false}
         />
         <FormPageFieldset
@@ -67,8 +51,8 @@ export default function Register(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="Пароль"
-          value={password}
-          onChange={handleChangePassword}
+          value={props.password}
+          onChange={props.handleChangePassword}
           isInputHasError={true}
         />
       </FormPageForm>

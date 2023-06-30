@@ -4,17 +4,6 @@ import FormPageForm from "../FormPageForm/FormPageForm";
 import FormPageFieldset from "../FormPageFieldset/FormPageFieldset";
 
 export default function Login(props) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-
-  function handleChangeEmail(evt) {
-    setEmail(evt.target.value);
-  }
-
-  function handleChangePassword(evt) {
-    setPassword(evt.target.value);
-  }
-
   return (
     <main className="login form-page-main">
       <FormPageForm
@@ -38,8 +27,8 @@ export default function Login(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="E-mail"
-          value={email}
-          onChange={handleChangeEmail}
+          value={props.email}
+          onChange={props.handleChangeEmail}
           isInputHasError={true}
         />
         <FormPageFieldset
@@ -50,8 +39,8 @@ export default function Login(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="Пароль"
-          value={password}
-          onChange={handleChangePassword}
+          value={props.password}
+          onChange={props.handleChangePassword}
           isInputHasError={false}
         />
       </FormPageForm>

@@ -20,7 +20,7 @@ export default function Header(props) {
 
   return (
     <>
-      {!props.loggedIn && (
+      {!props.isLoggedIn && (
         <header className="header header_dark">
           <Link to="/" className="header__logo main-logo opacity" />
           <nav className="header__nav">
@@ -36,7 +36,7 @@ export default function Header(props) {
           </nav>
         </header>
       )}
-      {props.loggedIn && (
+      {props.isLoggedIn && (
         <header className="header header_light">
           <Link to="/" className="header__logo main-logo opacity" />
           <Navigation />

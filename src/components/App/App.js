@@ -19,18 +19,33 @@ export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [register, setRegister] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isRegistered, setIsRegistered] = React.useState(false);
   const [isInputHasError, setIsInputHasError] = React.useState(false);
+  const [email, setEmail] = React.useState("pochta@yandex.ru");
+  const [password, setPassword] = React.useState("123456789656575");
+  const [name, setName] = React.useState("Виталий");
 
   function handleLogin(evt) {
-    setLoggedIn(true);
+    setIsLoggedIn(true);
     navigate("/movies");
   }
 
   function handleRegister(evt) {
-    setRegister(true);
+    setIsRegistered(true);
     navigate("/signin");
+  }
+
+  function handleChangeName(evt) {
+    setName(evt.target.value);
+  }
+
+  function handleChangeEmail(evt) {
+    setEmail(evt.target.value);
+  }
+
+  function handleChangePassword(evt) {
+    setPassword(evt.target.value);
   }
 
   return (
@@ -51,7 +66,7 @@ export default function App() {
           path="/movies"
           element={
             <>
-              <Header loggedIn={loggedIn} />
+              <Header isLoggedIn={isLoggedIn} />
               <Movies location={location} moviesArr={moviesArr} />
               <Footer />
             </>
@@ -64,7 +79,7 @@ export default function App() {
             <>
               {/* Хэдэр "верного" - светлого цвета отображается,
               если "залогиниться" через кнопку "Войти" с главной страницы */}
-              <Header loggedIn={loggedIn} />
+              <Header isLoggedIn={isLoggedIn} />
               <SavedMovies location={location} isLikedMovies={isLikedMovies} />
               <Footer />
             </>
@@ -75,7 +90,7 @@ export default function App() {
           path="/profile"
           element={
             <>
-              <Header loggedIn={loggedIn} />
+              <Header isLoggedIn={isLoggedIn} />
               <Profile isInputHasError={isInputHasError} />
             </>
           }
@@ -86,7 +101,13 @@ export default function App() {
           element={
             <>
               <FormPageHeader title={"Рады видеть!"} />
-              <Login handleLogin={handleLogin} />
+              <Login
+                handleLogin={handleLogin}
+                email={email}
+                handleChangeEmail={handleChangeEmail}
+                password={password}
+                handleChangePassword={handleChangePassword}
+              />
             </>
           }
         />
@@ -96,7 +117,15 @@ export default function App() {
           element={
             <>
               <FormPageHeader title={"Добро пожаловать!"} />
-              <Register handleRegister={handleRegister} />
+              <Register
+                handleRegister={handleRegister}
+                name={name}
+                handleChangeName={handleChangeName}
+                email={email}
+                handleChangeEmail={handleChangeEmail}
+                password={password}
+                handleChangePassword={handleChangePassword}
+              />
             </>
           }
         />
