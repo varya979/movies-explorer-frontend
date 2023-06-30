@@ -28,6 +28,10 @@
   color: #A0A0A0;
 }
 
+.search__input:focus {
+  outline: 1px solid #F5F5F5;
+}
+
 .search__button {
   border: none;
   background: transparent;

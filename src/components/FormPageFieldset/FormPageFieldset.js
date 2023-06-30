@@ -9,7 +9,7 @@ export default function FormPageFieldset(props) {
         className={
           props.isInputHasError
             ? "form-field__input form-field__input_incorrect"
-            : "form-field__input opacity"
+            : "form-field__input"
         }
         name={props.name}
         placeholder={props.placeholderText}

@@ -32,3 +32,7 @@
 .profile-form-field__input:disabled {
   background-color: #fff;
 }
+
+.profile-form-field__input:focus {
+  outline: 1px solid #F5F5F5;
+}
