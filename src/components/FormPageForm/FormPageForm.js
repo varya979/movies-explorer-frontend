@@ -22,8 +22,12 @@ export default function FormPageForm(props) {
         {props.errorText}
       </span>
       <button
-        className={`form__button-submit form__button-submit_${props.pageName} opacity`}
+        // className={`form__button-submit form__button-submit_${props.pageName} opacity`}
+        className={`form__button-submit form__button-submit_${props.pageName}
+          ${props.isInputHasError ? " form__button-submit_disabled" : "opacity"}
+        `}
         type="submit"
+        disabled={props.isInputHasError}
       >
         {props.submitButtonTitle}
       </button>

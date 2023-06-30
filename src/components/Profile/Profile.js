@@ -107,12 +107,14 @@ export default function Profile(props) {
                   "При обновлении профиля произошла ошибка."}
               </span>
               <button
-                className={
+                className={`profile__button-submit ${
                   !props.isInputHasError
-                    ? "profile__button-submit profile__button-submit_disabled"
-                    : "profile__button-submit opacity"
+                    ? "profile__button-submit_disabled"
+                    : "opacity"
                 }
+                `}
                 type="submit"
+                disabled={!props.isInputHasError}
               >
                 Сохранить
               </button>

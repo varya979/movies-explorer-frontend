@@ -34,6 +34,11 @@
   margin: 68px 0 3px;
 }
 
+.form__button-submit_disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+}
+
 .form__title {
   color: #A0A0A0;
   font-size: 14px;

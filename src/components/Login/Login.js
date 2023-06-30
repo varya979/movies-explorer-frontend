@@ -16,7 +16,7 @@ export default function Login(props) {
         url={"/signup"}
         /* появление ошибки и ее текст будут
         изменены при реализации валидации */
-        isInputHasError={true}
+        isInputHasError={false}
         errorText={"Что-то пошло не так..."}
       >
         <FormPageFieldset
@@ -29,7 +29,7 @@ export default function Login(props) {
           placeholderText="E-mail"
           value={props.email}
           onChange={props.handleChangeEmail}
-          isInputHasError={true}
+          isInputHasError={false}
         />
         <FormPageFieldset
           labelName="Пароль"
