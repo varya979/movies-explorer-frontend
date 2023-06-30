@@ -2,7 +2,7 @@ import { React } from "react";
 
 import { Link, NavLink } from "react-router-dom";
 
-import header_link from "../../images/header_link.svg";
+import AccountLogo from "../../components/AccountLogo/AccountLogo";
 
 export default function BurgerPopup(props) {
   return (
@@ -13,7 +13,7 @@ export default function BurgerPopup(props) {
     >
       <div className="burger-popup__container">
         <button
-          className="burger-popup__close-button"
+          className="burger-popup__close-button opacity"
           onClick={props.onClose}
           type="button"
         ></button>
@@ -40,16 +40,7 @@ export default function BurgerPopup(props) {
             Сохранённые фильмы
           </NavLink>
         </nav>
-        <Link to="/profile" className="burger-popup__account-link opacity">
-          Аккаунт
-          <button className="burger-popup__account-button">
-            <img
-              src={header_link}
-              className="burger-popup__account-image"
-              alt="рисунок аккаунта"
-            ></img>
-          </button>
-        </Link>
+        <AccountLogo />
       </div>
     </div>
   );

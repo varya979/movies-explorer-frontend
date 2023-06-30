@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import BurgerPopup from "../../components/BurgerPopup/BurgerPopup";
 import Logo from "../../components/Logo/Logo";
-
-import header_link from "../../images/header_link.svg";
+import AccountLogo from "../../components/AccountLogo/AccountLogo";
 
 export default function Header(props) {
   const [isBurgerPopupOpen, setIsBurgerPopupOpen] = useState(false);
@@ -41,19 +40,9 @@ export default function Header(props) {
         <header className="header header_light">
           <Logo />
           <Navigation />
-          <Link
-            to="/profile"
-            className="header__link header__link_dark opacity"
-          >
-            Аккаунт
-            <button className="header__link-button">
-              <img
-                src={header_link}
-                className="header__link-image"
-                alt="рисунок аккаунта"
-              ></img>
-            </button>
-          </Link>
+          <div className="header__account-logo-visibility">
+            <AccountLogo />
+          </div>
           <button
             className="header__account-button opacity"
             onClick={handleOpenBurgerPopup}
