@@ -17,7 +17,7 @@ export default function Portfolio() {
           >
             <img
               src={anchor}
-              className="portfolio__item-image opacity"
+              className="portfolio__item-image"
               alt="ссылка перехода на сайт"
             ></img>
           </a>
@@ -32,7 +32,7 @@ export default function Portfolio() {
           >
             <img
               src={anchor}
-              className="portfolio__item-image opacity"
+              className="portfolio__item-image"
               alt="ссылка перехода на сайт"
             ></img>
           </a>
@@ -47,7 +47,7 @@ export default function Portfolio() {
           >
             <img
               src={anchor}
-              className="portfolio__item-image opacity"
+              className="portfolio__item-image"
               alt="ссылка перехода на сайт"
             ></img>
           </a>

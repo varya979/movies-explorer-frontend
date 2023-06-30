@@ -3,11 +3,11 @@ import React from "react";
 export default function ProfileFormFieldset(props) {
   return (
     <>
-      <fieldset className="profile__form-field">
-        <label className="profile__form-label">{props.labelName}</label>
+      <fieldset className="profile-form-field">
+        <label className="profile-form-field__label">{props.labelName}</label>
         <input
           id={props.id}
-          className="profile__form-input"
+          className="profile-form-field__input"
           name={props.name}
           placeholder={props.placeholderText}
           type={props.type}

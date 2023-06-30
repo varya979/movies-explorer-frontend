@@ -1,4 +1,4 @@
-.movies__item {
+.movie-item {
   font-family: 'Inter', Arial, sans-serif;
   list-style: none;
   border-radius: 6px;
@@ -8,7 +8,7 @@
   cursor: pointer;
 }
 
-.movies__image {
+.movie-item__image {
   width: 364px;
   height: 203px;
   object-fit: cover;
@@ -16,7 +16,7 @@
   margin: 0;
 }
 
-.movies__info {
+.movie-item__info {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -24,14 +24,14 @@
   padding: 0 16px 16px;
 }
 
-.movie__info-container {
+.movie-item__info-container {
   display: flex;
   flex-direction: column;
   row-gap: 17px;
   padding-top: 15px;
 }
 
-.movies__name {
+.movie-item__name {
   margin: 0;
   font-size: 13px;
   font-weight: 500;
@@ -40,18 +40,18 @@
   overflow: hidden;
 }
 
-.movies__duration {
+.movie-item__duration {
   margin: 0;
   color: #A0A0A0;
   font-size: 11px;
 }
 
-.movies__likes-container {
+.movie-item__likes-container {
   padding: 7px 0 0;
 }
 
-.movies__button-like {
-  background-image: url(../../images/movies__button-like.svg);
+.movie-item__button-like {
+  background-image: url(../../images/movie-item__button-like.svg);
   width: 30px;
   height: 30px;
   border: 0;
@@ -59,12 +59,12 @@
   background-color: transparent;
 }
 
-.movies__button-like_active {
-  background-image: url(../../images/movies__button-like_active.svg);
+.movie-item__button-like_active {
+  background-image: url(../../images/movie-item__button-like_active.svg);
 }
 
-.movies__button-delete {
-  background-image: url(../../images/movies__button-delete.svg);
+.movie-item__button-delete {
+  background-image: url(../../images/movie-item__button-delete.svg);
   width: 30px;
   height: 30px;
   border: 0;
@@ -73,6 +73,6 @@
   display: none;
 }
 
-.movies__item:hover .movies__button-delete_visible{
+.movie-item:hover .movie-item__button-delete_visible{
   display: block
 }

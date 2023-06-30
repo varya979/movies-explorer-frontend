@@ -2,14 +2,10 @@ import React from "react";
 
 export default function FilterCheckbox() {
   return (
-    <div className="search__checkbox">
-      <label className="search__checkbox-label" htmlFor="checkbox">
-        <input
-          className="search__checkbox-input"
-          type="checkbox"
-          id="checkbox"
-        />
-        <span className="search__checkbox-span">Короткометражки</span>
+    <div className="checkbox">
+      <label className="checkbox__label" htmlFor="checkbox">
+        <input className="checkbox__input" type="checkbox" id="checkbox" />
+        <span className="checkbox__span">Короткометражки</span>
       </label>
     </div>
   );

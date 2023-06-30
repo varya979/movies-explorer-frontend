@@ -1,0 +1,14 @@
+.landing-title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.88px;
+  height: 49px;
+  border-bottom: 1px solid #000;
+  margin: 0;
+}
+
+.landing-title:nth-last-of-type(3) {
+  height: 48px;
+}
+

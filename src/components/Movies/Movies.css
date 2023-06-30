@@ -1,12 +1,12 @@
 .movies {
   font-family: 'Inter', Arial, sans-serif;
-  padding: 0 70px 141px;
+  padding: 0 70px 140px;
   margin: 0;
   max-width: 100%;
   flex-grow: 1;
 }
 
-.movies__button-more {
+.movies__button {
   font-size: 12px;
   font-weight: 500;
   width: 100%;

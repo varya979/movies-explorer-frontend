@@ -1,9 +1,7 @@
 .about-project {
   font-family: 'Inter', Arial, sans-serif;
-  padding: 0 70px 108px;
+  padding: 110.2px 70px 108px;
 }
-
-.about-project__name{}
 
 .about-project__info {
   display: grid;
@@ -20,7 +18,7 @@
   font-size: 20px;
   letter-spacing: -0.8px;
   margin: 0;
-  padding: 20px 0 28px;
+  padding: 22px 0 26px;
 }
 
 .about-project__subtitle {

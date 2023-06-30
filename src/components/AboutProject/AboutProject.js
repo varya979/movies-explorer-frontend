@@ -1,11 +1,11 @@
 import React from "react";
 
+import LandingTitle from "../LandingTitle/LandingTitle";
+
 export default function AboutProject() {
   return (
     <section className="about-project">
-      <h2 className="about-project__name name" id="about-project">
-        О проекте
-      </h2>
+      <LandingTitle title={"О проекте"} />
       <div className="about-project__info">
         <article className="about-project__article">
           <h3 className="about-project__title">

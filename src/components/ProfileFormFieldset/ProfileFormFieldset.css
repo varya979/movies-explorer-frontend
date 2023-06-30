@@ -1,4 +1,4 @@
-.profile__form-field{
+.profile-form-field{
   font-family: 'Inter', Arial, sans-serif;
   width: 100%;
   display: flex;
@@ -8,13 +8,13 @@
   padding: 0;
 }
 
-.profile__form-label {
+.profile-form-field__label {
   font-size: 11px;
   font-weight: 500;
   line-height: 14px;
 }
 
-.profile__form-input {
+.profile-form-field__input {
   border: none;
   outline: none;
   font-size: 11px;
@@ -23,12 +23,12 @@
   width: 85%;
 }
 
-.profile__form-input::placeholder {
+.profile-form-field__input::placeholder {
   color: #e0e0e0;
   font-size: 12px;
   font-weight: 400;
 }
 
-.profile__form-input:disabled {
+.profile-form-field__input:disabled {
   background-color: #fff;
 }

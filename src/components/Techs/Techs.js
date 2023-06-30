@@ -1,11 +1,11 @@
 import React from "react";
 
+import LandingTitle from "../LandingTitle/LandingTitle";
+
 export default function Techs() {
   return (
     <section className="techs">
-      <h2 className="techs__name name" id="techs">
-        Технологии
-      </h2>
+      <LandingTitle title={"Технологии"} />
       <article className="techs__article">
         <h3 className="techs__title">7 технологий</h3>
         <p className="techs__subtitle">

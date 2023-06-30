@@ -1,4 +1,4 @@
-.form__field {
+.form-field {
   font-family: 'Inter', Arial, sans-serif;
   display: flex;
   border: none;
@@ -10,16 +10,16 @@
   padding-bottom: 21px;
 }
 
-.form__field:last-of-type {
+.form-field:last-of-type {
   padding-bottom: 5px;
 }
 
-.form__label {
+.form-field__label {
   color: #A0A0A0;
   font-size: 10px;
 }
 
-.form__input {
+.form-field__input {
   font-size: 13px;
   font-weight: 500;
   outline: none;
@@ -29,11 +29,11 @@
   padding: 0 15px;
 }
 
-.form__input_incorrect {
+.form-field__input_incorrect {
   color: #FF3055;
 }
 
-.form__input::placeholder {
+.form-field__input::placeholder {
   color: #e0e0e0;
   font-size: 12px;
   font-weight: 400;

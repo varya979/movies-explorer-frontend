@@ -1,16 +1,12 @@
 .about-me {
   font-family: 'Inter', Arial, sans-serif;
-  padding: 0 70px;
+  padding: 110px 70px 0;
 }
 
 .about-me__article-cover {
   display: flex;
   justify-content: space-between;
   padding: 66px 0 100px;
-}
-
-.about-me__name {
-
 }
 
 .about-me__article {
@@ -22,14 +18,14 @@
   font-weight: 400;
   letter-spacing: -2px;
   margin: 0;
-  padding-bottom: 18px;
+  padding-bottom: 20px;
 }
 
 .about-me__subtitle {
   font-size: 18px;
   font-weight: 500;
   margin: 0;
-  padding-bottom: 26px;
+  padding-bottom: 24px;
 }
 
 .about-me__paragraph {

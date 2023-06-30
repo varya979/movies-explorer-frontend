@@ -2,12 +2,12 @@ import React from "react";
 
 import photo from "../../images/about-me_photo.svg";
 
+import LandingTitle from "../LandingTitle/LandingTitle";
+
 export default function AboutMe() {
   return (
     <section className="about-me">
-      <h2 className="about-me__name name" id="about-me">
-        Студент
-      </h2>
+      <LandingTitle title={"Студент"} />
       <div className="about-me__article-cover">
         <article className="about-me__article">
           <h3 className="about-me__title">Виталий</h3>
