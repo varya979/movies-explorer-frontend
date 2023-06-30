@@ -15,7 +15,7 @@
   visibility: visible;
 }
 
-.form__button-save {
+.form__button-submit {
   font-size: 14px;
   font-weight: 500;
   color: #FFF;
@@ -26,11 +26,11 @@
   background-color: #3456F3;
 }
 
-.form__button-save_login {
+.form__button-submit_login {
   margin: 156px 0 3px;
 }
 
-.form__button-save_register {
+.form__button-submit_register {
   margin: 68px 0 3px;
 }
 

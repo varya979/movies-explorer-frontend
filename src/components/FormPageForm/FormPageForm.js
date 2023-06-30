@@ -22,7 +22,7 @@ export default function FormPageForm(props) {
         {props.errorText}
       </span>
       <button
-        className={`form__button-save form__button-save_${props.pageName} opacity`}
+        className={`form__button-submit form__button-submit_${props.pageName} opacity`}
         type="submit"
       >
         {props.submitButtonTitle}

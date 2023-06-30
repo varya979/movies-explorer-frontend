@@ -99,7 +99,7 @@ export default function Profile(props) {
               value={email}
               onChange={handleChangeEmail}
             />
-            <div className="profile__submit-button-container">
+            <div className="profile__button-submit-container">
               <span className="profile__error">
                 {/* появление ошибки и ее текст, а также кнопка
                 сохранить будут изменены при реализации валидации */}
@@ -109,8 +109,8 @@ export default function Profile(props) {
               <button
                 className={
                   !props.isInputHasError
-                    ? "profile__submit-button profile__submit-button_disabled"
-                    : "profile__submit-button opacity"
+                    ? "profile__button-submit profile__button-submit_disabled"
+                    : "profile__button-submit opacity"
                 }
                 type="submit"
               >
