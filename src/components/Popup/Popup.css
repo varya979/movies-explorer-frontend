@@ -33,7 +33,7 @@
   border-radius: 30px;
 }
 
-.popup__button_type_close {
+.popup__button_close {
   background: url(../../images/popup__button-close.svg);
   background-repeat: no-repeat;
   border: none;
@@ -44,4 +44,3 @@
   box-sizing: border-box;
 }
 
-/* .popup_type_ */

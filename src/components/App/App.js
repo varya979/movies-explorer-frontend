@@ -61,6 +61,8 @@ export default function App() {
           path="/saved-movies"
           element={
             <>
+              {/* Хэдэр "верного" - светлого цвета отображается,
+              если "залогиниться" через кнопку "Войти" с главной страницы */}
               <Header loggedIn={loggedIn} />
               <SavedMovies location={location} isLikedMovies={isLikedMovies} />
               <Footer />

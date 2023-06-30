@@ -51,6 +51,21 @@
   text-decoration: none;
 }
 
+.profile__submit-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 267px;
+}
+
+.profile__error {
+  align-self: center;
+  padding-bottom: 20px;
+  color: #FF004D;
+  font-size: 11px;
+  font-weight: 500;
+}
+
 .profile__submit-button {
   font-size: 14px;
   font-weight: 500;
@@ -59,7 +74,6 @@
   height: 45px;
   background-color: #3456F3;
   color: #FFF;
-  margin-top: 205px;
 }
 
 .profile__submit-button_disabled {
@@ -70,7 +84,7 @@
   height: 45px;
   background-color: #F8F8F8;
   color: #C2C2C2;
-  margin-top: 205px;
+  /* margin-top: 205px; */
 }
 
 

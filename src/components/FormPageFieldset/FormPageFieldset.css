@@ -31,7 +31,7 @@
   font-weight: 400;
 }
 
-.form__input[type="text"]:focus {
+/* .form__input[type="text"]:focus {
   color: #FF3055;
 }
 
@@ -41,10 +41,10 @@
 
 .form__input[type="password"]:focus {
   color: #FF3055;
-}
+} */
 
 
-.form__input_type_error {
+.form__input_error {
   border-bottom: 1px solid #FF0000;
 }
 

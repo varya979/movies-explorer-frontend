@@ -59,8 +59,8 @@
   background-color: transparent;
 }
 
-.movies__button-like_type_active {
-  background-image: url(../../images/movies__button-like_type_active.svg);
+.movies__button-like_active {
+  background-image: url(../../images/movies__button-like_active.svg);
 }
 
 .movies__button-delete {
@@ -73,6 +73,6 @@
   display: none;
 }
 
-.movies__item:hover .movies__button-delete_type_visible{
+.movies__item:hover .movies__button-delete_visible{
   display: block
 }

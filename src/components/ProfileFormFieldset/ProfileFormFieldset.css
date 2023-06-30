@@ -29,14 +29,6 @@
   font-weight: 400;
 }
 
-.profile__form-input[type="text"]:focus {
-  color: #FF3055;
-}
-
-.profile__form-input[type="email"]:focus {
-  color: #FF3055;
-}
-
 .profile__form-input:disabled {
   background-color: #fff;
 }

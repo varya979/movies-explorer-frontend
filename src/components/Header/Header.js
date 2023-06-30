@@ -21,7 +21,7 @@ export default function Header(props) {
   return (
     <>
       {!props.loggedIn && (
-        <header className="header header_type_dark">
+        <header className="header header_dark">
           <Link to="/" className="header__logo main-logo opacity" />
           <nav className="header__nav">
             <Link to="/signup" className="header__link opacity">
@@ -29,7 +29,7 @@ export default function Header(props) {
             </Link>
             <Link
               to="/signin"
-              className="header__link header__link_type_green opacity"
+              className="header__link header__link_green opacity"
             >
               Войти
             </Link>
@@ -37,12 +37,12 @@ export default function Header(props) {
         </header>
       )}
       {props.loggedIn && (
-        <header className="header header_type_light">
+        <header className="header header_light">
           <Link to="/" className="header__logo main-logo opacity" />
           <Navigation />
           <Link
             to="/profile"
-            className="header__link header__link_type_dark opacity"
+            className="header__link header__link_dark opacity"
           >
             Аккаунт
             <button className="header__link-button">

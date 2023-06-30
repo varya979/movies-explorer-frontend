@@ -5,11 +5,11 @@
   justify-content: space-between;
 }
 
-.header_type_dark {
+.header_dark {
   background-color: #073042;
 }
 
-.header_type_light {
+.header_light {
   background-color: #fff;
   padding-bottom: 80px;
 }
@@ -34,7 +34,7 @@
   padding-right: 30px;
 }
 
-.header__link_type_green {
+.header__link_green {
   color: #000;
   line-height: 32px;
   width: 76px;
@@ -45,7 +45,7 @@
   text-align: center;
 }
 
-.header__link_type_dark {
+.header__link_dark {
   color: #000;
   font-size: 14px;
   padding-right: 0;
@@ -73,7 +73,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  .header__link_type_dark {
+  .header__link_dark {
     display: none;
   }
 

@@ -9,7 +9,7 @@ export default function Navigation(props) {
         to="/movies"
         className={({ isActive }) =>
           `header__navigation-link opacity
-          ${isActive ? "header__navigation-link_type_active" : ""}`
+          ${isActive ? "header__navigation-link_active" : ""}`
         }
       >
         Фильмы
@@ -18,7 +18,7 @@ export default function Navigation(props) {
         to="/saved-movies"
         className={({ isActive }) =>
           `header__navigation-link opacity
-          ${isActive ? "header__navigation-link_type_active" : ""}`
+          ${isActive ? "header__navigation-link_active" : ""}`
         }
       >
         Сохранённые фильмы

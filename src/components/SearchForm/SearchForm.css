@@ -28,10 +28,6 @@
   color: #A0A0A0;
 }
 
-.search__input[type="text"]:focus {
-  color: #FF3055;
-}
-
 .search__button {
   border: none;
   background: transparent;

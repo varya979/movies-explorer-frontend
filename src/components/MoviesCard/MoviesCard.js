@@ -2,11 +2,11 @@ import React from "react";
 
 export default function MoviesCard(props) {
   const moviesLikeButtonClassName = `movies__button-like ${
-    props.movie.isLiked && "movies__button-like_type_active"
+    props.movie.isLiked && "movies__button-like_active"
   }`;
 
   const moviesDeleteButtonClassName = `movies__button-delete ${
-    props.movie.isLiked && "movies__button-delete_type_visible"
+    props.movie.isLiked && "movies__button-delete_visible"
   }`;
 
   return (

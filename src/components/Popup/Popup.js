@@ -22,12 +22,12 @@ export default function Popup({ isOpen, name, onClose, children }) {
 
   return (
     <div
-      className={`popup ${isOpen ? "popup_opened" : ""} popup_type_${name}`}
+      className={`popup ${isOpen ? "popup_opened" : ""} popup_${name}`}
       onClick={handleOverlay}
     >
       <div className="popup__container">
         <button
-          className="popup__button_type_close opacity"
+          className="popup__button_close opacity"
           type="button"
           onClick={onClose}
         />
