@@ -7,7 +7,11 @@
   flex-direction: column;
   min-height: 65px;
   row-gap: 9.5px;
-  padding-bottom: 6.5px;
+  padding-bottom: 21px;
+}
+
+.form__field:last-of-type {
+  padding-bottom: 5px;
 }
 
 .form__label {
@@ -25,38 +29,14 @@
   padding: 0 15px;
 }
 
+.form__input_incorrect {
+  color: #FF3055;
+}
+
 .form__input::placeholder {
   color: #e0e0e0;
   font-size: 12px;
   font-weight: 400;
 }
 
-/* .form__input[type="text"]:focus {
-  color: #FF3055;
-}
 
-.form__input[type="email"]:focus {
-  color: #FF3055;
-}
-
-.form__input[type="password"]:focus {
-  color: #FF3055;
-} */
-
-
-.form__input_error {
-  border-bottom: 1px solid #FF0000;
-}
-
-.form__input-error {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14.52px;
-  color: #FF0000;
-  margin: 0;
-  padding-top: 5px;
-}
-
-.form__input-error_active {
-  visibility: visible;
-}

@@ -21,6 +21,7 @@ export default function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [register, setRegister] = React.useState(false);
+  const [isInputHasError, setIsInputHasError] = React.useState(false);
 
   function handleLogin(evt) {
     setLoggedIn(true);
@@ -75,7 +76,7 @@ export default function App() {
           element={
             <>
               <Header loggedIn={loggedIn} />
-              <Profile />
+              <Profile isInputHasError={isInputHasError} />
             </>
           }
         />

@@ -6,7 +6,11 @@ export default function FormPageFieldset(props) {
       <label className="form__label">{props.labelName}</label>
       <input
         id={props.id}
-        className="form__input"
+        className={
+          props.isInputHasError
+            ? "form__input form__input_incorrect"
+            : "form__input opacity"
+        }
         name={props.name}
         placeholder={props.placeholderText}
         type={props.type}
@@ -16,7 +20,6 @@ export default function FormPageFieldset(props) {
         value={props.value}
         onChange={props.onChange}
       />
-      <span className={`form__input-error form__input-error-${props.id}`} />
     </fieldset>
   );
 }

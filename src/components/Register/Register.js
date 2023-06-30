@@ -4,9 +4,9 @@ import FormPageForm from "../FormPageForm/FormPageForm";
 import FormPageFieldset from "../FormPageFieldset/FormPageFieldset";
 
 export default function Register(props) {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [name, setName] = React.useState("Виталий");
+  const [email, setEmail] = React.useState("pochta@yandex.ru");
+  const [password, setPassword] = React.useState("123456789656575");
 
   function handleChangeName(evt) {
     setName(evt.target.value);
@@ -30,6 +30,10 @@ export default function Register(props) {
         formLink={"Войти"}
         pageName={"register"}
         url={"/signin"}
+        /* появление ошибки и ее текст будут
+        изменены при реализации валидации */
+        isInputHasError={true}
+        errorText={"Что-то пошло не так..."}
       >
         <FormPageFieldset
           labelName="Имя"
@@ -41,6 +45,7 @@ export default function Register(props) {
           placeholderText="Имя"
           value={name}
           onChange={handleChangeName}
+          isInputHasError={false}
         />
         <FormPageFieldset
           labelName="E-mail"
@@ -52,6 +57,7 @@ export default function Register(props) {
           placeholderText="E-mail"
           value={email}
           onChange={handleChangeEmail}
+          isInputHasError={false}
         />
         <FormPageFieldset
           labelName="Пароль"
@@ -63,6 +69,7 @@ export default function Register(props) {
           placeholderText="Пароль"
           value={password}
           onChange={handleChangePassword}
+          isInputHasError={true}
         />
       </FormPageForm>
     </main>

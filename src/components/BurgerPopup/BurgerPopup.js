@@ -6,7 +6,11 @@ import header_link from "../../images/header_link.svg";
 
 export default function BurgerPopup(props) {
   return (
-    <div className={`${props.isOpen ? "burger-popup_open" : "burger-popup"}`}>
+    <div
+      className={`${
+        props.isOpen ? "burger-popup burger-popup_open" : "burger-popup"
+      }`}
+    >
       <div className="burger-popup__container">
         <button
           className="burger-popup__close-button"

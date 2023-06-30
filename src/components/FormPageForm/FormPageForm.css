@@ -3,6 +3,18 @@
   width: 100%;
 }
 
+.form__error {
+  visibility: hidden;
+  color: #FF3055;
+  font-size: 10px;
+  font-weight: 400;
+  /* padding-top: 10px; */
+}
+
+.form__error_active {
+  visibility: visible;
+}
+
 .form__button-save {
   font-size: 14px;
   font-weight: 500;
@@ -15,11 +27,11 @@
 }
 
 .form__button-save_login {
-  margin: 158px 0 3px;
+  margin: 156px 0 3px;
 }
 
 .form__button-save_register {
-  margin: 70px 0 3px;
+  margin: 68px 0 3px;
 }
 
 .form__title {

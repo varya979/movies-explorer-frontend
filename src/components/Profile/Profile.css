@@ -77,14 +77,8 @@
 }
 
 .profile__submit-button_disabled {
-  font-size: 14px;
-  font-weight: 500;
-  border: none;
-  border-radius: 3px;
-  height: 45px;
   background-color: #F8F8F8;
   color: #C2C2C2;
-  /* margin-top: 205px; */
 }
 
 

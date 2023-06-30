@@ -25,6 +25,10 @@ export default function Login(props) {
         formLink={"Регистрация"}
         pageName={"login"}
         url={"/signup"}
+        /* появление ошибки и ее текст будут
+        изменены при реализации валидации */
+        isInputHasError={true}
+        errorText={"Что-то пошло не так..."}
       >
         <FormPageFieldset
           labelName="E-mail"
@@ -36,6 +40,7 @@ export default function Login(props) {
           placeholderText="E-mail"
           value={email}
           onChange={handleChangeEmail}
+          isInputHasError={true}
         />
         <FormPageFieldset
           labelName="Пароль"
@@ -47,6 +52,7 @@ export default function Login(props) {
           placeholderText="Пароль"
           value={password}
           onChange={handleChangePassword}
+          isInputHasError={false}
         />
       </FormPageForm>
     </main>

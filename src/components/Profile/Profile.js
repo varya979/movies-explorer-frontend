@@ -7,7 +7,6 @@ export default function Profile(props) {
   const [name, setName] = React.useState("Виталий");
   const [email, setEmail] = React.useState("pochta@yandex.ru");
   const [isEditBtnUnlock, setIsEditBtnUnlock] = React.useState(false);
-  const [isInputHasError, setIsInputHasError] = React.useState(false);
 
   function handleChangeName(evt) {
     setName(evt.target.value);
@@ -102,13 +101,15 @@ export default function Profile(props) {
             />
             <div className="profile__submit-button-container">
               <span className="profile__error">
-                {/* появление ошибки и ее текст, а также кнопка сохранить будут изменены при реализации валидации */}
-                {!isInputHasError && "При обновлении профиля произошла ошибка."}
+                {/* появление ошибки и ее текст, а также кнопка
+                сохранить будут изменены при реализации валидации */}
+                {!props.isInputHasError &&
+                  "При обновлении профиля произошла ошибка."}
               </span>
               <button
                 className={
-                  !isInputHasError
-                    ? "profile__submit-button_disabled"
+                  !props.isInputHasError
+                    ? "profile__submit-button profile__submit-button_disabled"
                     : "profile__submit-button opacity"
                 }
                 type="submit"
