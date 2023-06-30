@@ -3,6 +3,7 @@
   padding: 18px 70px 100px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .header_dark {
