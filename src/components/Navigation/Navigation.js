@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 
 export default function Navigation(props) {
   return (
-    <nav className="header__navigation">
+    <nav className="navigation">
       <NavLink
         to="/movies"
         className={({ isActive }) =>
-          `header__navigation-link opacity
-          ${isActive ? "header__navigation-link_active" : ""}`
+          `navigation__link opacity
+          ${isActive ? "navigation__link_active" : ""}`
         }
       >
         Фильмы
@@ -17,8 +17,8 @@ export default function Navigation(props) {
       <NavLink
         to="/saved-movies"
         className={({ isActive }) =>
-          `header__navigation-link opacity
-          ${isActive ? "header__navigation-link_active" : ""}`
+          `navigation__link opacity
+          ${isActive ? "navigation__link_active" : ""}`
         }
       >
         Сохранённые фильмы

@@ -1,10 +1,10 @@
-.header__navigation {
+.navigation {
   display: flex;
   align-items: center;
   padding: 0 0 0 60px;
 }
 
-.header__navigation-link {
+.navigation__link {
   color: #000;
   font-weight: 400;
   font-size: 13px;
@@ -13,16 +13,16 @@
   padding-right: 16px;
 }
 
-.header__navigation-link:nth-of-type(2) {
+.navigation__link:nth-of-type(2) {
   padding-right: 0;
 }
 
-.header__navigation-link_active {
+.navigation__link_active {
   font-weight: 500;
 }
 
 @media screen and (max-width: 900px) {
-  .header__navigation {
+  .navigation {
     display: none;
   }
 }
