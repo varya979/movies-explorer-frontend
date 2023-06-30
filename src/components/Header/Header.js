@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import Navigation from "../Navigation/Navigation";
 import BurgerPopup from "../../components/BurgerPopup/BurgerPopup";
+import Logo from "../../components/Logo/Logo";
 
 import header_link from "../../images/header_link.svg";
 
@@ -22,7 +23,7 @@ export default function Header(props) {
     <>
       {!props.isLoggedIn && (
         <header className="header header_dark">
-          <Link to="/" className="header__logo main-logo opacity" />
+          <Logo />
           <nav className="header__nav">
             <Link to="/signup" className="header__link opacity">
               Регистрация
@@ -38,7 +39,7 @@ export default function Header(props) {
       )}
       {props.isLoggedIn && (
         <header className="header header_light">
-          <Link to="/" className="header__logo main-logo opacity" />
+          <Logo />
           <Navigation />
           <Link
             to="/profile"

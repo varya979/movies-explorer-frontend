@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import Logo from "../../components/Logo/Logo";
 
 export default function FormPageHeader(props) {
   return (
     <header className="form-page-header">
-      <Link to="/" className="form-page-header__logo main-logo opacity" />
+      <Logo />
       <h1 className="form-page-header__title">{props.title}</h1>
     </header>
   );

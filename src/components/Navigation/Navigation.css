@@ -1,7 +1,7 @@
 .header__navigation {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 0 0 0 60px;
 }
 
 .header__navigation-link {
