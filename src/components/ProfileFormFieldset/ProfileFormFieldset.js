@@ -17,7 +17,9 @@ export default function ProfileFormFieldset(props) {
         onChange={props.onChange}
         disabled={props.disabled}
       />
-      <span className={`profile__form-input-error profile__form-input-error-${props.id}`} />
+      <span
+        className={`profile__form-input-error profile__form-input-error-${props.id}`}
+      />
     </fieldset>
   );
 }

@@ -3,10 +3,14 @@ import React from "react";
 import FormPageForm from "../FormPageForm/FormPageForm";
 import FormPageFieldset from "../FormPageFieldset/FormPageFieldset";
 
-export default function Login(props) {
-
+export default function Register(props) {
+  const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  function handleChangeName(evt) {
+    setName(evt.target.value);
+  }
 
   function handleChangeEmail(evt) {
     setEmail(evt.target.value);
@@ -17,16 +21,27 @@ export default function Login(props) {
   }
 
   return (
-    <main className="login form-page-main">
+    <main className="register form-page-main">
       <FormPageForm
-        name="login"
-        handleClick={props.handleLogin}
-        submitButtonTitle={"Войти"}
-        formTitle={"Ещё не зарегистрированы?"}
-        formLink={"Регистрация"}
-        pageName={"login"}
-        url={"/signup"}
+        name="register"
+        handleClick={props.handleRegister}
+        submitButtonTitle={"Зарегистрироваться"}
+        formTitle={"Уже зарегистрированы?"}
+        formLink={"Войти"}
+        pageName={"register"}
+        url={"/signin"}
       >
+        <FormPageFieldset
+          labelName="Имя"
+          id="name"
+          name="name"
+          type="text"
+          minLengthValue="2"
+          maxLengthValuegth="30"
+          placeholderText="Имя"
+          value={name}
+          onChange={handleChangeName}
+        />
         <FormPageFieldset
           labelName="E-mail"
           id="email"

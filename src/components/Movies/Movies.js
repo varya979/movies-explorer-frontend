@@ -10,11 +10,14 @@ export default function Movies(props) {
   return (
     <main className="movies">
       <SearchForm />
-      {isLoading
-        ? <Preloader />
-        : <MoviesCardList moviesArr={props.moviesArr} location={props.location}/>
-      }
-      <button className="movies__button-more opacity" type="button">Ещё</button>
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <MoviesCardList moviesArr={props.moviesArr} location={props.location} />
+      )}
+      <button className="movies__button-more opacity" type="button">
+        Ещё
+      </button>
     </main>
   );
 }

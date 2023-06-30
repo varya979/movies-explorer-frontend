@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function FormPageForm(props) {
-
   return (
     <form
       className="form"
@@ -13,7 +12,10 @@ export default function FormPageForm(props) {
       onSubmit={props.handleClick}
     >
       {props.children}
-      <button className={`form__button-save form__button-save_${props.pageName} opacity`} type="submit">
+      <button
+        className={`form__button-save form__button-save_${props.pageName} opacity`}
+        type="submit"
+      >
         {props.submitButtonTitle}
       </button>
       <p className="form__title">

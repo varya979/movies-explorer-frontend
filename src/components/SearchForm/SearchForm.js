@@ -8,7 +8,8 @@ export default function SearchForm(props) {
   return (
     <section className="search">
       <form className="search__form">
-        <input className="search__input"
+        <input
+          className="search__input"
           placeholder="Фильм"
           type="text"
           minLength="2"
@@ -18,11 +19,15 @@ export default function SearchForm(props) {
           onChange={props.onChange}
         ></input>
         <button className="search__button opacity" type="submit">
-          <img src={image} className="search__button-image" alt="рисунок лупы"></img>
+          <img
+            src={image}
+            className="search__button-image"
+            alt="рисунок лупы"
+          ></img>
         </button>
       </form>
       <FilterCheckbox />
-      <hr className="search__line"/>
+      <hr className="search__line" />
     </section>
   );
 }

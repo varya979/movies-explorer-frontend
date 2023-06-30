@@ -9,14 +9,20 @@ export default function Navigation(props) {
         to="/movies"
         className={({ isActive }) =>
           `header__navigation-link opacity
-          ${isActive ? "header__navigation-link_type_active" : ""}`}
-      >Фильмы</NavLink>
+          ${isActive ? "header__navigation-link_type_active" : ""}`
+        }
+      >
+        Фильмы
+      </NavLink>
       <NavLink
         to="/saved-movies"
         className={({ isActive }) =>
           `header__navigation-link opacity
-          ${isActive ? "header__navigation-link_type_active" : ""}`}
-      >Сохранённые фильмы</NavLink>
+          ${isActive ? "header__navigation-link_type_active" : ""}`
+        }
+      >
+        Сохранённые фильмы
+      </NavLink>
     </nav>
   );
 }

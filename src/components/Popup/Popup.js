@@ -1,17 +1,17 @@
-import {React, useEffect } from "react";
+import { React, useEffect } from "react";
 
-export default function Popup ({ isOpen, name, onClose, children }) {
+export default function Popup({ isOpen, name, onClose, children }) {
   useEffect(() => {
     if (!isOpen) return;
     const closeByEscape = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', closeByEscape);
+    document.addEventListener("keydown", closeByEscape);
 
-    return () => document.removeEventListener('keydown', closeByEscape);
+    return () => document.removeEventListener("keydown", closeByEscape);
   }, [isOpen, onClose]);
 
   const handleOverlay = (e) => {
@@ -35,5 +35,4 @@ export default function Popup ({ isOpen, name, onClose, children }) {
       </div>
     </div>
   );
-};
-
+}

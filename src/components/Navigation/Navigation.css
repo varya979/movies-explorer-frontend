@@ -20,3 +20,9 @@
 .header__navigation-link_type_active {
   font-weight: 500;
 }
+
+@media screen and (max-width: 900px) {
+  .header__navigation {
+    display: none;
+  }
+}

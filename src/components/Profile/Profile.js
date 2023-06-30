@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import ProfileFormFieldset from "../ProfileFormFieldset/ProfileFormFieldset";
 
@@ -44,7 +44,7 @@ export default function Profile(props) {
               onChange={handleChangeName}
               disabled={"disabled"}
             />
-            <hr className="profile__line"/>
+            <hr className="profile__line" />
             <ProfileFormFieldset
               labelName="E-mail"
               id="email"
@@ -69,9 +69,7 @@ export default function Profile(props) {
               </Link>
             </div>
           </form>
-
         ) : (
-
           <form
             className="profile__form"
             action="#"
@@ -90,7 +88,7 @@ export default function Profile(props) {
               value={name}
               onChange={handleChangeName}
             />
-            <hr className="profile__line"/>
+            <hr className="profile__line" />
             <ProfileFormFieldset
               labelName="E-mail"
               id="email"
@@ -104,13 +102,13 @@ export default function Profile(props) {
             />
             <button
               className={
-                isSubmiBtnUnclock ?
-                  "profile__submit-button_disabled" :
-                  "profile__submit-button opacity"
+                isSubmiBtnUnclock
+                  ? "profile__submit-button_disabled"
+                  : "profile__submit-button opacity"
               }
               type="submit"
             >
-            Сохранить
+              Сохранить
             </button>
           </form>
         )}

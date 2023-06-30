@@ -5,7 +5,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 export default function MoviesCardList(props) {
   return (
     <>
-      {props.location.pathname  === "/movies" && (
+      {props.location.pathname === "/movies" && (
         <ul className="movies__list">
           {props.moviesArr.map((movie) => (
             <MoviesCard
@@ -16,7 +16,7 @@ export default function MoviesCardList(props) {
           ))}
         </ul>
       )}
-      {props.location.pathname  === "/saved-movies" && (
+      {props.location.pathname === "/saved-movies" && (
         <ul className="movies__list">
           {props.isLikedMovies.map((movie) => (
             <MoviesCard

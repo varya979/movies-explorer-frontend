@@ -54,6 +54,10 @@
   align-items: center;
 }
 
+.header__account-button {
+  display: none;
+}
+
 .header__link-image {
   background-color: #F9F9F9;
   margin: 0;
@@ -68,8 +72,17 @@
   padding: 0;
 }
 
-@media screen and (max-width: 400px) {
-  .header__link {
-    font-size: 10px;
+@media screen and (max-width: 900px) {
+  .header__link_type_dark {
+    display: none;
+  }
+
+  .header__account-button {
+    display: block;
+    border: none;
+    background: url("../../images/header__burger-icon-open.svg");
+    height: 44px;
+    width: 44px;
+    padding: 0;
   }
 }

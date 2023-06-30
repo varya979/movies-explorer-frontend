@@ -9,7 +9,10 @@ export default function SavedMovies(props) {
     <main className="saved-movies">
       <SearchForm />
       {/* <Preloader /> */}
-      <MoviesCardList isLikedMovies={props.isLikedMovies} location={props.location}/>
+      <MoviesCardList
+        isLikedMovies={props.isLikedMovies}
+        location={props.location}
+      />
     </main>
   );
 }

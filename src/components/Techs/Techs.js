@@ -1,13 +1,17 @@
 import React from "react";
 
-export default function Techs () {
+export default function Techs() {
   return (
     <section className="techs">
-      <h2 className="techs__name name" id="techs">Технологии</h2>
+      <h2 className="techs__name name" id="techs">
+        Технологии
+      </h2>
       <article className="techs__article">
         <h3 className="techs__title">7 технологий</h3>
-        <p className="techs__subtitle">На курсе веб-разработки мы освоили технологии,
-которые применили в дипломном проекте.</p>
+        <p className="techs__subtitle">
+          На курсе веб-разработки мы освоили технологии, которые применили в
+          дипломном проекте.
+        </p>
       </article>
       <ul className="techs__icons">
         <li className="techs__icon">HTML</li>
