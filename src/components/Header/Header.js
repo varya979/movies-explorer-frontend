@@ -22,31 +22,35 @@ export default function Header(props) {
     <>
       {!props.isLoggedIn && (
         <header className="header header_dark">
-          <Logo />
-          <nav className="header__nav">
-            <Link to="/signup" className="header__link opacity">
-              Регистрация
-            </Link>
-            <Link
-              to="/signin"
-              className="header__link header__link_green opacity"
-            >
-              Войти
-            </Link>
-          </nav>
+          <div className="header__wrapper">
+            <Logo />
+            <nav className="header__nav">
+              <Link to="/signup" className="header__link opacity">
+                Регистрация
+              </Link>
+              <Link
+                to="/signin"
+                className="header__link header__link_green opacity"
+              >
+                Войти
+              </Link>
+            </nav>
+          </div>
         </header>
       )}
       {props.isLoggedIn && (
         <header className="header header_light">
-          <Logo />
-          <Navigation />
-          <div className="header__account-logo-visibility">
-            <AccountLogo />
+          <div className="header__wrapper header__wrapper_movies">
+            <Logo />
+            <Navigation />
+            <div className="header__account-logo-visibility">
+              <AccountLogo />
+            </div>
+            <button
+              className="header__account-button opacity"
+              onClick={handleOpenBurgerPopup}
+            ></button>
           </div>
-          <button
-            className="header__account-button opacity"
-            onClick={handleOpenBurgerPopup}
-          ></button>
         </header>
       )}
       <BurgerPopup

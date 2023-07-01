@@ -1,10 +1,4 @@
-.header {
-  font-family: 'Inter', Arial, sans-serif;
-  padding: 18px 70px 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+.header {}
 
 .header_dark {
   background-color: #073042;
@@ -12,6 +6,21 @@
 
 .header_light {
   background-color: #fff;
+}
+
+.header__wrapper {
+  font-family: 'Inter', Arial, sans-serif;
+  padding: 18px 70px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  min-width: 320px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.header__wrapper_movies {
   padding-bottom: 79px;
 }
 
@@ -51,7 +60,7 @@
   display: none;
 }
 
-/* кнопка бургер-меню */
+
 @media screen and (max-width: 900px) {
   .header__account-logo-visibility {
     display: none;

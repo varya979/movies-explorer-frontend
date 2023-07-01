@@ -73,7 +73,6 @@ export default function Profile(props) {
             className="profile__form"
             action="#"
             method="post"
-            // onSubmit={""}
             // noValidate
           >
             <ProfileFormFieldset
