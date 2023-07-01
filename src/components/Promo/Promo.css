@@ -30,9 +30,18 @@
   z-index: 1;
 }
 
-@media screen and (max-width: 400px) {
-  .promo__logo{
-    width: 248px;
-    height: 248px;
+@media screen and (max-width: 1025px) {
+  .promo {
+    padding: 0 30px;
+    padding-bottom: 119px;
   }
+
+  .promo__title {
+    max-width: auto;
+    top: 401px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+
 }

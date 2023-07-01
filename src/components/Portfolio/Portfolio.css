@@ -4,7 +4,7 @@
   min-width: 320px;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 0 70px;
+  padding: 0 70px 145px;
 }
 
 .portfolio__title {
@@ -43,5 +43,25 @@
 }
 
 .portfolio__item-image {
+
+}
+
+@media screen and (max-width: 1025px) {
+  .portfolio {
+    padding: 0 50px 110.5px;
+  }
+
+  .portfolio__title {
+    padding-bottom: 49px;
+  }
+
+  .portfolio__item-title {
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
+
+}
+
+@media screen and (max-width: 670px) {
 
 }

@@ -1,0 +1,9 @@
+/* для центровки login и registration по вертикали  */
+.page {
+  min-width: 320px;
+  max-width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

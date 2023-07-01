@@ -1,9 +1,8 @@
 .form-page-header {
   font-family: 'Inter', Arial, sans-serif;
-  max-width: 396px;
-  min-width: 320px;
+  width: 396px;
   margin: 0 auto;
-  padding: 70px 0 41px;
+  padding-bottom: 41px;
   display: flex;
   flex-direction: column;
   row-gap: 41px;
@@ -13,4 +12,13 @@
   font-size: 24px;
   font-weight: 500;
   margin: 0;
+}
+
+@media screen and (max-width: 1025px) {
+
+
+}
+
+@media screen and (max-width: 670px) {
+
 }

@@ -2,20 +2,20 @@
 @import url(./vendor/fonts/fonts.css);
 
 @import url(./components/App/App.css);
+@import url(./components/Page/Page.css);
 
-/* миксы: */
 @import url(./components/Opacity/Opacity.css);
-@import url(./components/LandingTitle/LandingTitle.css);
-@import url(./components/Logo/Logo.css);
-@import url(./components/AccountLogo/AccountLogo.css);
 
 @import url(./components/Header/Header.css);
 @import url(./components/Navigation/Navigation.css);
+@import url(./components/Logo/Logo.css);
+@import url(./components/AccountLogo/AccountLogo.css);
 @import url(./components/BurgerPopup/BurgerPopup.css);
 
 @import url(./components/Main/Main.css);
 @import url(./components/Promo/Promo.css);
 @import url(./components/NavTab/NavTab.css);
+@import url(./components/LandingTitle/LandingTitle.css);
 @import url(./components/AboutProject/AboutProject.css);
 @import url(./components/Techs/Techs.css);
 @import url(./components/AboutMe/AboutMe.css);

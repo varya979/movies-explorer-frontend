@@ -10,7 +10,7 @@
 .about-project__info {
   display: grid;
   grid-template-columns: 47.8% 48.2%;
-  column-gap: 4%;
+  column-gap: 45px;
   padding: 50px 0 110px;
 }
 
@@ -62,4 +62,33 @@
   font-size: 14px;
   text-align: center;
   margin: 0;
+}
+
+@media screen and (max-width: 1025px) {
+  .about-project {
+    padding: 90px 50px
+  }
+
+  .about-project__info {
+    column-gap: 30px;
+    padding-bottom: 93px;
+  }
+
+  .about-project__title {
+    padding: 22px 0;
+  }
+
+  .about-project__subtitle {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-project__time-scale {
+    grid-template-columns: 21% 79%;
+  }
+}
+
+@media screen and (max-width: 670px) {
+
 }

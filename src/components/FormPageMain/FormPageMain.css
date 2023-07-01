@@ -2,7 +2,14 @@
   font-family: 'Inter', Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  max-width: 396px;
-  min-width: 320px;
+  width: 396px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1025px) {
+
+}
+
+@media screen and (max-width: 670px) {
+
 }

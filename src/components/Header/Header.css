@@ -61,7 +61,15 @@
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1025px) {
+  .header__wrapper {
+    padding: 18px 30px 242px;
+  }
+
+  .header__wrapper_movies {
+    padding: 15px 30px 95px;
+  }
+
   .header__account-logo-visibility {
     display: none;
   }
@@ -74,4 +82,8 @@
     width: 44px;
     padding: 0;
   }
+}
+
+@media screen and (max-width: 670px) {
+
 }

@@ -60,3 +60,14 @@
   top: 2px;
   transition: background-color .3s, left .3s;
 }
+
+@media screen and (max-width: 1025px) {
+  .checkbox__span {
+    padding-bottom: 52px;
+  }
+
+}
+
+@media screen and (max-width: 670px) {
+
+}

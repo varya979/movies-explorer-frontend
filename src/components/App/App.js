@@ -99,7 +99,7 @@ export default function App() {
         <Route
           path="/signin"
           element={
-            <>
+            <div className="page">
               <FormPageHeader title={"Рады видеть!"} />
               <Login
                 handleLogin={handleLogin}
@@ -108,14 +108,14 @@ export default function App() {
                 password={password}
                 handleChangePassword={handleChangePassword}
               />
-            </>
+            </div>
           }
         />
 
         <Route
           path="/signup"
           element={
-            <>
+            <div className="page">
               <FormPageHeader title={"Добро пожаловать!"} />
               <Register
                 handleRegister={handleRegister}
@@ -126,7 +126,7 @@ export default function App() {
                 password={password}
                 handleChangePassword={handleChangePassword}
               />
-            </>
+            </div>
           }
         />
 
