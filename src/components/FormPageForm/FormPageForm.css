@@ -48,3 +48,25 @@
   font-size: 14px;
   text-decoration: none;
 }
+
+@media screen and (max-width: 670px) {
+  .form__button-submit {
+    font-size: 12px;
+  }
+
+  .form__button-submit_register {
+    margin: 158px 0 3px;
+  }
+
+  .form__button-submit_login {
+    margin: 245px 0 3px;
+  }
+
+  .form__title {
+    font-size: 12px;
+  }
+
+  .form__link {
+    font-size: 12px;
+  }
+}

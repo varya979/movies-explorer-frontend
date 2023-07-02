@@ -79,9 +79,37 @@
     width: 84px;
     height: 57px;
   }
-
 }
 
 @media screen and (max-width: 670px) {
+  .techs {
+    background: #fff;
+  }
 
+  .techs__wrapper {
+    padding: 0 18px 140px;
+  }
+
+  .techs__article {
+    row-gap: 24px;
+    padding: 61px 0 50px;
+  }
+
+  .techs__title {
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .techs__subtitle {
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.44px;
+  }
+
+  .techs__icons {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    row-gap: 10px;
+    column-gap: 10px;
+  }
 }

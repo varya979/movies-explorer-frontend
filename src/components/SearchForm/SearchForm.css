@@ -22,7 +22,7 @@
   line-height: 17px;
   font-weight: 400;
   outline: none;
-  padding: 0 0 0 22px;
+  padding-left: 22px;
 }
 
 .search__input::placeholder {
@@ -54,9 +54,19 @@
   .search__button {
     padding-right: 10px;
   }
-
 }
 
 @media screen and (max-width: 670px) {
+  .search {
+    padding: 0 4px;
+  }
 
+  .search__input {
+    font-size: 11px;
+    padding-left: 19px;
+  }
+
+  .search__button {
+    padding-right: 6px;
+  }
 }

@@ -65,9 +65,16 @@
   .checkbox__span {
     padding-bottom: 52px;
   }
-
 }
 
 @media screen and (max-width: 670px) {
+  .checkbox {
+    padding-top: 40px;
+  }
 
+  .checkbox__span {
+    font-size: 11px;
+    line-height: 18px;
+    padding: 2px 0 49px 49px;
+  }
 }

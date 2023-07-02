@@ -6,10 +6,10 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width: 1025px) {
-
-}
-
 @media screen and (max-width: 670px) {
-
+  .form-page-main {
+    width: 320px;
+    box-sizing: border-box;
+    padding: 0 30px;
+  }
 }

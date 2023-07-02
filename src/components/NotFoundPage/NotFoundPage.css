@@ -29,3 +29,19 @@
   background-color: #fff;
   margin: 0;
 }
+
+@media screen and (max-width: 670px) {
+  .not-found-page__title{
+    font-size: 80px;
+    padding: 306px 0 13px;
+  }
+
+  .not-found-page__subtitle {
+    font-size: 12px;
+    padding-bottom: 283px;
+  }
+
+  .not-found-page__button {
+    font-size: 12px;
+  }
+}

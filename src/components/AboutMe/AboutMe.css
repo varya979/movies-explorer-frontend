@@ -13,10 +13,6 @@
   padding-top: 66px;
 }
 
-.about-me__article {
-
-}
-
 .about-me__title {
   font-size: 50px;
   font-weight: 400;
@@ -84,10 +80,39 @@
     height: 307px;
     padding-right: 1px;
   }
-
-
 }
 
 @media screen and (max-width: 670px) {
+  .about-me {
+    padding: 2px 14px 70px;
+  }
 
+  .about-me__article-cover {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-top: 60px;
+  }
+
+  .about-me__photo {
+    width: 292px;
+    height: 352px;
+  }
+
+  .about-me__title {
+    font-size: 30px;
+    letter-spacing: -1.2px;
+    padding-top: 38px;
+  }
+
+  .about-me__subtitle {
+    font-size: 11px;
+    padding-bottom: 18px;
+  }
+
+  .about-me__paragraph {
+    font-size: 11px;
+    line-height: 16px;
+    max-width: 99%;
+    padding-bottom: 39px;
+  }
 }

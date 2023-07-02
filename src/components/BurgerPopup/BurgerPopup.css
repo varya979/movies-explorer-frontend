@@ -51,7 +51,7 @@
 
 .burger-popup__link {
   font-size: 18px;
-  line-height: 30px;
+  line-height: 32px;
   font-weight: 500;
   color: #000;
   text-decoration: none;
@@ -62,5 +62,22 @@
   border-bottom: 2px solid #000;
 }
 
+@media screen and (max-width: 670px) {
+  .burger-popup_open {
+    height: 100%;
+  }
 
+  .burger-popup__container {
+    width: 100%;
+    padding: 13.44px 14px 48px;
+  }
+
+  .burger-popup__close-button {
+    padding-bottom: 127px;
+  }
+
+  .burger-popup__links-container {
+    row-gap: 13px;
+  }
+}
 

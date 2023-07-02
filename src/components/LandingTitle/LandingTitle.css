@@ -12,3 +12,11 @@
   height: 48px;
 }
 
+@media screen and (max-width: 670px) {
+  .landing-title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    height: 49px;
+    margin: 0;
+  }
+}

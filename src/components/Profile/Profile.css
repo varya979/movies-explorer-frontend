@@ -96,9 +96,32 @@
   .profile__button-container {
     padding-top: 194px;
   }
-
 }
 
 @media screen and (max-width: 670px) {
+  .profile {
+    padding: 0 14px 0;
+  }
 
+  .profile__button-container {
+    padding-top: 362px;
+  }
+
+  .profile__form {
+    width: 260px;
+    padding-top: 80px;
+  }
+
+  .profile__edit-button {
+    font-size: 12px;
+    padding-bottom: 17px;
+  }
+
+  .profile__link {
+    font-size: 12px;
+  }
+
+  .profile__button-submit {
+    font-size: 12px;
+  }
 }

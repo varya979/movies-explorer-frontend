@@ -14,9 +14,6 @@
   padding: 50px 0 110px;
 }
 
-.about-project__article {
-}
-
 .about-project__title {
   font-weight: 400;
   font-size: 20px;
@@ -79,7 +76,6 @@
   }
 
   .about-project__subtitle {
-    font-weight: 400;
     font-size: 12px;
     line-height: 18px;
   }
@@ -90,5 +86,41 @@
 }
 
 @media screen and (max-width: 670px) {
+  .about-project {
+    padding: 70px 18px 142px
+  }
 
+  .about-project__info {
+    display: grid;
+    grid-template-columns: 100%;
+    row-gap: 58.5px;
+    padding: 62.5px 0 60px;
+  }
+
+  .about-project__title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding: 0 0 16px;
+  }
+
+  .about-project__subtitle {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__time-block {
+    row-gap: 9px;
+  }
+
+  .about-project__time-scale {
+    grid-template-columns: 35.5% 64.5%;
+  }
+
+  .about-project__weeks {
+    font-size: 11px;
+  }
+
+  .about-project__course {
+    font-size: 11px;
+  }
 }

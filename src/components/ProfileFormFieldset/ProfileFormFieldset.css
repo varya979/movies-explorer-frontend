@@ -36,3 +36,9 @@
 .profile-form-field__input:focus {
   outline: 1px dashed #F5F5F5;
 }
+
+@media screen and (max-width: 670px) {
+  .profile-form-field__input::placeholder {
+    font-size: 11px;
+  }
+}

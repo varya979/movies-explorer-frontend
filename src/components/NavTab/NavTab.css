@@ -18,3 +18,10 @@
 .nav-bar__link:nth-of-type(3) {
   padding-right: 0;
 }
+
+@media screen and (max-width: 670px) {
+  .nav-bar__link {
+    font-size: 11px;
+    padding-right: 24px;
+  }
+}

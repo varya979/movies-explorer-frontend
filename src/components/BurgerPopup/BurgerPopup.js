@@ -19,7 +19,11 @@ export default function BurgerPopup(props) {
             type="button"
           ></button>
           <nav className="burger-popup__links-container">
-            <Link to="/" className="burger-popup__link opacity">
+            <Link
+              to="/"
+              className="burger-popup__link opacity"
+              onClick={props.onClose}
+            >
               Главная
             </Link>
             <NavLink
@@ -28,6 +32,7 @@ export default function BurgerPopup(props) {
                 `burger-popup__link opacity
                   ${isActive ? "burger-popup__link_active" : ""}`
               }
+              onClick={props.onClose}
             >
               Фильмы
             </NavLink>
@@ -37,12 +42,13 @@ export default function BurgerPopup(props) {
                 `burger-popup__link opacity
                   ${isActive ? "burger-popup__link_active" : ""}`
               }
+              onClick={props.onClose}
             >
               Сохранённые фильмы
             </NavLink>
           </nav>
         </div>
-        <AccountLogo />
+        <AccountLogo onClose={props.onClose} />
       </div>
     </div>
   );
