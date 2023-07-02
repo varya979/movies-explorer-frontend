@@ -12,34 +12,36 @@ export default function BurgerPopup(props) {
       }`}
     >
       <div className="burger-popup__container">
-        <button
-          className="burger-popup__close-button opacity"
-          onClick={props.onClose}
-          type="button"
-        ></button>
-        <nav className="burger-popup__links-container">
-          <Link to="/" className="burger-popup__link opacity">
-            Главная
-          </Link>
-          <NavLink
-            to="/movies"
-            className={({ isActive }) =>
-              `burger-popup__link opacity
+        <div className="burger-popup__wrapper">
+          <button
+            className="burger-popup__close-button opacity"
+            onClick={props.onClose}
+            type="button"
+          ></button>
+          <nav className="burger-popup__links-container">
+            <Link to="/" className="burger-popup__link opacity">
+              Главная
+            </Link>
+            <NavLink
+              to="/movies"
+              className={({ isActive }) =>
+                `burger-popup__link opacity
                   ${isActive ? "burger-popup__link_active" : ""}`
-            }
-          >
-            Фильмы
-          </NavLink>
-          <NavLink
-            to="/saved-movies"
-            className={({ isActive }) =>
-              `burger-popup__link opacity
+              }
+            >
+              Фильмы
+            </NavLink>
+            <NavLink
+              to="/saved-movies"
+              className={({ isActive }) =>
+                `burger-popup__link opacity
                   ${isActive ? "burger-popup__link_active" : ""}`
-            }
-          >
-            Сохранённые фильмы
-          </NavLink>
-        </nav>
+              }
+            >
+              Сохранённые фильмы
+            </NavLink>
+          </nav>
+        </div>
         <AccountLogo />
       </div>
     </div>

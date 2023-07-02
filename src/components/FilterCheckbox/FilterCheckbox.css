@@ -1,6 +1,6 @@
 .checkbox {
   font-family: 'Inter', Arial, sans-serif;
-  padding: 41px 40px 0;
+  padding-top: 41px;
   display: flex;
   flex-direction: column;
   align-items: center;

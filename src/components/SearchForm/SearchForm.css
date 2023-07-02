@@ -2,6 +2,7 @@
   font-family: 'Inter', Arial, sans-serif;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .search__form {
@@ -47,4 +48,15 @@
   border-bottom: 1px solid #E8E8E8;
   width: 100%;
   margin: 0;
+}
+
+@media screen and (max-width: 1025px) {
+  .search__button {
+    padding-right: 10px;
+  }
+
+}
+
+@media screen and (max-width: 670px) {
+
 }

@@ -4,6 +4,7 @@
   border-radius: 6px;
   background: #FDFDFD;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+  width: 364px;
   height: 281px;
   cursor: pointer;
 }
@@ -46,7 +47,7 @@
 }
 
 .movie-item__likes-container {
-  padding: 7px 0 0;
+  padding-top: 7px;
 }
 
 .movie-item__button-like {
@@ -79,6 +80,7 @@
 
 @media screen and (max-width: 1025px) {
   .movie-item {
+    width: 339px;
     height: 262px;
   }
 
@@ -88,7 +90,16 @@
   }
 
   .movie-item__info {
-    padding: 13px 14px;
+    padding: 0 14px;
+  }
+
+  .movie-item__info-container {
+    padding-top: 12px;
+    row-gap: 16px;
+  }
+
+  .movie-item__likes-container {
+    padding-top: 5px;
   }
 
 }
