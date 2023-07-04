@@ -9,13 +9,13 @@ import Portfolio from "../Portfolio/Portfolio";
 
 export default function Main() {
   return (
-    <div className="main">
+    <main className="main-landing">
       <Promo />
       <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
-    </div>
+    </main>
   );
 }

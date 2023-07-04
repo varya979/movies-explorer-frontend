@@ -22,7 +22,7 @@ export default function Profile(props) {
 
   return (
     <>
-      <section className="profile">
+      <main className="profile">
         <h1 className="profile__title">Привет, {name}!</h1>
         {!isEditBtnUnlock ? (
           <form
@@ -120,7 +120,7 @@ export default function Profile(props) {
             </div>
           </form>
         )}
-      </section>
+      </main>
     </>
   );
 }
