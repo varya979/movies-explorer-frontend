@@ -1,0 +1,29 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 0 0 60px;
+}
+
+.navigation__link {
+  color: #000;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  text-decoration: none;
+  padding-right: 16px;
+}
+
+.navigation__link:nth-of-type(2) {
+  padding-right: 0;
+}
+
+.navigation__link_active {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1025px) {
+  .navigation {
+    display: none;
+  }
+}

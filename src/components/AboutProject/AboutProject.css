@@ -1,0 +1,126 @@
+.about-project {
+  font-family: 'Inter', Arial, sans-serif;
+  max-width: 1280px;
+  min-width: 320px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 110.2px 70px 108px;
+}
+
+.about-project__info {
+  display: grid;
+  grid-template-columns: 47.8% 48.2%;
+  column-gap: 45px;
+  padding: 50px 0 110px;
+}
+
+.about-project__title {
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  margin: 0;
+  padding: 22px 0 26px;
+}
+
+.about-project__subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.about-project__time-scale {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.about-project__time-block {
+  display: grid;
+  row-gap: 14px;
+}
+
+.about-project__weeks {
+  background-color: #F2F2F2;
+  height: 36px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 36px;
+  text-align: center;
+  margin: 0;
+}
+
+.about-project__weeks_green {
+  background-color: #2BE080;
+}
+
+.about-project__course {
+  color: #A0A0A0;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+@media screen and (max-width: 1025px) {
+  .about-project {
+    padding: 90px 50px
+  }
+
+  .about-project__info {
+    column-gap: 30px;
+    padding-bottom: 93px;
+  }
+
+  .about-project__title {
+    padding: 22px 0;
+  }
+
+  .about-project__subtitle {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-project__time-scale {
+    grid-template-columns: 21% 79%;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .about-project {
+    padding: 70px 18px 142px
+  }
+
+  .about-project__info {
+    display: grid;
+    grid-template-columns: 100%;
+    row-gap: 58.5px;
+    padding: 62.5px 0 60px;
+  }
+
+  .about-project__title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding: 0 0 16px;
+  }
+
+  .about-project__subtitle {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__time-block {
+    row-gap: 9px;
+  }
+
+  .about-project__time-scale {
+    grid-template-columns: 35.5% 64.5%;
+  }
+
+  .about-project__weeks {
+    font-size: 11px;
+  }
+
+  .about-project__course {
+    font-size: 11px;
+  }
+}
