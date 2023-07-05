@@ -17,6 +17,7 @@ export default function SearchForm(props) {
           required
           value={props.value}
           onChange={props.onChange}
+          name="search"
         ></input>
         <button className="search__button opacity" type="submit">
           <img

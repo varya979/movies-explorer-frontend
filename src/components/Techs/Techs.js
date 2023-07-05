@@ -4,7 +4,7 @@ import LandingTitle from "../LandingTitle/LandingTitle";
 
 export default function Techs() {
   return (
-    <section className="techs">
+    <section className="techs" id="techs">
       <div className="techs__wrapper">
         <LandingTitle title={"Технологии"} />
         <article className="techs__article">

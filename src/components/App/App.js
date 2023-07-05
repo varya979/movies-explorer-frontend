@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 import { moviesArr } from "../../utils/movies_array";
 import { isLikedMovies } from "../../utils/saved-movies_array";
 
@@ -14,11 +16,16 @@ import Profile from "../Profile/Profile";
 import FormPageHeader from "../FormPageHeader/FormPageHeader";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [currentUser, setCurrentUser] = React.useState({
+    name: "",
+    email: "",
+  });
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isRegistered, setIsRegistered] = React.useState(false);
   const [isInputHasError, setIsInputHasError] = React.useState(false);
@@ -49,89 +56,112 @@ export default function App() {
   }
 
   return (
-    <div className="app">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Main />
-              <Footer />
-            </>
-          }
-        />
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="app">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Main />
+                <Footer />
+              </>
+            }
+          />
 
-        <Route
-          path="/movies"
-          element={
-            <>
-              <Header isLoggedIn={isLoggedIn} />
-              <Movies location={location} moviesArr={moviesArr} />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/saved-movies"
-          element={
-            <>
-              {/* Хэдэр "верного" - светлого цвета отображается,
-              если "залогиниться" через кнопку "Войти" с главной страницы */}
-              <Header isLoggedIn={isLoggedIn} />
-              <SavedMovies location={location} isLikedMovies={isLikedMovies} />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/profile"
-          element={
-            <>
-              <Header isLoggedIn={isLoggedIn} />
-              <Profile isInputHasError={isInputHasError} />
-            </>
-          }
-        />
-
-        <Route
-          path="/signin"
-          element={
-            <div className="page">
-              <FormPageHeader title={"Рады видеть!"} />
-              <Login
-                handleLogin={handleLogin}
-                email={email}
-                handleChangeEmail={handleChangeEmail}
-                password={password}
-                handleChangePassword={handleChangePassword}
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRoute
+                path="/movies"
+                isLoggedIn={isLoggedIn}
+                component={
+                  <>
+                    <Header isLoggedIn={isLoggedIn} />
+                    <Movies location={location} moviesArr={moviesArr} />
+                    <Footer />
+                  </>
+                }
               />
-            </div>
-          }
-        />
+            }
+          />
 
-        <Route
-          path="/signup"
-          element={
-            <div className="page">
-              <FormPageHeader title={"Добро пожаловать!"} />
-              <Register
-                handleRegister={handleRegister}
-                name={name}
-                handleChangeName={handleChangeName}
-                email={email}
-                handleChangeEmail={handleChangeEmail}
-                password={password}
-                handleChangePassword={handleChangePassword}
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRoute
+                path="/saved-movies"
+                isLoggedIn={isLoggedIn}
+                component={
+                  <>
+                    {/* Хэдэр "верного" - светлого цвета отображается,
+                   если "залогиниться" через кнопку "Войти" с главной страницы */}
+                    <Header isLoggedIn={isLoggedIn} />
+                    <SavedMovies
+                      location={location}
+                      isLikedMovies={isLikedMovies}
+                    />
+                    <Footer />
+                  </>
+                }
               />
-            </div>
-          }
-        />
+            }
+          />
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </div>
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute
+                path="/profile"
+                isLoggedIn={isLoggedIn}
+                component={
+                  <>
+                    <Header isLoggedIn={isLoggedIn} />
+                    <Profile isInputHasError={isInputHasError} />
+                  </>
+                }
+              />
+            }
+          />
+
+          <Route
+            path="/signin"
+            element={
+              <div className="page">
+                <FormPageHeader title={"Рады видеть!"} />
+                <Login
+                  handleLogin={handleLogin}
+                  email={email}
+                  handleChangeEmail={handleChangeEmail}
+                  password={password}
+                  handleChangePassword={handleChangePassword}
+                />
+              </div>
+            }
+          />
+
+          <Route
+            path="/signup"
+            element={
+              <div className="page">
+                <FormPageHeader title={"Добро пожаловать!"} />
+                <Register
+                  handleRegister={handleRegister}
+                  name={name}
+                  handleChangeName={handleChangeName}
+                  email={email}
+                  handleChangeEmail={handleChangeEmail}
+                  password={password}
+                  handleChangePassword={handleChangePassword}
+                />
+              </div>
+            }
+          />
+
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
