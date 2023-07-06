@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-export function useFormAndValidation() {
+export function useFormValidation(setApiError) {
   // функция-хук хранит:
   // значения инпутов
   const [values, setValues] = useState({});
@@ -11,12 +11,14 @@ export function useFormAndValidation() {
 
   // универсальный обработчик инпута (не нужно писать handleChange отдельно для каждой формы)
   const handleChange = (evt) => {
-    const { name, value, validationMessage, form } = evt.target;
+    const { name, value, form } = evt.target;
     // устанавливает новые значения:
-    setValues((oldValues) => ({ ...oldValues, [name]: value }));
-    setErrors((oldErrors) => ({ ...oldErrors, [name]: validationMessage }));
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: evt.target.validationMessage });
     // проверит все ли инпуты валидны и установит true или false
     setIsValid(form.checkValidity());
+    // сбрасывает ошибку api в span в форме на страницах регистрации и авторизации
+    setApiError("");
   };
 
   // очищает поля инпутов (например, при закрытии формы)

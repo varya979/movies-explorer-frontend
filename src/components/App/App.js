@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-
 import { moviesArr } from "../../utils/movies_array";
 import { isLikedMovies } from "../../utils/saved-movies_array";
 
@@ -18,6 +16,9 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import * as auth from "../../utils/auth";
+
 export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,20 +28,32 @@ export default function App() {
     email: "",
   });
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isRegistered, setIsRegistered] = React.useState(false);
-  const [isInputHasError, setIsInputHasError] = React.useState(false);
+  // const [isRegistered, setIsRegistered] = React.useState(false);
+  const [apiError, setApiError] = React.useState("");
   const [email, setEmail] = React.useState("pochta@yandex.ru");
   const [password, setPassword] = React.useState("123456789656575");
   const [name, setName] = React.useState("Виталий");
+  const [isInputHasError, setIsInputHasError] = React.useState(false);
 
-  function handleLogin(evt) {
+  function handleLogin() {
     setIsLoggedIn(true);
     navigate("/movies");
   }
 
-  function handleRegister(evt) {
-    setIsRegistered(true);
-    navigate("/signin");
+  function handleRegister(name, email, password) {
+    return auth
+      .register(name, email, password)
+      .then(() => {
+        // поменять на функцию регистрации
+        setIsLoggedIn(true);
+        navigate("/movies");
+      })
+      .catch((err) => {
+        setIsLoggedIn(false);
+        err.includes("409")
+          ? setApiError("Пользователь с таким email уже существует.")
+          : setApiError("При регистрации пользователя произошла ошибка");
+      });
   }
 
   function handleChangeName(evt) {
@@ -95,8 +108,6 @@ export default function App() {
                 isLoggedIn={isLoggedIn}
                 component={
                   <>
-                    {/* Хэдэр "верного" - светлого цвета отображается,
-                   если "залогиниться" через кнопку "Войти" с главной страницы */}
                     <Header isLoggedIn={isLoggedIn} />
                     <SavedMovies
                       location={location}
@@ -148,12 +159,8 @@ export default function App() {
                 <FormPageHeader title={"Добро пожаловать!"} />
                 <Register
                   handleRegister={handleRegister}
-                  name={name}
-                  handleChangeName={handleChangeName}
-                  email={email}
-                  handleChangeEmail={handleChangeEmail}
-                  password={password}
-                  handleChangePassword={handleChangePassword}
+                  apiError={apiError}
+                  setApiError={setApiError}
                 />
               </div>
             }

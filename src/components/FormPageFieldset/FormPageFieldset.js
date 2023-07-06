@@ -6,20 +6,18 @@ export default function FormPageFieldset(props) {
       <label className="form-field__label">{props.labelName}</label>
       <input
         id={props.id}
-        className={
-          props.isInputHasError
-            ? "form-field__input form-field__input_incorrect"
-            : "form-field__input"
-        }
+        className="form-field__input"
         name={props.name}
         placeholder={props.placeholderText}
         type={props.type}
         minLength={props.minLengthValue}
         maxLength={props.maxLengthValue}
-        required
         value={props.value}
         onChange={props.onChange}
+        pattern={props.pattern}
+        required
       />
+      <span className="form-field__error">{props.errors}</span>
     </fieldset>
   );
 }

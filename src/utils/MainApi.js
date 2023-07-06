@@ -95,7 +95,8 @@ class MainApi {
 }
 
 const api = new MainApi({
-  url: "https://api.varya-diploma.nomoredomains.rocks",
+  // url: "https://api.varya-diploma.nomoredomains.rocks",
+  url: "http://localhost:3000",
 });
 
 export default api;

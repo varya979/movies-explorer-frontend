@@ -1,18 +1,19 @@
-const BASE_URL = "http://api.varya-diploma.nomoredomains.rocks";
+// const BASE_URL = "http://api.varya-diploma.nomoredomains.rocks";
+const BASE_URL = "http://localhost:3000";
 
 const getResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
 
 // POST '/signup' - регистрация (создание) пользователя
-export const register = (email, password, name) => {
+export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, name }),
+    body: JSON.stringify({ name, email, password }),
   }).then(getResponse);
 };
 

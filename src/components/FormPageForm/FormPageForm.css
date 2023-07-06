@@ -1,17 +1,18 @@
 .form {
   font-family: 'Inter', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .form__error {
-  visibility: hidden;
   color: #FF3055;
   font-size: 10px;
   font-weight: 400;
+  padding-top: 50px;
 }
 
-.form__error_active {
-  visibility: visible;
-}
+/* сделать padding-top для form__error на странице login
+и margin-top подправить для form__button-submit_login */
 
 .form__button-submit {
   font-size: 14px;
@@ -29,7 +30,7 @@
 }
 
 .form__button-submit_register {
-  margin: 68px 0 3px;
+  margin: 8px 0 3px;
 }
 
 .form__button-submit_disabled {

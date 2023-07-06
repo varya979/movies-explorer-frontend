@@ -7,7 +7,8 @@
   flex-direction: column;
   min-height: 65px;
   row-gap: 9.5px;
-  padding-bottom: 21px;
+  padding-bottom: 28px;
+  position: relative;
 }
 
 .form-field:last-of-type {
@@ -33,7 +34,7 @@
   outline: 1px solid #F5F5F5;
 }
 
-.form-field__input_incorrect {
+.form-field__input:invalid {
   color: #FF3055;
 }
 
@@ -43,4 +44,19 @@
   font-weight: 400;
 }
 
+.form-field__error {
+  font-size: 10px;
+  font-weight: 400;
+  color: #FF3055;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 70px;
+}
+
+@media screen and (max-width: 670px) {
+  .form-field__error {
+    font-size: 9px;
+  }
+}
 
