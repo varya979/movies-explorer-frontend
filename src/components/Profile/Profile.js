@@ -63,7 +63,11 @@ export default function Profile(props) {
               >
                 Редактировать
               </button>
-              <Link to="/" className="profile__link opacity">
+              <Link
+                to="/"
+                className="profile__link opacity"
+                onClick={props.handleLogOut}
+              >
                 Выйти из аккаунта
               </Link>
             </div>
@@ -100,8 +104,6 @@ export default function Profile(props) {
             />
             <div className="profile__button-submit-container">
               <span className="profile__error">
-                {/* появление ошибки и ее текст, а также кнопка
-                сохранить будут изменены при реализации валидации */}
                 {!props.isInputHasError &&
                   "При обновлении профиля произошла ошибка."}
               </span>

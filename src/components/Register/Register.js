@@ -24,7 +24,6 @@ export default function Register(props) {
         formLink={"Войти"}
         pageName={"register"}
         url={"/signin"}
-        errorText={"Что-то пошло не так..."}
         handleSubmit={handleSubmit}
         isValid={isValid}
         apiError={props.apiError}

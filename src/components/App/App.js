@@ -28,25 +28,32 @@ export default function App() {
     email: "",
   });
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  // const [isRegistered, setIsRegistered] = React.useState(false);
   const [apiError, setApiError] = React.useState("");
-  const [email, setEmail] = React.useState("pochta@yandex.ru");
-  const [password, setPassword] = React.useState("123456789656575");
-  const [name, setName] = React.useState("Виталий");
   const [isInputHasError, setIsInputHasError] = React.useState(false);
 
-  function handleLogin() {
-    setIsLoggedIn(true);
-    navigate("/movies");
-  }
+  // при монтировании App описан эффект, проверяющий наличие токена и его валидности
+  React.useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((res) => {
+          setIsLoggedIn(true);
+          setCurrentUser(res);
+          navigate("/movies");
+        })
+        .catch((err) => {
+          localStorage.removeItem("jwt");
+          console.log(err);
+        });
+    }
+  }, []);
 
   function handleRegister(name, email, password) {
     return auth
       .register(name, email, password)
       .then(() => {
-        // поменять на функцию регистрации
-        setIsLoggedIn(true);
-        navigate("/movies");
+        handleLogIn(email, password);
       })
       .catch((err) => {
         setIsLoggedIn(false);
@@ -56,16 +63,29 @@ export default function App() {
       });
   }
 
-  function handleChangeName(evt) {
-    setName(evt.target.value);
+  function handleLogIn(email, password) {
+    return auth
+      .authorize(email, password)
+      .then((data) => {
+        if (data) {
+          localStorage.setItem("jwt", data.token);
+          setIsLoggedIn(true);
+          navigate("/movies");
+        }
+      })
+      .catch((err) => {
+        setIsLoggedIn(false);
+        err.includes("401")
+          ? setApiError("Вы ввели неправильный логин или пароль.")
+          : setApiError("При авторизации произошла ошибка.");
+      });
   }
 
-  function handleChangeEmail(evt) {
-    setEmail(evt.target.value);
-  }
-
-  function handleChangePassword(evt) {
-    setPassword(evt.target.value);
+  function handleLogOut() {
+    if (localStorage.getItem("jwt")) {
+      localStorage.removeItem("jwt");
+      setIsLoggedIn(false);
+    }
   }
 
   return (
@@ -129,7 +149,10 @@ export default function App() {
                 component={
                   <>
                     <Header isLoggedIn={isLoggedIn} />
-                    <Profile isInputHasError={isInputHasError} />
+                    <Profile
+                      isInputHasError={isInputHasError}
+                      handleLogOut={handleLogOut}
+                    />
                   </>
                 }
               />
@@ -142,11 +165,9 @@ export default function App() {
               <div className="page">
                 <FormPageHeader title={"Рады видеть!"} />
                 <Login
-                  handleLogin={handleLogin}
-                  email={email}
-                  handleChangeEmail={handleChangeEmail}
-                  password={password}
-                  handleChangePassword={handleChangePassword}
+                  handleLogIn={handleLogIn}
+                  apiError={apiError}
+                  setApiError={setApiError}
                 />
               </div>
             }
