@@ -7,7 +7,7 @@ import { useFormValidation } from "../../utils/useFormValidation";
 
 export default function Login(props) {
   const { values, handleChange, errors, isValid } = useFormValidation(
-    props.setApiError
+    props.setApiErrorMessage
   );
 
   function handleSubmit(evt) {
@@ -26,7 +26,7 @@ export default function Login(props) {
         url={"/signup"}
         handleSubmit={handleSubmit}
         isValid={isValid}
-        apiError={props.apiError}
+        apiErrorMessage={props.apiErrorMessage}
       >
         <FormPageFieldset
           labelName="E-mail"

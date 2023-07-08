@@ -63,7 +63,7 @@
 
 .profile__error {
   align-self: center;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   color: #FF004D;
   font-size: 11px;
   font-weight: 500;
@@ -96,6 +96,13 @@
   .profile__button-container {
     padding-top: 194px;
   }
+
+  .profile__button-submit-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 257px;
+  }
 }
 
 @media screen and (max-width: 670px) {
@@ -119,6 +126,10 @@
 
   .profile__link {
     font-size: 12px;
+  }
+
+  .profile__button-submit-container {
+    height: 423px;
   }
 
   .profile__button-submit {

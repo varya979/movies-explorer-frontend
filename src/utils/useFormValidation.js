@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-export function useFormValidation(setApiError) {
+export function useFormValidation(setApiErrorMessage) {
   // функция-хук хранит:
   // значения инпутов
   const [values, setValues] = useState({});
@@ -18,7 +18,7 @@ export function useFormValidation(setApiError) {
     // проверит все ли инпуты валидны и установит true или false
     setIsValid(form.checkValidity());
     // сбрасывает ошибку api в span в форме на страницах регистрации и авторизации
-    setApiError("");
+    setApiErrorMessage("");
   };
 
   // очищает поля инпутов (например, при закрытии формы)

@@ -15,9 +15,11 @@ import FormPageHeader from "../FormPageHeader/FormPageHeader";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import MessagePopup from "../MessagePopup/MessagePopup";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as auth from "../../utils/auth";
+import apiMain from "../../utils/MainApi";
 
 export default function App() {
   const location = useLocation();
@@ -28,8 +30,10 @@ export default function App() {
     email: "",
   });
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [apiError, setApiError] = React.useState("");
-  const [isInputHasError, setIsInputHasError] = React.useState(false);
+  const [apiErrorMessage, setApiErrorMessage] = React.useState("");
+  const [apiSuccessMessage, setApiSuccessMessage] = React.useState("");
+  const [isApiMessagePopupOpen, setIsApiMessagePopupOpen] =
+    React.useState(false);
 
   // при монтировании App описан эффект, проверяющий наличие токена и его валидности
   React.useEffect(() => {
@@ -49,6 +53,21 @@ export default function App() {
     }
   }, []);
 
+  // Запрос к Api за инфо о пользователе выполняется единожды при монтировании
+  React.useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      apiMain
+        .getMyUser()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [isLoggedIn]);
+
   function handleRegister(name, email, password) {
     return auth
       .register(name, email, password)
@@ -58,8 +77,8 @@ export default function App() {
       .catch((err) => {
         setIsLoggedIn(false);
         err.includes("409")
-          ? setApiError("Пользователь с таким email уже существует.")
-          : setApiError("При регистрации пользователя произошла ошибка");
+          ? setApiErrorMessage("Пользователь с таким email уже существует.")
+          : setApiErrorMessage("При регистрации пользователя произошла ошибка");
       });
   }
 
@@ -76,8 +95,8 @@ export default function App() {
       .catch((err) => {
         setIsLoggedIn(false);
         err.includes("401")
-          ? setApiError("Вы ввели неправильный логин или пароль.")
-          : setApiError("При авторизации произошла ошибка.");
+          ? setApiErrorMessage("Вы ввели неправильный логин или пароль.")
+          : setApiErrorMessage("При авторизации произошла ошибка.");
       });
   }
 
@@ -86,6 +105,29 @@ export default function App() {
       localStorage.removeItem("jwt");
       setIsLoggedIn(false);
     }
+  }
+
+  function handleUpdateUser(data) {
+    apiMain
+      .updateUser(data)
+      .then((res) => {
+        setCurrentUser(res);
+        handleApiMessagePopupOpen("Профиль пользователя успешно обновлен ^_^");
+      })
+      .catch((err) => {
+        err.includes("409")
+          ? setApiErrorMessage("Пользователь с таким email уже существует.")
+          : setApiErrorMessage("При обновлении профиля произошла ошибка.");
+      });
+  }
+
+  function handleApiMessagePopupOpen(apiMessage) {
+    setIsApiMessagePopupOpen(true);
+    setApiSuccessMessage(apiMessage);
+  }
+
+  function handleApiMessagePopupClose() {
+    setIsApiMessagePopupOpen(false);
   }
 
   return (
@@ -150,7 +192,9 @@ export default function App() {
                   <>
                     <Header isLoggedIn={isLoggedIn} />
                     <Profile
-                      isInputHasError={isInputHasError}
+                      apiErrorMessage={apiErrorMessage}
+                      setApiErrorMessage={setApiErrorMessage}
+                      handleUpdateUser={handleUpdateUser}
                       handleLogOut={handleLogOut}
                     />
                   </>
@@ -166,8 +210,8 @@ export default function App() {
                 <FormPageHeader title={"Рады видеть!"} />
                 <Login
                   handleLogIn={handleLogIn}
-                  apiError={apiError}
-                  setApiError={setApiError}
+                  apiErrorMessage={apiErrorMessage}
+                  setApiErrorMessage={setApiErrorMessage}
                 />
               </div>
             }
@@ -180,8 +224,8 @@ export default function App() {
                 <FormPageHeader title={"Добро пожаловать!"} />
                 <Register
                   handleRegister={handleRegister}
-                  apiError={apiError}
-                  setApiError={setApiError}
+                  apiErrorMessage={apiErrorMessage}
+                  setApiErrorMessage={setApiErrorMessage}
                 />
               </div>
             }
@@ -189,6 +233,12 @@ export default function App() {
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+
+        <MessagePopup
+          isOpen={isApiMessagePopupOpen}
+          onClose={handleApiMessagePopupClose}
+          apiSuccessMessage={apiSuccessMessage}
+        />
       </div>
     </CurrentUserContext.Provider>
   );

@@ -5,7 +5,9 @@ export default function FormPageForm(props) {
   return (
     <form className="form" name={props.name} noValidate>
       {props.children}
-      <span className="form__error">{props.apiError}</span>
+      <span className={`form__error form__error_${props.name}`}>
+        {props.apiErrorMessage}
+      </span>
       <button
         className={`form__button-submit form__button-submit_${props.pageName}
           ${!props.isValid ? " form__button-submit_disabled" : "opacity"}
