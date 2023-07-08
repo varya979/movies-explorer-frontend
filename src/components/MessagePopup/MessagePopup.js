@@ -1,6 +1,6 @@
 import { React, useEffect } from "react";
 
-export default function Popup(props) {
+export default function MessagePopup(props) {
   useEffect(() => {
     if (!props.isOpen) return;
     const closeByEscape = (e) => {
@@ -22,16 +22,18 @@ export default function Popup(props) {
 
   return (
     <div
-      className={`popup ${props.isOpen ? "popup_opened" : ""}`}
+      className={`message-popup ${props.isOpen ? "message-popup_opened" : ""}`}
       onClick={handleOverlay}
     >
-      <div className="popup__container">
+      <div className="message-popup__container">
         <button
-          className="popup__button_type_close opacity"
+          className="message-popup__button-close opacity"
           type="button"
           onClick={props.onClose}
         />
-        <span className="popup__message">{props.apiSuccessMessage}</span>
+        <span className="message-popup__message">
+          {props.apiSuccessMessage}
+        </span>
       </div>
     </div>
   );

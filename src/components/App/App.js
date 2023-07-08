@@ -112,7 +112,7 @@ export default function App() {
       .updateUser(data)
       .then((res) => {
         setCurrentUser(res);
-        handleApiMessagePopupOpen("Профиль пользователя успешно обновлен ^_^");
+        handleApiMessagePopupOpen("Профиль пользователя успешно обновлен.");
       })
       .catch((err) => {
         err.includes("409")
