@@ -6,8 +6,12 @@ export default function MoviesCardList(props) {
   return (
     <>
       {props.location.pathname === "/movies" && (
-        <ul className="movies-list">
-          {props.moviesArr.map((movie) => (
+        <ul
+          className={`movies-list ${
+            props.isMoviesBlockVisible && "movies-list_visiable"
+          }`}
+        >
+          {props.moviesArr.slice(0, props.visibleCard).map((movie) => (
             <MoviesCard
               key={movie._id}
               movie={movie}

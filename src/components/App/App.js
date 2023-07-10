@@ -61,12 +61,13 @@ export default function App() {
         .getMyUser()
         .then((data) => {
           setCurrentUser(data);
+          // console.log(data);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [isLoggedIn]);
+  }, []);
 
   function handleRegister(name, email, password) {
     return auth
@@ -154,7 +155,12 @@ export default function App() {
                 component={
                   <>
                     <Header isLoggedIn={isLoggedIn} />
-                    <Movies location={location} moviesArr={moviesArr} />
+                    <Movies
+                      location={location}
+                      moviesArr={moviesArr}
+                      setApiErrorMessage={setApiErrorMessage}
+                      apiErrorMessage={apiErrorMessage}
+                    />
                     <Footer />
                   </>
                 }

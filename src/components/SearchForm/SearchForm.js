@@ -4,22 +4,43 @@ import image from "../../images/input_button.svg";
 
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
+import { useFormValidation } from "../../utils/useFormValidation";
+
 export default function SearchForm(props) {
+  const { values, handleChange, errors, isValid } = useFormValidation(
+    props.setApiErrorMessage
+  );
+
+  function handleSearchFilms(evt) {
+    evt.preventDefault();
+
+    if (!isValid) {
+      props.setApiErrorMessage("Нужно ввести ключевое слово");
+    } else if (isValid) {
+      props.getApiMovies(values.search);
+      values.search = "";
+    }
+  }
   return (
     <section className="search">
-      <form className="search__form">
+      <form className="search__form" noValidate>
         <input
           className="search__input"
+          name="search"
+          id="search"
           placeholder="Фильм"
           type="text"
-          minLength="2"
-          maxLength="100"
+          minLength="1"
+          value={values.search || ""}
+          onChange={handleChange}
+          errors={errors.search}
           required
-          value={props.value}
-          onChange={props.onChange}
-          name="search"
         ></input>
-        <button className="search__button opacity" type="submit">
+        <button
+          className="search__button opacity"
+          type="submit"
+          onClick={handleSearchFilms}
+        >
           <img
             src={image}
             className="search__button-image"
@@ -27,7 +48,12 @@ export default function SearchForm(props) {
           ></img>
         </button>
       </form>
-      <FilterCheckbox />
+      <span className="search__error">{props.apiErrorMessage}</span>
+      <FilterCheckbox
+        isCheckboxChecked={props.isCheckboxChecked}
+        setIsCheckboxChecked={props.setIsCheckboxChecked}
+        handleChangeCheckbox={props.handleChangeCheckbox}
+      />
       <hr className="search__line" />
     </section>
   );

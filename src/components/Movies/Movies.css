@@ -2,10 +2,24 @@
   font-family: 'Inter', Arial, sans-serif;
   max-width: 1280px;
   min-width: 320px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 70px 140px;
   box-sizing: border-box;
   flex-grow: 1;
+  position: relative;
+}
+
+.movies__error-container {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.movies__error {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
 }
 
 .movies__button {
@@ -18,6 +32,10 @@
   background: #F9F9F9;
   padding: 0;
   margin: 0;
+}
+
+.movies__button_invisible {
+  display: none;
 }
 
 @media screen and (max-width: 1025px) {
