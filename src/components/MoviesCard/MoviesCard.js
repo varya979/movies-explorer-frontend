@@ -9,6 +9,12 @@ export default function MoviesCard(props) {
     props.movie.isLiked && "movie-item__button-delete_visible"
   }`;
 
+  function getTimeFromMins(mins) {
+    let hours = Math.trunc(mins / 60);
+    let minutes = mins % 60;
+    return hours + "ч " + minutes + "м";
+  }
+
   return (
     <li className="movie-item">
       <a
@@ -20,13 +26,17 @@ export default function MoviesCard(props) {
         <img
           className="movie-item__image"
           src={`https://api.nomoreparties.co/${props.movie.image.url}`}
-          alt={props.movie.nameRu}
+          alt={props.movie.nameRu || props.movie.nameEN}
         />
       </a>
       <div className="movie-item__info">
         <div className="movie-item__info-container">
-          <p className="movie-item__name">{props.movie.nameRU}</p>
-          <p className="movie-item__duration">{props.movie.duration}</p>
+          <p className="movie-item__name">
+            {props.movie.nameRU || props.movie.nameEN}
+          </p>
+          <p className="movie-item__duration">
+            {getTimeFromMins(props.movie.duration)}
+          </p>
         </div>
         <div className="movie-item__likes-container">
           {props.location.pathname === "/movies" && (
