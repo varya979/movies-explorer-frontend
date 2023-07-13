@@ -68,11 +68,11 @@ class MainApi {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: movie.image,
+        image: `https://api.nomoreparties.co/${movie.image.url}`,
         trailerLink: movie.trailerLink,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
-        thumbnail: movie.thumbnail,
+        thumbnail: `https://api.nomoreparties.co/${movie.thumbnail}`,
         movieId: movie.movieId,
       }),
     }).then((res) => {

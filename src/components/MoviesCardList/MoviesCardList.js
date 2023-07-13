@@ -11,9 +11,9 @@ export default function MoviesCardList(props) {
             props.isMoviesBlockVisible && "movies-list_visiable"
           }`}
         >
-          {props.moviesArr.slice(0, props.visibleCard).map((movie) => (
+          {props.newArr.slice(0, props.visibleMovies).map((movie) => (
             <MoviesCard
-              key={movie._id}
+              key={movie.id}
               movie={movie}
               location={props.location}
             />

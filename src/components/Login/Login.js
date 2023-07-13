@@ -10,6 +10,10 @@ export default function Login(props) {
     props.setApiErrorMessage
   );
 
+  React.useEffect(() => {
+    props.isLoggedIn && props.navigate("/");
+  }, []);
+
   function handleSubmit(evt) {
     evt.preventDefault();
     props.handleLogIn(values.email, values.password);

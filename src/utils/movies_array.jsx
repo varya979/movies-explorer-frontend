@@ -83,5 +83,33 @@ export const moviesArr = [
     "isLiked": false,
     "duration": "1ч 7м",
   },
+  {
+    "_id":"13",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtJD2B8pKHHWNkwyixPxPhKHAWxzXbNYaBkA&usqp=CAU",
+    "name": "33 слова о дизайне",
+    "isLiked": true,
+    "duration": "1ч 47м",
+  },
+  {
+    "_id":"14",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtJD2B8pKHHWNkwyixPxPhKHAWxzXbNYaBkA&usqp=CAU",
+    "name": "Киноальманах «100 лет дизайна»",
+    "isLiked": false,
+    "duration": "1ч 3м",
+  },
+  {
+    "_id":"15",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtJD2B8pKHHWNkwyixPxPhKHAWxzXbNYaBkA&usqp=CAU",
+    "name": "В погоне за Бенкси",
+    "isLiked": false,
+    "duration": "1ч 42м",
+  },
+  {
+    "_id":"16",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtJD2B8pKHHWNkwyixPxPhKHAWxzXbNYaBkA&usqp=CAU",
+    "name": "Баския: Взрыв реальности",
+    "isLiked": false,
+    "duration": "1ч 21м",
+  },
 ];
 

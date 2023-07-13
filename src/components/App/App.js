@@ -35,7 +35,6 @@ export default function App() {
   const [isApiMessagePopupOpen, setIsApiMessagePopupOpen] =
     React.useState(false);
 
-  // при монтировании App описан эффект, проверяющий наличие токена и его валидности
   React.useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -44,7 +43,9 @@ export default function App() {
         .then((res) => {
           setIsLoggedIn(true);
           setCurrentUser(res);
-          navigate("/movies");
+          location === "/signin" || location === "/signup"
+            ? navigate("/movies")
+            : navigate(location);
         })
         .catch((err) => {
           localStorage.removeItem("jwt");
@@ -53,7 +54,6 @@ export default function App() {
     }
   }, []);
 
-  // Запрос к Api за инфо о пользователе выполняется единожды при монтировании
   React.useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -61,13 +61,12 @@ export default function App() {
         .getMyUser()
         .then((data) => {
           setCurrentUser(data);
-          // console.log(data);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, []);
+  }, [isLoggedIn]);
 
   function handleRegister(name, email, password) {
     return auth
@@ -202,6 +201,7 @@ export default function App() {
                       setApiErrorMessage={setApiErrorMessage}
                       handleUpdateUser={handleUpdateUser}
                       handleLogOut={handleLogOut}
+                      isLoggedIn={isLoggedIn}
                     />
                   </>
                 }
@@ -218,6 +218,8 @@ export default function App() {
                   handleLogIn={handleLogIn}
                   apiErrorMessage={apiErrorMessage}
                   setApiErrorMessage={setApiErrorMessage}
+                  isLoggedIn={isLoggedIn}
+                  navigate={navigate}
                 />
               </div>
             }
@@ -232,6 +234,8 @@ export default function App() {
                   handleRegister={handleRegister}
                   apiErrorMessage={apiErrorMessage}
                   setApiErrorMessage={setApiErrorMessage}
+                  isLoggedIn={isLoggedIn}
+                  navigate={navigate}
                 />
               </div>
             }

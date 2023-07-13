@@ -10,6 +10,10 @@ export default function Register(props) {
     props.setApiErrorMessage
   );
 
+  React.useEffect(() => {
+    props.isLoggedIn && props.navigate("/");
+  }, []);
+
   function handleSubmit(evt) {
     evt.preventDefault();
     props.handleRegister(values.name, values.email, values.password);

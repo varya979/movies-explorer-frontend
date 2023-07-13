@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-.movies__button {
+.movies__button_visible {
   font-size: 12px;
   font-weight: 500;
   width: 100%;
@@ -32,9 +32,10 @@
   background: #F9F9F9;
   padding: 0;
   margin: 0;
+  display: block;
 }
 
-.movies__button_invisible {
+.movies__button {
   display: none;
 }
 

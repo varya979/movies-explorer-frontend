@@ -11,14 +11,21 @@ export default function MoviesCard(props) {
 
   return (
     <li className="movie-item">
-      <img
-        className="movie-item__image"
-        src={props.movie.link}
-        alt={props.movie.name}
-      />
+      <a
+        href={props.movie.trailerLink}
+        className="movie-item__trailer-link"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img
+          className="movie-item__image"
+          src={`https://api.nomoreparties.co/${props.movie.image.url}`}
+          alt={props.movie.nameRu}
+        />
+      </a>
       <div className="movie-item__info">
         <div className="movie-item__info-container">
-          <p className="movie-item__name">{props.movie.name}</p>
+          <p className="movie-item__name">{props.movie.nameRU}</p>
           <p className="movie-item__duration">{props.movie.duration}</p>
         </div>
         <div className="movie-item__likes-container">

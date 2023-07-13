@@ -4,19 +4,49 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 
+import {
+  SCREEN_M,
+  SCREEN_L,
+  VISIBLE_CARDS_COUNT_S,
+  VISIBLE_CARDS_COUNT_M,
+  VISIBLE_CARDS_COUNT_L,
+  VISIBLE_CARDS_COUNT_MORE_S_M,
+  VISIBLE_CARDS_COUNT_MORE_L,
+} from "../../utils/constants";
+
 import apiMovies from "../../utils/MoviesApi";
+import { useResize } from "../../hooks/useResize";
 
 export default function Movies(props) {
-  const [allMoviesInLocalStorage, setAllMoviesInLocalStorage] = React.useState(
-    []
-  );
   const [isMoviesBlockVisible, setIsMoviesBlockVisible] = React.useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = React.useState(false);
   const [isLoadingData, setIsLoadingData] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [visibleMovies, setVisibleMovies] = React.useState(0);
+  const [allMoviesFromLocalStorage, setAllMoviesFromLocalStorage] =
+    React.useState([]);
+  const [searchValueFromLocalStorage, setSearchValueFromLocalStorage] =
+    React.useState("");
+  const [checkboxValueFromLocalStorage, setCheckboxValueFromLocalStorage] =
+    React.useState("");
+  const [newArr, setNewArr] = React.useState([]);
+
+  const width = useResize();
 
   React.useEffect(() => {
-    setAllMoviesInLocalStorage(JSON.parse(localStorage.getItem("apiMovies")));
+    if (width >= SCREEN_L) {
+      setVisibleMovies(VISIBLE_CARDS_COUNT_L);
+    } else if (width < SCREEN_L && width > SCREEN_M) {
+      setVisibleMovies(VISIBLE_CARDS_COUNT_M);
+    } else if (width <= SCREEN_M) {
+      setVisibleMovies(VISIBLE_CARDS_COUNT_S);
+    }
+  }, [width]);
+
+  React.useEffect(() => {
+    setAllMoviesFromLocalStorage(JSON.parse(localStorage.getItem("apiMovies")));
+    setSearchValueFromLocalStorage(localStorage.getItem("searchMovieValue"));
+    setCheckboxValueFromLocalStorage(localStorage.getItem("checkboxValue"));
   }, []);
 
   async function getApiMovies(value) {
@@ -36,14 +66,23 @@ export default function Movies(props) {
           console.log(err);
         });
 
-      setAllMoviesInLocalStorage(JSON.parse(localStorage.getItem("apiMovies")));
-
       localStorage.setItem("searchMovieValue", value);
 
       localStorage.setItem("checkboxValue", isCheckboxChecked);
 
-      setIsLoadingData(false);
+      setAllMoviesFromLocalStorage(
+        JSON.parse(localStorage.getItem("apiMovies"))
+      );
+      setNewArr(allMoviesFromLocalStorage.movies);
 
+      localStorage.setItem(
+        "searchMovies",
+        JSON.stringify({
+          newArr,
+        })
+      );
+
+      setIsLoadingData(false);
       setIsMoviesBlockVisible(true);
     } catch (err) {
       setErrorMessage(
@@ -57,11 +96,14 @@ export default function Movies(props) {
     setIsCheckboxChecked(!isCheckboxChecked);
   }
 
-  const [card, setCard] = React.useState([]);
-  const [visibleCard, setVisibleCard] = React.useState(3);
-
   function showMoreMovies() {
-    setVisibleCard((prevValue) => prevValue + 3);
+    if (width >= SCREEN_L) {
+      setVisibleMovies((prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_L);
+    } else if (width < SCREEN_L && width > SCREEN_M) {
+      setVisibleMovies((prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M);
+    } else if (width <= SCREEN_M) {
+      setVisibleMovies((prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M);
+    }
   }
 
   return (
@@ -69,21 +111,22 @@ export default function Movies(props) {
       <SearchForm
         setApiErrorMessage={props.setApiErrorMessage}
         apiErrorMessage={props.apiErrorMessage}
-        allMoviesInLocalStorage={allMoviesInLocalStorage}
-        setAllMoviesInLocalStorage={setAllMoviesInLocalStorage}
+        allMoviesFromLocalStorage={allMoviesFromLocalStorage}
+        setAllMoviesFromLocalStorage={setAllMoviesFromLocalStorage}
         getApiMovies={getApiMovies}
         isCheckboxChecked={isCheckboxChecked}
         setIsCheckboxChecked={setIsCheckboxChecked}
         handleChangeCheckbox={handleChangeCheckbox}
+        searchValueFromLocalStorage={searchValueFromLocalStorage}
       />
       {isLoadingData ? (
         <Preloader />
-      ) : !allMoviesInLocalStorage ? (
+      ) : !allMoviesFromLocalStorage ? (
         <div className="movies__error-container">
-          {!errorMessage ? (
-            <span className="movies__error">Ничего не найдено</span>
-          ) : (
+          {errorMessage ? (
             <span className="movies__error">{errorMessage}</span>
+          ) : (
+            <span className="movies__error">Ничего не найдено</span>
           )}
         </div>
       ) : (
@@ -92,14 +135,21 @@ export default function Movies(props) {
             moviesArr={props.moviesArr}
             location={props.location}
             isMoviesBlockVisible={isMoviesBlockVisible}
-            visibleCard={visibleCard}
+            visibleMovies={visibleMovies}
+            checkboxValueFromLocalStorage={checkboxValueFromLocalStorage}
+            allMoviesFromLocalStorage={allMoviesFromLocalStorage}
+            newArr={newArr}
           />
           <button
-            className={
-              props.moviesArr.length === visibleCard
-                ? "movies__button_invisible"
+            className={`{
+            ${
+              isMoviesBlockVisible &&
+              "movies__button" &&
+              newArr.length > visibleMovies
+                ? "movies__button_visible"
                 : "movies__button opacity"
             }
+            `}
             type="button"
             onClick={showMoreMovies}
           >
