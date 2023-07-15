@@ -4,26 +4,7 @@ import image from "../../images/input_button.svg";
 
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-import { useFormValidation } from "../../utils/useFormValidation";
-
 export default function SearchForm(props) {
-  const { values, setValues, handleChange, errors, isValid } =
-    useFormValidation(props.setApiErrorMessage);
-
-  function handleSearchFilms(evt) {
-    evt.preventDefault();
-
-    if (!isValid || "") {
-      props.setApiErrorMessage("Нужно ввести ключевое слово");
-    } else if (isValid) {
-      props.getApiMovies(values.search);
-    }
-  }
-
-  React.useEffect(() => {
-    setValues({ ...values, search: props.searchValueFromLocalStorage });
-  }, [setValues, props.searchValueFromLocalStorage]);
-
   return (
     <section className="search">
       <form className="search__form" noValidate>
@@ -34,15 +15,15 @@ export default function SearchForm(props) {
           placeholder="Фильм"
           type="text"
           minLength="1"
-          value={values.search || ""}
-          onChange={handleChange}
-          errors={errors.search}
+          value={props.values.search || ""}
+          onChange={props.handleChange}
+          errors={props.errors.search}
           required
-        ></input>
+        />
         <button
           className="search__button opacity"
           type="submit"
-          onClick={handleSearchFilms}
+          onClick={props.handleSearchFilms}
         >
           <img
             src={image}

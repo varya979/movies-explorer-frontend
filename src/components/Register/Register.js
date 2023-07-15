@@ -3,7 +3,7 @@ import React from "react";
 import FormPageForm from "../FormPageForm/FormPageForm";
 import FormPageFieldset from "../FormPageFieldset/FormPageFieldset";
 
-import { useFormValidation } from "../../utils/useFormValidation";
+import { useFormValidation } from "../../hooks/useFormValidation";
 
 export default function Register(props) {
   const { values, handleChange, errors, isValid } = useFormValidation(

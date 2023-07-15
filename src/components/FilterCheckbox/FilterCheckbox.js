@@ -9,7 +9,7 @@ export default function FilterCheckbox(props) {
           type="checkbox"
           id="checkbox"
           name="checkbox"
-          checked={props.isCheckboxChecked || ""}
+          checked={!!props.isCheckboxChecked}
           onChange={props.handleChangeCheckbox}
         />
         <span className="checkbox__span">Короткометражки</span>

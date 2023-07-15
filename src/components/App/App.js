@@ -101,10 +101,12 @@ export default function App() {
   }
 
   function handleLogOut() {
-    if (localStorage.getItem("jwt")) {
-      localStorage.removeItem("jwt");
-      setIsLoggedIn(false);
-    }
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("apiMovies");
+    localStorage.removeItem("searchInputValue");
+    localStorage.removeItem("checkboxValue");
+    setApiErrorMessage("");
+    setIsLoggedIn(false);
   }
 
   function handleUpdateUser(data) {

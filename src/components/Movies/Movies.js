@@ -4,6 +4,11 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 
+import apiMovies from "../../utils/MoviesApi";
+
+import { useResize } from "../../hooks/useResize";
+import { useFormValidation } from "../../hooks/useFormValidation";
+
 import {
   SCREEN_M,
   SCREEN_L,
@@ -14,82 +19,94 @@ import {
   VISIBLE_CARDS_COUNT_MORE_L,
 } from "../../utils/constants";
 
-import apiMovies from "../../utils/MoviesApi";
-import { useResize } from "../../hooks/useResize";
-
 export default function Movies(props) {
+  const width = useResize();
+  let allMoviesFromLocalStorage = JSON.parse(localStorage.getItem("apiMovies"));
+  let searchInputValueFromLocalStorage =
+    localStorage.getItem("searchInputValue");
+  let checkboxValueFromLocalStorage = localStorage.getItem("checkboxValue");
   const [isMoviesBlockVisible, setIsMoviesBlockVisible] = React.useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = React.useState(false);
   const [isLoadingData, setIsLoadingData] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
-  const [visibleMovies, setVisibleMovies] = React.useState(0);
-  const [allMoviesFromLocalStorage, setAllMoviesFromLocalStorage] =
-    React.useState([]);
-  const [searchValueFromLocalStorage, setSearchValueFromLocalStorage] =
-    React.useState("");
-  const [checkboxValueFromLocalStorage, setCheckboxValueFromLocalStorage] =
-    React.useState("");
-  const [newArr, setNewArr] = React.useState([]);
+  const [visibleMoviesCount, setVisibleMoviesCount] = React.useState(0);
 
-  const width = useResize();
+  const { values, setValues, handleChange, errors } = useFormValidation(
+    props.setApiErrorMessage
+  );
+
+  const moreButtonClassName = `${
+    isMoviesBlockVisible &&
+    "movies__button" &&
+    allMoviesFromLocalStorage.length > visibleMoviesCount
+      ? "movies__button_visible"
+      : "movies__button opacity"
+  }`;
 
   React.useEffect(() => {
     if (width >= SCREEN_L) {
-      setVisibleMovies(VISIBLE_CARDS_COUNT_L);
+      setVisibleMoviesCount(VISIBLE_CARDS_COUNT_L);
     } else if (width < SCREEN_L && width > SCREEN_M) {
-      setVisibleMovies(VISIBLE_CARDS_COUNT_M);
+      setVisibleMoviesCount(VISIBLE_CARDS_COUNT_M);
     } else if (width <= SCREEN_M) {
-      setVisibleMovies(VISIBLE_CARDS_COUNT_S);
+      setVisibleMoviesCount(VISIBLE_CARDS_COUNT_S);
     }
   }, [width]);
 
   React.useEffect(() => {
-    setAllMoviesFromLocalStorage(JSON.parse(localStorage.getItem("apiMovies")));
-    setSearchValueFromLocalStorage(localStorage.getItem("searchMovieValue"));
-    setCheckboxValueFromLocalStorage(localStorage.getItem("checkboxValue"));
+    if (localStorage.getItem("apiMovies")) {
+      allMoviesFromLocalStorage = JSON.parse(localStorage.getItem("apiMovies"));
+      searchInputValueFromLocalStorage =
+        localStorage.getItem("searchInputValue");
+      checkboxValueFromLocalStorage = localStorage.getItem("checkboxValue");
+    }
+    if (searchInputValueFromLocalStorage) {
+      getApiMovies(searchInputValueFromLocalStorage);
+      setIsCheckboxChecked(checkboxValueFromLocalStorage);
+    }
   }, []);
 
-  async function getApiMovies(value) {
-    try {
-      setIsLoadingData(true);
-      await apiMovies
-        .getMovies()
-        .then((movies) => {
-          localStorage.setItem(
-            "apiMovies",
-            JSON.stringify({
-              movies,
-            })
+  React.useEffect(() => {
+    setValues({
+      values,
+      search: searchInputValueFromLocalStorage,
+    });
+  }, [setValues, searchInputValueFromLocalStorage]);
+
+  async function getApiMovies(search) {
+    if (!search || search === "") {
+      props.setApiErrorMessage("Нужно ввести ключевое слово");
+    } else {
+      try {
+        setIsLoadingData(true);
+        if (!allMoviesFromLocalStorage) {
+          props.setApiErrorMessage("");
+          const movies = await apiMovies.getMovies();
+
+          localStorage.setItem("apiMovies", JSON.stringify(movies));
+          allMoviesFromLocalStorage = JSON.parse(
+            localStorage.getItem("apiMovies")
           );
-        })
-        .catch((err) => {
-          console.log(err);
-        });
 
-      localStorage.setItem("searchMovieValue", value);
+          localStorage.setItem("searchInputValue", search);
+          localStorage.setItem("checkboxValue", isCheckboxChecked);
+        }
 
-      localStorage.setItem("checkboxValue", isCheckboxChecked);
-
-      setAllMoviesFromLocalStorage(
-        JSON.parse(localStorage.getItem("apiMovies"))
-      );
-      setNewArr(allMoviesFromLocalStorage.movies);
-
-      localStorage.setItem(
-        "searchMovies",
-        JSON.stringify({
-          newArr,
-        })
-      );
-
-      setIsLoadingData(false);
-      setIsMoviesBlockVisible(true);
-    } catch (err) {
-      setErrorMessage(
-        "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-      );
-      setIsLoadingData(false);
+        setIsLoadingData(false);
+        setIsMoviesBlockVisible(true);
+      } catch (err) {
+        setErrorMessage(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
+        setIsLoadingData(false);
+      }
     }
+  }
+
+  function handleSearchFilms(evt) {
+    evt.preventDefault();
+
+    getApiMovies(values.search);
   }
 
   function handleChangeCheckbox() {
@@ -98,11 +115,17 @@ export default function Movies(props) {
 
   function showMoreMovies() {
     if (width >= SCREEN_L) {
-      setVisibleMovies((prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_L);
+      setVisibleMoviesCount(
+        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_L
+      );
     } else if (width < SCREEN_L && width > SCREEN_M) {
-      setVisibleMovies((prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M);
+      setVisibleMoviesCount(
+        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M
+      );
     } else if (width <= SCREEN_M) {
-      setVisibleMovies((prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M);
+      setVisibleMoviesCount(
+        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M
+      );
     }
   }
 
@@ -112,22 +135,22 @@ export default function Movies(props) {
         setApiErrorMessage={props.setApiErrorMessage}
         apiErrorMessage={props.apiErrorMessage}
         allMoviesFromLocalStorage={allMoviesFromLocalStorage}
-        setAllMoviesFromLocalStorage={setAllMoviesFromLocalStorage}
         getApiMovies={getApiMovies}
+        handleSearchFilms={handleSearchFilms}
         isCheckboxChecked={isCheckboxChecked}
         setIsCheckboxChecked={setIsCheckboxChecked}
         handleChangeCheckbox={handleChangeCheckbox}
-        searchValueFromLocalStorage={searchValueFromLocalStorage}
+        searchInputValueFromLocalStorage={searchInputValueFromLocalStorage}
+        values={values}
+        setValues={setValues}
+        handleChange={handleChange}
+        errors={errors}
       />
       {isLoadingData ? (
         <Preloader />
       ) : !allMoviesFromLocalStorage ? (
         <div className="movies__error-container">
-          {errorMessage ? (
-            <span className="movies__error">{errorMessage}</span>
-          ) : (
-            <span className="movies__error">Ничего не найдено</span>
-          )}
+          <span className="movies__error">{errorMessage}</span>
         </div>
       ) : (
         <>
@@ -135,21 +158,12 @@ export default function Movies(props) {
             moviesArr={props.moviesArr}
             location={props.location}
             isMoviesBlockVisible={isMoviesBlockVisible}
-            visibleMovies={visibleMovies}
+            visibleMoviesCount={visibleMoviesCount}
             checkboxValueFromLocalStorage={checkboxValueFromLocalStorage}
             allMoviesFromLocalStorage={allMoviesFromLocalStorage}
-            newArr={newArr}
           />
           <button
-            className={`{
-            ${
-              isMoviesBlockVisible &&
-              "movies__button" &&
-              newArr.length > visibleMovies
-                ? "movies__button_visible"
-                : "movies__button opacity"
-            }
-            `}
+            className={moreButtonClassName}
             type="button"
             onClick={showMoreMovies}
           >

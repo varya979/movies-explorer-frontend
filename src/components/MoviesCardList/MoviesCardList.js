@@ -11,13 +11,15 @@ export default function MoviesCardList(props) {
             props.isMoviesBlockVisible && "movies-list_visiable"
           }`}
         >
-          {props.newArr.slice(0, props.visibleMovies).map((movie) => (
-            <MoviesCard
-              key={movie.id}
-              movie={movie}
-              location={props.location}
-            />
-          ))}
+          {props.allMoviesFromLocalStorage
+            .slice(0, props.visibleMoviesCount)
+            .map((movie) => (
+              <MoviesCard
+                key={movie.id}
+                movie={movie}
+                location={props.location}
+              />
+            ))}
         </ul>
       )}
       {props.location.pathname === "/saved-movies" && (

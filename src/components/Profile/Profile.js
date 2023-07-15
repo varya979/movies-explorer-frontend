@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProfileFormFieldset from "../ProfileFormFieldset/ProfileFormFieldset";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useFormValidation } from "../../utils/useFormValidation";
+import { useFormValidation } from "../../hooks/useFormValidation";
 
 export default function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
