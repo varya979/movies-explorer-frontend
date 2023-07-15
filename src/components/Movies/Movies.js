@@ -39,8 +39,8 @@ export default function Movies(props) {
     isMoviesBlockVisible &&
     "movies__button" &&
     allMoviesFromLocalStorage.length > visibleMoviesCount
-      ? "movies__button_visible"
-      : "movies__button opacity"
+      ? "movies__button_visible opacity"
+      : "movies__button"
   }`;
 
   React.useEffect(() => {
