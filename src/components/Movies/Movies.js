@@ -1,10 +1,13 @@
 import React from "react";
 
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 
 import apiMovies from "../../utils/MoviesApi";
+import apiMain from "../../utils/MainApi";
 
 import { useResize } from "../../hooks/useResize";
 import { useFormValidation } from "../../hooks/useFormValidation";
@@ -20,6 +23,7 @@ import {
 } from "../../utils/constants";
 
 export default function Movies(props) {
+  const currentUser = React.useContext(CurrentUserContext);
   const width = useResize();
   let allMoviesFromLocalStorage = JSON.parse(localStorage.getItem("apiMovies"));
   let searchInputValueFromLocalStorage =
@@ -30,6 +34,8 @@ export default function Movies(props) {
   const [isLoadingData, setIsLoadingData] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [visibleMoviesCount, setVisibleMoviesCount] = React.useState(0);
+  const [savedMovies, setSavedMovies] = React.useState([]);
+  const [isMovieSaved, setIsMovieSaved] = React.useState(false);
 
   const { values, setValues, handleChange, errors } = useFormValidation(
     props.setApiErrorMessage
@@ -73,6 +79,23 @@ export default function Movies(props) {
     });
   }, [setValues, searchInputValueFromLocalStorage]);
 
+  React.useEffect(() => {
+    apiMain
+      .getMovies()
+      .then((movies) => {
+        const savedMoviesByMe = movies.filter((movie) => {
+          return (
+            movie.owner === currentUser._id ||
+            movie.owner._id === currentUser._id
+          );
+        });
+        setSavedMovies(savedMoviesByMe);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [setSavedMovies, currentUser._id]);
+
   async function getApiMovies(search) {
     if (!search || search === "") {
       props.setApiErrorMessage("Нужно ввести ключевое слово");
@@ -103,14 +126,14 @@ export default function Movies(props) {
     }
   }
 
-  function handleSearchFilms(evt) {
+  function handleChangeCheckbox() {
+    setIsCheckboxChecked(!isCheckboxChecked);
+  }
+
+  function handleSearchMovies(evt) {
     evt.preventDefault();
 
     getApiMovies(values.search);
-  }
-
-  function handleChangeCheckbox() {
-    setIsCheckboxChecked(!isCheckboxChecked);
   }
 
   function showMoreMovies() {
@@ -129,6 +152,29 @@ export default function Movies(props) {
     }
   }
 
+  function saveMovie(movie) {
+    apiMain
+      .postMovie(movie)
+      .then((movie) => {
+        setSavedMovies([...savedMovies, movie]);
+        // setIsMovieSaved(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function deleteMovie(movie) {
+    apiMain
+      .deleteMovie(movie)
+      .then((movie) => {
+        setSavedMovies([...savedMovies, movie]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <main className="movies">
       <SearchForm
@@ -136,7 +182,7 @@ export default function Movies(props) {
         apiErrorMessage={props.apiErrorMessage}
         allMoviesFromLocalStorage={allMoviesFromLocalStorage}
         getApiMovies={getApiMovies}
-        handleSearchFilms={handleSearchFilms}
+        handleSearchMovies={handleSearchMovies}
         isCheckboxChecked={isCheckboxChecked}
         setIsCheckboxChecked={setIsCheckboxChecked}
         handleChangeCheckbox={handleChangeCheckbox}
@@ -155,12 +201,17 @@ export default function Movies(props) {
       ) : (
         <>
           <MoviesCardList
-            moviesArr={props.moviesArr}
             location={props.location}
             isMoviesBlockVisible={isMoviesBlockVisible}
             visibleMoviesCount={visibleMoviesCount}
             checkboxValueFromLocalStorage={checkboxValueFromLocalStorage}
             allMoviesFromLocalStorage={allMoviesFromLocalStorage}
+            saveMovie={saveMovie}
+            deleteMovie={deleteMovie}
+            savedMovies={savedMovies}
+            setSavedMovies={setSavedMovies}
+            isMovieSaved={isMovieSaved}
+            setIsMovieSaved={setIsMovieSaved}
           />
           <button
             className={moreButtonClassName}

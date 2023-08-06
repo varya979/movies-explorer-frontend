@@ -23,7 +23,7 @@ export default function SearchForm(props) {
         <button
           className="search__button opacity"
           type="submit"
-          onClick={props.handleSearchFilms}
+          onClick={props.handleSearchMovies}
         >
           <img
             src={image}

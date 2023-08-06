@@ -25,10 +25,7 @@ export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [currentUser, setCurrentUser] = React.useState({
-    name: "",
-    email: "",
-  });
+  const [currentUser, setCurrentUser] = React.useState({});
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [apiErrorMessage, setApiErrorMessage] = React.useState("");
   const [apiSuccessMessage, setApiSuccessMessage] = React.useState("");

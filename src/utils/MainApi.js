@@ -80,7 +80,7 @@ class MainApi {
     });
   }
 
-  // DELETE '/movies/_id' - удаление карточки
+  // DELETE '/movies/id' - удаление фильма
   deleteMovie(movieId) {
     const token = localStorage.getItem("jwt");
     return fetch(`${this._url}/cards/${movieId}`, {
