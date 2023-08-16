@@ -81,9 +81,9 @@ class MainApi {
   }
 
   // DELETE '/movies/id' - удаление фильма
-  deleteMovie(movieId) {
+  deleteMovie(movie) {
     const token = localStorage.getItem("jwt");
-    return fetch(`${this._url}/cards/${movieId}`, {
+    return fetch(`${this._url}/movies/${movie._id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${token}`,

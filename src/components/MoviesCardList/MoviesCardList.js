@@ -22,19 +22,21 @@ export default function MoviesCardList(props) {
                 deleteMovie={props.deleteMovie}
                 savedMovies={props.savedMovies}
                 setSavedMovies={props.setSavedMovies}
-                isMovieSaved={props.isMovieSaved}
-                setIsMovieSaved={props.setIsMovieSaved}
               />
             ))}
         </ul>
       )}
       {props.location.pathname === "/saved-movies" && (
         <ul className="movies-list">
-          {props.isLikedMovies.map((movie) => (
+          {props.savedMovies.map((movie) => (
             <MoviesCard
               key={movie.id}
               movie={movie}
               location={props.location}
+              saveMovie={props.saveMovie}
+              deleteMovie={props.deleteMovie}
+              savedMovies={props.savedMovies}
+              setSavedMovies={props.setSavedMovies}
             />
           ))}
         </ul>

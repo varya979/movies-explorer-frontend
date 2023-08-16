@@ -1,29 +1,38 @@
 import React from "react";
 
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 export default function MoviesCard(props) {
-  const moviesLikeButtonClassName = `movie-item__button-like ${
-    props.savedMovies.some((movie) => movie.movieId === props.movie.id) &&
-    props.isMovieSaved &&
-    "movie-item__button-like_active"
-  }`;
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const [isMovieSaved, setIsMovieSaved] = React.useState(false);
+
+  const moviesLikeButtonClassName = isMovieSaved
+    ? "movie-item__button-like-red"
+    : "movie-item__button-like-white";
 
   const moviesDeleteButtonClassName = `movie-item__button-delete ${
-    props.isMovieSaved && "movie-item__button-delete_visible"
+    isMovieSaved && "movie-item__button-delete_visible"
   }`;
 
   React.useEffect(() => {
-    if (props.savedMovies.some((movie) => movie.movieId === props.movie.id)) {
-      props.setIsMovieSaved(true);
+    if (props.location.pathname === "/movies") {
+      const isMovieOwn = props.savedMovies.some(
+        (movie) =>
+          movie.movieId === props.movie.id &&
+          movie.owner._id === currentUser._id
+      );
+      setIsMovieSaved(isMovieOwn);
     }
-  }, [props.savedMovies, props.movie.id]);
+  }, []);
 
-  function getTimeFromMins(mins) {
+  const getTimeFromMins = (mins) => {
     let hours = Math.trunc(mins / 60);
     let minutes = mins % 60;
     return hours + "ч " + minutes + "м";
-  }
+  };
 
-  function handleSaveMovie() {
+  const handleSaveOrDeleteMovie = () => {
     const movie = {
       country: props.movie.country,
       director: props.movie.director,
@@ -37,13 +46,16 @@ export default function MoviesCard(props) {
       thumbnail: props.movie.thumbnail,
       movieId: props.movie.id,
     };
-    props.saveMovie(movie);
-    props.setIsMovieSaved(true);
-  }
-
-  function handleDeleteMovie() {
-    props.deleteMovie(props.movie.id, props.setIsMovieSaved);
-  }
+    if (props.location.pathname === "/saved-movies") {
+      props.deleteMovie(props.movie);
+    } else {
+      const selectedMovie = props.savedMovies.find(
+        (movie) => movie.movieId === props.movie.id
+      );
+      isMovieSaved ? props.deleteMovie(selectedMovie) : props.saveMovie(movie);
+      setIsMovieSaved(!isMovieSaved);
+    }
+  };
 
   return (
     <li className="movie-item">
@@ -73,13 +85,7 @@ export default function MoviesCard(props) {
             <button
               className={`${moviesLikeButtonClassName} opacity`}
               type="button"
-              onClick={
-                props.savedMovies.some(
-                  (movie) => movie.movieId === props.movie.id
-                ) && props.isMovieSaved
-                  ? handleDeleteMovie
-                  : handleSaveMovie
-              }
+              onClick={handleSaveOrDeleteMovie}
             />
           )}
           {props.location.pathname === "/saved-movies" && (

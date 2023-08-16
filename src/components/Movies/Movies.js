@@ -1,7 +1,5 @@
 import React from "react";
 
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
@@ -23,7 +21,6 @@ import {
 } from "../../utils/constants";
 
 export default function Movies(props) {
-  const currentUser = React.useContext(CurrentUserContext);
   const width = useResize();
   let allMoviesFromLocalStorage = JSON.parse(localStorage.getItem("apiMovies"));
   let searchInputValueFromLocalStorage =
@@ -35,7 +32,6 @@ export default function Movies(props) {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [visibleMoviesCount, setVisibleMoviesCount] = React.useState(0);
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const [isMovieSaved, setIsMovieSaved] = React.useState(false);
 
   const { values, setValues, handleChange, errors } = useFormValidation(
     props.setApiErrorMessage
@@ -48,6 +44,12 @@ export default function Movies(props) {
       ? "movies__button_visible opacity"
       : "movies__button"
   }`;
+
+  React.useEffect(() => {
+    if (props.isLoggedIn) {
+      getSavedMovies();
+    }
+  }, [props.isLoggedIn]);
 
   React.useEffect(() => {
     if (width >= SCREEN_L) {
@@ -79,24 +81,8 @@ export default function Movies(props) {
     });
   }, [setValues, searchInputValueFromLocalStorage]);
 
-  React.useEffect(() => {
-    apiMain
-      .getMovies()
-      .then((movies) => {
-        const savedMoviesByMe = movies.filter((movie) => {
-          return (
-            movie.owner === currentUser._id ||
-            movie.owner._id === currentUser._id
-          );
-        });
-        setSavedMovies(savedMoviesByMe);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [setSavedMovies, currentUser._id]);
-
-  async function getApiMovies(search) {
+  //handleGetMovies
+  const getApiMovies = async (search) => {
     if (!search || search === "") {
       props.setApiErrorMessage("Нужно ввести ключевое слово");
     } else {
@@ -124,19 +110,20 @@ export default function Movies(props) {
         setIsLoadingData(false);
       }
     }
-  }
+  };
 
-  function handleChangeCheckbox() {
+  const handleChangeCheckbox = () => {
     setIsCheckboxChecked(!isCheckboxChecked);
-  }
+  };
 
-  function handleSearchMovies(evt) {
+  //handleSearchMovies
+  const handleSearchMovies = (evt) => {
     evt.preventDefault();
 
     getApiMovies(values.search);
-  }
+  };
 
-  function showMoreMovies() {
+  const showMoreMovies = () => {
     if (width >= SCREEN_L) {
       setVisibleMoviesCount(
         (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_L
@@ -150,30 +137,41 @@ export default function Movies(props) {
         (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M
       );
     }
-  }
+  };
 
-  function saveMovie(movie) {
-    apiMain
-      .postMovie(movie)
-      .then((movie) => {
-        setSavedMovies([...savedMovies, movie]);
-        // setIsMovieSaved(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  //handleGetSavedMovies
+  const getSavedMovies = async () => {
+    try {
+      // if (!allMoviesFromLocalStorage) {
+      const movies = await apiMain.getMovies();
+      setSavedMovies(movies);
+      // }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  function deleteMovie(movie) {
-    apiMain
-      .deleteMovie(movie)
-      .then((movie) => {
-        setSavedMovies([...savedMovies, movie]);
-      })
-      .catch((err) => {
-        console.log(err);
+  //handleCreateMovie
+  const saveMovie = async (movie) => {
+    try {
+      await apiMain.postMovie(movie);
+      getSavedMovies();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //handleDeleteMovie
+  const deleteMovie = async (movieId) => {
+    try {
+      const deletedMovie = await apiMain.deleteMovie(movieId);
+      setSavedMovies((movies) => {
+        return movies.filter((movie) => movie._id !== deletedMovie._id);
       });
-  }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <main className="movies">
@@ -210,8 +208,6 @@ export default function Movies(props) {
             deleteMovie={deleteMovie}
             savedMovies={savedMovies}
             setSavedMovies={setSavedMovies}
-            isMovieSaved={isMovieSaved}
-            setIsMovieSaved={setIsMovieSaved}
           />
           <button
             className={moreButtonClassName}
