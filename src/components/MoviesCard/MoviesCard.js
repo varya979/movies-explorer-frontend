@@ -16,6 +16,7 @@ export default function MoviesCard(props) {
   }`;
 
   React.useEffect(() => {
+    // console.log(props.savedMovies)
     if (props.location.pathname === "/movies") {
       const isMovieOwn = props.savedMovies.some(
         (movie) =>
@@ -52,7 +53,9 @@ export default function MoviesCard(props) {
       const selectedMovie = props.savedMovies.find(
         (movie) => movie.movieId === props.movie.id
       );
-      isMovieSaved ? props.deleteMovie(selectedMovie) : props.saveMovie(movie);
+      isMovieSaved
+        ? props.deleteMovie(selectedMovie._id)
+        : props.saveMovie(movie);
       setIsMovieSaved(!isMovieSaved);
     }
   };

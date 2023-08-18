@@ -11,7 +11,7 @@ export default function MoviesCardList(props) {
             props.isMoviesBlockVisible && "movies-list_visiable"
           }`}
         >
-          {props.allMoviesFromLocalStorage
+          {props.filterMovies
             .slice(0, props.visibleMoviesCount)
             .map((movie) => (
               <MoviesCard
@@ -36,7 +36,6 @@ export default function MoviesCardList(props) {
               saveMovie={props.saveMovie}
               deleteMovie={props.deleteMovie}
               savedMovies={props.savedMovies}
-              setSavedMovies={props.setSavedMovies}
             />
           ))}
         </ul>

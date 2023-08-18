@@ -8,7 +8,8 @@ import apiMovies from "../../utils/MoviesApi";
 import apiMain from "../../utils/MainApi";
 
 import { useResize } from "../../hooks/useResize";
-import { useFormValidation } from "../../hooks/useFormValidation";
+// import { useFormValidation } from "../../hooks/useFormValidation";
+import { useMoviesSearchAndFiltration } from "../../hooks/useMoviesSearchAndFiltration";
 
 import {
   SCREEN_M,
@@ -21,26 +22,39 @@ import {
 } from "../../utils/constants";
 
 export default function Movies(props) {
+  const [allMoviesFromApiMovies, setAllMoviesFromApiMovies] = React.useState(
+    []
+  );
+
+  // const [
+  //   searchInputValueFromLocalStorage,
+  //   setSearchInputValueFromLocalStorage,
+  // ] = React.useState(localStorage.getItem("searchInputValue"));
+
+  // const [checkboxValueFromLocalStorage, setCheckboxValueFromLocalStorage] =
+  //   React.useState(localStorage.getItem("checkboxValue"));
+
   const width = useResize();
-  let allMoviesFromLocalStorage = JSON.parse(localStorage.getItem("apiMovies"));
-  let searchInputValueFromLocalStorage =
-    localStorage.getItem("searchInputValue");
-  let checkboxValueFromLocalStorage = localStorage.getItem("checkboxValue");
   const [isMoviesBlockVisible, setIsMoviesBlockVisible] = React.useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = React.useState(false);
   const [isLoadingData, setIsLoadingData] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [visibleMoviesCount, setVisibleMoviesCount] = React.useState(0);
+  const [filterMovies, setFilterMovies] = React.useState([]);
+  const [visibleMovies, setVisibleMovies] = React.useState([]);
+
   const [savedMovies, setSavedMovies] = React.useState([]);
 
-  const { values, setValues, handleChange, errors } = useFormValidation(
-    props.setApiErrorMessage
-  );
+  // const { values, setValues, handleChange, errors } = useFormValidation(
+  //   props.setApiErrorMessage
+  // );
+
+  const { searchMovie, changeCheckbox } = useMoviesSearchAndFiltration();
 
   const moreButtonClassName = `${
     isMoviesBlockVisible &&
     "movies__button" &&
-    allMoviesFromLocalStorage.length > visibleMoviesCount
+    allMoviesFromApiMovies.length > visibleMoviesCount
       ? "movies__button_visible opacity"
       : "movies__button"
   }`;
@@ -52,6 +66,28 @@ export default function Movies(props) {
   }, [props.isLoggedIn]);
 
   React.useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      getApiMovies();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const searchInputValue = localStorage.getItem("searchInputValue");
+    const checkboxState = localStorage.getItem("checkbox");
+    if (searchInputValue) {
+      setIsCheckboxChecked(checkboxState === "true" ? true : false);
+      const searchedMovies = searchMovie(
+        allMoviesFromApiMovies,
+        searchInputValue
+      );
+      const shortMovies = changeCheckbox(searchedMovies, isCheckboxChecked);
+      setFilterMovies(shortMovies);
+      setIsMoviesBlockVisible(true);
+    }
+  }, [allMoviesFromApiMovies]);
+
+  React.useEffect(() => {
     if (width >= SCREEN_L) {
       setVisibleMoviesCount(VISIBLE_CARDS_COUNT_L);
     } else if (width < SCREEN_L && width > SCREEN_M) {
@@ -61,93 +97,57 @@ export default function Movies(props) {
     }
   }, [width]);
 
-  React.useEffect(() => {
-    if (localStorage.getItem("apiMovies")) {
-      allMoviesFromLocalStorage = JSON.parse(localStorage.getItem("apiMovies"));
-      searchInputValueFromLocalStorage =
-        localStorage.getItem("searchInputValue");
-      checkboxValueFromLocalStorage = localStorage.getItem("checkboxValue");
-    }
-    if (searchInputValueFromLocalStorage) {
-      getApiMovies(searchInputValueFromLocalStorage);
-      setIsCheckboxChecked(checkboxValueFromLocalStorage);
-    }
-  }, []);
-
-  React.useEffect(() => {
-    setValues({
-      values,
-      search: searchInputValueFromLocalStorage,
-    });
-  }, [setValues, searchInputValueFromLocalStorage]);
-
-  //handleGetMovies
-  const getApiMovies = async (search) => {
-    if (!search || search === "") {
-      props.setApiErrorMessage("Нужно ввести ключевое слово");
-    } else {
-      try {
-        setIsLoadingData(true);
-        if (!allMoviesFromLocalStorage) {
-          props.setApiErrorMessage("");
-          const movies = await apiMovies.getMovies();
-
-          localStorage.setItem("apiMovies", JSON.stringify(movies));
-          allMoviesFromLocalStorage = JSON.parse(
-            localStorage.getItem("apiMovies")
-          );
-
-          localStorage.setItem("searchInputValue", search);
-          localStorage.setItem("checkboxValue", isCheckboxChecked);
-        }
-
-        setIsLoadingData(false);
-        setIsMoviesBlockVisible(true);
-      } catch (err) {
-        setErrorMessage(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-        );
-        setIsLoadingData(false);
+  // handleGetMovies
+  const getApiMovies = async () => {
+    try {
+      setIsLoadingData(true);
+      if (allMoviesFromApiMovies.length === 0) {
+        props.setApiErrorMessage("");
+        const movies = await apiMovies.getMovies();
+        setAllMoviesFromApiMovies(movies);
       }
-    }
-  };
-
-  const handleChangeCheckbox = () => {
-    setIsCheckboxChecked(!isCheckboxChecked);
-  };
-
-  //handleSearchMovies
-  const handleSearchMovies = (evt) => {
-    evt.preventDefault();
-
-    getApiMovies(values.search);
-  };
-
-  const showMoreMovies = () => {
-    if (width >= SCREEN_L) {
-      setVisibleMoviesCount(
-        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_L
+    } catch (err) {
+      setErrorMessage(
+        "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
       );
-    } else if (width < SCREEN_L && width > SCREEN_M) {
-      setVisibleMoviesCount(
-        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M
-      );
-    } else if (width <= SCREEN_M) {
-      setVisibleMoviesCount(
-        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M
-      );
+      setIsLoadingData(false);
+    } finally {
+      setIsLoadingData(false);
     }
   };
 
   //handleGetSavedMovies
   const getSavedMovies = async () => {
     try {
-      // if (!allMoviesFromLocalStorage) {
       const movies = await apiMain.getMovies();
       setSavedMovies(movies);
-      // }
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  //handleSearchMovies
+  const searchMovies = async (searchInputValue, checkboxState) => {
+    setIsCheckboxChecked(checkboxState);
+    setIsLoadingData(true);
+    getApiMovies();
+    const searchedMovies = searchMovie(
+      allMoviesFromApiMovies,
+      searchInputValue
+    );
+    const shortMovies = changeCheckbox(searchedMovies, checkboxState);
+    setFilterMovies(shortMovies);
+    setIsLoadingData(false);
+    shortMovies.length === 0 && !isLoadingData
+      ? setErrorMessage("Ничего не найдено")
+      : setErrorMessage("");
+  };
+
+  //handleChangeChecked
+  const changeCheckboxState = (checkboxState) => {
+    if (filterMovies.length > 0) {
+      searchMovies(localStorage.getItem("searchInputValue"), checkboxState);
+      localStorage.setItem("checkbox", checkboxState);
     }
   };
 
@@ -173,26 +173,44 @@ export default function Movies(props) {
     }
   };
 
+  const showMoreMovies = () => {
+    if (width >= SCREEN_L) {
+      setVisibleMoviesCount(
+        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_L
+      );
+    } else if (width < SCREEN_L && width > SCREEN_M) {
+      setVisibleMoviesCount(
+        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M
+      );
+    } else if (width <= SCREEN_M) {
+      setVisibleMoviesCount(
+        (prevValue) => prevValue + VISIBLE_CARDS_COUNT_MORE_S_M
+      );
+    }
+  };
+
   return (
     <main className="movies">
       <SearchForm
+        formType="movies"
+        location={props.location}
         setApiErrorMessage={props.setApiErrorMessage}
         apiErrorMessage={props.apiErrorMessage}
-        allMoviesFromLocalStorage={allMoviesFromLocalStorage}
-        getApiMovies={getApiMovies}
-        handleSearchMovies={handleSearchMovies}
+        allMoviesFromApiMovies={allMoviesFromApiMovies}
+        // getApiMovies={getApiMovies}
+        searchMovies={searchMovies}
         isCheckboxChecked={isCheckboxChecked}
-        setIsCheckboxChecked={setIsCheckboxChecked}
-        handleChangeCheckbox={handleChangeCheckbox}
-        searchInputValueFromLocalStorage={searchInputValueFromLocalStorage}
-        values={values}
-        setValues={setValues}
-        handleChange={handleChange}
-        errors={errors}
+        // setIsCheckboxChecked={setIsCheckboxChecked}
+        changeCheckboxState={changeCheckboxState}
+        // searchInputValueFromLocalStorage={searchInputValueFromLocalStorage}
+        // values={values}
+        // setValues={setValues}
+        // handleChange={handleChange}
+        // errors={errors}
       />
       {isLoadingData ? (
         <Preloader />
-      ) : !allMoviesFromLocalStorage ? (
+      ) : !allMoviesFromApiMovies ? (
         <div className="movies__error-container">
           <span className="movies__error">{errorMessage}</span>
         </div>
@@ -202,12 +220,13 @@ export default function Movies(props) {
             location={props.location}
             isMoviesBlockVisible={isMoviesBlockVisible}
             visibleMoviesCount={visibleMoviesCount}
-            checkboxValueFromLocalStorage={checkboxValueFromLocalStorage}
-            allMoviesFromLocalStorage={allMoviesFromLocalStorage}
+            // checkboxValueFromLocalStorage={checkboxValueFromLocalStorage}
+            allMoviesFromApiMovies={allMoviesFromApiMovies}
             saveMovie={saveMovie}
             deleteMovie={deleteMovie}
             savedMovies={savedMovies}
             setSavedMovies={setSavedMovies}
+            filterMovies={filterMovies}
           />
           <button
             className={moreButtonClassName}
