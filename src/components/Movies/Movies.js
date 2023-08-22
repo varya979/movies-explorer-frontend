@@ -10,6 +10,8 @@ import apiMain from "../../utils/MainApi";
 import { useResize } from "../../hooks/useResize";
 import { useMoviesSearchAndFiltration } from "../../hooks/useMoviesSearchAndFiltration";
 
+import { SavedMoviesContext } from "../../contexts/SavedMoviesContext";
+
 import {
   SCREEN_M,
   SCREEN_L,
@@ -26,13 +28,14 @@ export default function Movies(props) {
     []
   );
   const [filterMovies, setFilterMovies] = React.useState([]);
-  const [savedMovies, setSavedMovies] = React.useState([]);
+  // const [savedMovies, setSavedMovies] = React.useState([]);
   const [isMoviesBlockVisible, setIsMoviesBlockVisible] = React.useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = React.useState(false);
   const [isLoadingData, setIsLoadingData] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [visibleMoviesCount, setVisibleMoviesCount] = React.useState(0);
   const { searchMovie, changeCheckbox } = useMoviesSearchAndFiltration();
+  const [savedMovies, setSavedMovies] = React.useContext(SavedMoviesContext);
 
   const moreButtonClassName = `${
     isMoviesBlockVisible &&

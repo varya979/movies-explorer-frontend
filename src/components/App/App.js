@@ -1,9 +1,6 @@
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
-import { moviesArr } from "../../utils/movies_array";
-import { isLikedMovies } from "../../utils/saved-movies_array";
-
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -18,6 +15,8 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import MessagePopup from "../MessagePopup/MessagePopup";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { SavedMoviesContext } from "../../contexts/SavedMoviesContext";
+
 import * as auth from "../../utils/auth";
 import apiMain from "../../utils/MainApi";
 
@@ -31,6 +30,7 @@ export default function App() {
   const [apiSuccessMessage, setApiSuccessMessage] = React.useState("");
   const [isApiMessagePopupOpen, setIsApiMessagePopupOpen] =
     React.useState(false);
+  const [savedMovies, setSavedMovies] = React.useState([]);
 
   React.useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -130,126 +130,128 @@ export default function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="app">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Header />
-                <Main />
-                <Footer />
-              </>
-            }
-          />
+      <SavedMoviesContext.Provider value={[savedMovies, setSavedMovies]}>
+        <div className="app">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header />
+                  <Main />
+                  <Footer />
+                </>
+              }
+            />
 
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRoute
-                path="/movies"
-                isLoggedIn={isLoggedIn}
-                component={
-                  <>
-                    <Header isLoggedIn={isLoggedIn} />
-                    <Movies
-                      isLoggedIn={isLoggedIn}
-                      setIsLoggedIn={setIsLoggedIn}
-                      location={location}
-                      moviesArr={moviesArr}
-                      setApiErrorMessage={setApiErrorMessage}
-                      apiErrorMessage={apiErrorMessage}
-                    />
-                    <Footer />
-                  </>
-                }
-              />
-            }
-          />
-
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRoute
-                path="/saved-movies"
-                isLoggedIn={isLoggedIn}
-                component={
-                  <>
-                    <Header isLoggedIn={isLoggedIn} />
-                    <SavedMovies
-                      location={location}
-                      isLikedMovies={isLikedMovies}
-                    />
-                    <Footer />
-                  </>
-                }
-              />
-            }
-          />
-
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute
-                path="/profile"
-                isLoggedIn={isLoggedIn}
-                component={
-                  <>
-                    <Header isLoggedIn={isLoggedIn} />
-                    <Profile
-                      apiErrorMessage={apiErrorMessage}
-                      setApiErrorMessage={setApiErrorMessage}
-                      handleUpdateUser={handleUpdateUser}
-                      handleLogOut={handleLogOut}
-                      isLoggedIn={isLoggedIn}
-                    />
-                  </>
-                }
-              />
-            }
-          />
-
-          <Route
-            path="/signin"
-            element={
-              <div className="page">
-                <FormPageHeader title={"Рады видеть!"} />
-                <Login
-                  handleLogIn={handleLogIn}
-                  apiErrorMessage={apiErrorMessage}
-                  setApiErrorMessage={setApiErrorMessage}
+            <Route
+              path="/movies"
+              element={
+                <ProtectedRoute
+                  path="/movies"
                   isLoggedIn={isLoggedIn}
-                  navigate={navigate}
+                  component={
+                    <>
+                      <Header isLoggedIn={isLoggedIn} />
+                      <Movies
+                        // isLoggedIn={isLoggedIn}
+                        // setIsLoggedIn={setIsLoggedIn}
+                        location={location}
+                        setApiErrorMessage={setApiErrorMessage}
+                        apiErrorMessage={apiErrorMessage}
+                      />
+                      <Footer />
+                    </>
+                  }
                 />
-              </div>
-            }
-          />
+              }
+            />
 
-          <Route
-            path="/signup"
-            element={
-              <div className="page">
-                <FormPageHeader title={"Добро пожаловать!"} />
-                <Register
-                  handleRegister={handleRegister}
-                  apiErrorMessage={apiErrorMessage}
-                  setApiErrorMessage={setApiErrorMessage}
+            <Route
+              path="/saved-movies"
+              element={
+                <ProtectedRoute
+                  path="/saved-movies"
                   isLoggedIn={isLoggedIn}
-                  navigate={navigate}
+                  component={
+                    <>
+                      <Header isLoggedIn={isLoggedIn} />
+                      <SavedMovies
+                        location={location}
+                        setApiErrorMessage={setApiErrorMessage}
+                        apiErrorMessage={apiErrorMessage}
+                      />
+                      <Footer />
+                    </>
+                  }
                 />
-              </div>
-            }
+              }
+            />
+
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute
+                  path="/profile"
+                  isLoggedIn={isLoggedIn}
+                  component={
+                    <>
+                      <Header isLoggedIn={isLoggedIn} />
+                      <Profile
+                        apiErrorMessage={apiErrorMessage}
+                        setApiErrorMessage={setApiErrorMessage}
+                        handleUpdateUser={handleUpdateUser}
+                        handleLogOut={handleLogOut}
+                        isLoggedIn={isLoggedIn}
+                      />
+                    </>
+                  }
+                />
+              }
+            />
+
+            <Route
+              path="/signin"
+              element={
+                <div className="page">
+                  <FormPageHeader title={"Рады видеть!"} />
+                  <Login
+                    handleLogIn={handleLogIn}
+                    apiErrorMessage={apiErrorMessage}
+                    setApiErrorMessage={setApiErrorMessage}
+                    isLoggedIn={isLoggedIn}
+                    navigate={navigate}
+                  />
+                </div>
+              }
+            />
+
+            <Route
+              path="/signup"
+              element={
+                <div className="page">
+                  <FormPageHeader title={"Добро пожаловать!"} />
+                  <Register
+                    handleRegister={handleRegister}
+                    apiErrorMessage={apiErrorMessage}
+                    setApiErrorMessage={setApiErrorMessage}
+                    isLoggedIn={isLoggedIn}
+                    navigate={navigate}
+                  />
+                </div>
+              }
+            />
+
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+
+          <MessagePopup
+            isOpen={isApiMessagePopupOpen}
+            onClose={handleApiMessagePopupClose}
+            apiSuccessMessage={apiSuccessMessage}
           />
-
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-
-        <MessagePopup
-          isOpen={isApiMessagePopupOpen}
-          onClose={handleApiMessagePopupClose}
-          apiSuccessMessage={apiSuccessMessage}
-        />
-      </div>
+        </div>
+      </SavedMoviesContext.Provider>
     </CurrentUserContext.Provider>
   );
 }
