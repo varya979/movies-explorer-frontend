@@ -49,32 +49,35 @@ export default function Movies(props) {
   //   props.setApiErrorMessage
   // );
 
-  const { searchMovie, changeCheckbox } = useMoviesSearchAndFiltration();
+  const { searchMovie, changeCheckbox, searchInputValue } =
+    useMoviesSearchAndFiltration();
 
   const moreButtonClassName = `${
     isMoviesBlockVisible &&
     "movies__button" &&
-    allMoviesFromApiMovies.length > visibleMoviesCount
+    filterMovies.length > visibleMoviesCount
       ? "movies__button_visible opacity"
       : "movies__button"
   }`;
 
-  React.useEffect(() => {
-    if (props.isLoggedIn) {
-      getSavedMovies();
-    }
-  }, [props.isLoggedIn]);
+  // React.useEffect(() => {
+  //   if (props.isLoggedIn) {
+  //     getSavedMovies();
+  //   }
+  // }, [props.isLoggedIn]);
 
   React.useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      getApiMovies();
-    }
+    // const token = localStorage.getItem("jwt");
+    // if (token) {
+    getApiMovies();
+    getSavedMovies();
+    setIsMoviesBlockVisible(true);
+    // }
   }, []);
 
   React.useEffect(() => {
     const searchInputValue = localStorage.getItem("searchInputValue");
-    const checkboxState = localStorage.getItem("checkbox");
+    const checkboxState = localStorage.getItem("checkboxValue");
     if (searchInputValue) {
       setIsCheckboxChecked(checkboxState === "true" ? true : false);
       const searchedMovies = searchMovie(
@@ -147,7 +150,7 @@ export default function Movies(props) {
   const changeCheckboxState = (checkboxState) => {
     if (filterMovies.length > 0) {
       searchMovies(localStorage.getItem("searchInputValue"), checkboxState);
-      localStorage.setItem("checkbox", checkboxState);
+      localStorage.setItem("checkboxValue", checkboxState);
     }
   };
 
@@ -210,7 +213,7 @@ export default function Movies(props) {
       />
       {isLoadingData ? (
         <Preloader />
-      ) : !allMoviesFromApiMovies ? (
+      ) : filterMovies.length === 0 ? (
         <div className="movies__error-container">
           <span className="movies__error">{errorMessage}</span>
         </div>

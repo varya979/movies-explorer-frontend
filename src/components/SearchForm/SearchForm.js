@@ -9,24 +9,25 @@ import { useMoviesSearchAndFiltration } from "../../hooks/useMoviesSearchAndFilt
 export default function SearchForm(props) {
   const [checkboxState, setCheckboxState] = React.useState(false);
 
-  const { setMovieTitleToLocalStorage, changeMovieTitle, searchInputValue } =
+  const { saveMovieTitleToLocalStorage, changeMovieTitle, searchInputValue } =
     useMoviesSearchAndFiltration(props.formType);
 
   const searchMovies = (evt) => {
     evt.preventDefault();
 
     if (props.location.pathname === "/movies") {
-      setMovieTitleToLocalStorage();
-      localStorage.setItem("checkbox", checkboxState);
+      saveMovieTitleToLocalStorage();
+      localStorage.setItem("checkboxValue", checkboxState);
     }
 
     if (!!searchInputValue) {
       props.searchMovies(searchInputValue, checkboxState);
+      props.setApiErrorMessage("");
+    } else {
+      props.location.pathname === "/movies" &&
+        props.setApiErrorMessage("Нужно ввести ключевое слово");
+      // : onResetForm(checked);
     }
-    // else {
-    //   props.location.pathname === "/movies" &&
-    //     props.setApiErrorMessage("Необходимо ввести ключевое слово");
-    // }
   };
 
   const changeCheckboxState = (checkboxState) => {
@@ -51,7 +52,6 @@ export default function SearchForm(props) {
         />
         <button
           className="search__button opacity"
-
           // onClick={searchMovies}
         >
           <img

@@ -13,7 +13,7 @@ export default function FilterCheckbox(props) {
           type="checkbox"
           id="checkbox"
           name="checkbox"
-          checked={props.isCheckboxChecked}
+          defaultChecked={props.isCheckboxChecked}
           onChange={changeCheckboxState}
         />
         <span className="checkbox__span">Короткометражки</span>

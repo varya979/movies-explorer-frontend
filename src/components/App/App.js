@@ -99,7 +99,6 @@ export default function App() {
 
   function handleLogOut() {
     localStorage.removeItem("jwt");
-    localStorage.removeItem("apiMovies");
     localStorage.removeItem("searchInputValue");
     localStorage.removeItem("checkboxValue");
     setApiErrorMessage("");

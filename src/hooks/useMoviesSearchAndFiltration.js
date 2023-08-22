@@ -24,7 +24,7 @@ export function useMoviesSearchAndFiltration(formType) {
     }
   };
 
-  const setMovieTitleToLocalStorage = () => {
+  const saveMovieTitleToLocalStorage = () => {
     localStorage.setItem("searchInputValue", searchInputValue);
   };
 
@@ -33,9 +33,10 @@ export function useMoviesSearchAndFiltration(formType) {
   };
 
   return {
+    searchInputValue,
     searchMovie,
     changeCheckbox,
-    setMovieTitleToLocalStorage,
+    saveMovieTitleToLocalStorage,
     changeMovieTitle,
   };
 }
