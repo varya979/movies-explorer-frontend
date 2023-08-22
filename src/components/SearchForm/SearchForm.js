@@ -47,13 +47,9 @@ export default function SearchForm(props) {
           minLength="1"
           value={searchInputValue}
           onChange={changeMovieTitle}
-          // errors={props.errors.search}
           required
         />
-        <button
-          className="search__button opacity"
-          // onClick={searchMovies}
-        >
+        <button className="search__button opacity">
           <img
             src={image}
             className="search__button-image"
@@ -64,7 +60,6 @@ export default function SearchForm(props) {
       <span className="search__error">{props.apiErrorMessage}</span>
       <FilterCheckbox
         isCheckboxChecked={props.isCheckboxChecked}
-        // setIsCheckboxChecked={props.setIsCheckboxChecked}
         changeCheckboxState={changeCheckboxState}
       />
       <hr className="search__line" />

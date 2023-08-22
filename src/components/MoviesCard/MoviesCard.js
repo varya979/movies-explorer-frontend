@@ -16,7 +16,6 @@ export default function MoviesCard(props) {
   }`;
 
   React.useEffect(() => {
-    // console.log(props.savedMovies)
     if (props.location.pathname === "/movies") {
       const isMovieOwn = props.savedMovies.some(
         (movie) =>

@@ -8,7 +8,6 @@ import apiMovies from "../../utils/MoviesApi";
 import apiMain from "../../utils/MainApi";
 
 import { useResize } from "../../hooks/useResize";
-// import { useFormValidation } from "../../hooks/useFormValidation";
 import { useMoviesSearchAndFiltration } from "../../hooks/useMoviesSearchAndFiltration";
 
 import {
@@ -22,35 +21,18 @@ import {
 } from "../../utils/constants";
 
 export default function Movies(props) {
+  const width = useResize();
   const [allMoviesFromApiMovies, setAllMoviesFromApiMovies] = React.useState(
     []
   );
-
-  // const [
-  //   searchInputValueFromLocalStorage,
-  //   setSearchInputValueFromLocalStorage,
-  // ] = React.useState(localStorage.getItem("searchInputValue"));
-
-  // const [checkboxValueFromLocalStorage, setCheckboxValueFromLocalStorage] =
-  //   React.useState(localStorage.getItem("checkboxValue"));
-
-  const width = useResize();
+  const [filterMovies, setFilterMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [isMoviesBlockVisible, setIsMoviesBlockVisible] = React.useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = React.useState(false);
   const [isLoadingData, setIsLoadingData] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [visibleMoviesCount, setVisibleMoviesCount] = React.useState(0);
-  const [filterMovies, setFilterMovies] = React.useState([]);
-  const [visibleMovies, setVisibleMovies] = React.useState([]);
-
-  const [savedMovies, setSavedMovies] = React.useState([]);
-
-  // const { values, setValues, handleChange, errors } = useFormValidation(
-  //   props.setApiErrorMessage
-  // );
-
-  const { searchMovie, changeCheckbox, searchInputValue } =
-    useMoviesSearchAndFiltration();
+  const { searchMovie, changeCheckbox } = useMoviesSearchAndFiltration();
 
   const moreButtonClassName = `${
     isMoviesBlockVisible &&
@@ -100,7 +82,6 @@ export default function Movies(props) {
     }
   }, [width]);
 
-  // handleGetMovies
   const getApiMovies = async () => {
     try {
       setIsLoadingData(true);
@@ -119,7 +100,6 @@ export default function Movies(props) {
     }
   };
 
-  //handleGetSavedMovies
   const getSavedMovies = async () => {
     try {
       const movies = await apiMain.getMovies();
@@ -129,7 +109,6 @@ export default function Movies(props) {
     }
   };
 
-  //handleSearchMovies
   const searchMovies = async (searchInputValue, checkboxState) => {
     setIsCheckboxChecked(checkboxState);
     setIsLoadingData(true);
@@ -146,7 +125,6 @@ export default function Movies(props) {
       : setErrorMessage("");
   };
 
-  //handleChangeChecked
   const changeCheckboxState = (checkboxState) => {
     if (filterMovies.length > 0) {
       searchMovies(localStorage.getItem("searchInputValue"), checkboxState);
@@ -154,7 +132,6 @@ export default function Movies(props) {
     }
   };
 
-  //handleCreateMovie
   const saveMovie = async (movie) => {
     try {
       await apiMain.postMovie(movie);
@@ -164,7 +141,6 @@ export default function Movies(props) {
     }
   };
 
-  //handleDeleteMovie
   const deleteMovie = async (movieId) => {
     try {
       const deletedMovie = await apiMain.deleteMovie(movieId);
@@ -199,17 +175,9 @@ export default function Movies(props) {
         location={props.location}
         setApiErrorMessage={props.setApiErrorMessage}
         apiErrorMessage={props.apiErrorMessage}
-        allMoviesFromApiMovies={allMoviesFromApiMovies}
-        // getApiMovies={getApiMovies}
         searchMovies={searchMovies}
         isCheckboxChecked={isCheckboxChecked}
-        // setIsCheckboxChecked={setIsCheckboxChecked}
         changeCheckboxState={changeCheckboxState}
-        // searchInputValueFromLocalStorage={searchInputValueFromLocalStorage}
-        // values={values}
-        // setValues={setValues}
-        // handleChange={handleChange}
-        // errors={errors}
       />
       {isLoadingData ? (
         <Preloader />
@@ -223,8 +191,6 @@ export default function Movies(props) {
             location={props.location}
             isMoviesBlockVisible={isMoviesBlockVisible}
             visibleMoviesCount={visibleMoviesCount}
-            // checkboxValueFromLocalStorage={checkboxValueFromLocalStorage}
-            allMoviesFromApiMovies={allMoviesFromApiMovies}
             saveMovie={saveMovie}
             deleteMovie={deleteMovie}
             savedMovies={savedMovies}
