@@ -28,14 +28,13 @@ export default function Movies(props) {
     []
   );
   const [filterMovies, setFilterMovies] = React.useState([]);
-  // const [savedMovies, setSavedMovies] = React.useState([]);
   const [isMoviesBlockVisible, setIsMoviesBlockVisible] = React.useState(false);
   const [isCheckboxChecked, setIsCheckboxChecked] = React.useState(false);
   const [isLoadingData, setIsLoadingData] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [visibleMoviesCount, setVisibleMoviesCount] = React.useState(0);
-  const { searchMovie, changeCheckbox } = useMoviesSearchAndFiltration();
   const [savedMovies, setSavedMovies] = React.useContext(SavedMoviesContext);
+  const { searchMovie, changeCheckbox } = useMoviesSearchAndFiltration();
 
   const moreButtonClassName = `${
     isMoviesBlockVisible &&
@@ -45,19 +44,10 @@ export default function Movies(props) {
       : "movies__button"
   }`;
 
-  // React.useEffect(() => {
-  //   if (props.isLoggedIn) {
-  //     getSavedMovies();
-  //   }
-  // }, [props.isLoggedIn]);
-
   React.useEffect(() => {
-    // const token = localStorage.getItem("jwt");
-    // if (token) {
     getApiMovies();
     getSavedMovies();
     setIsMoviesBlockVisible(true);
-    // }
   }, []);
 
   React.useEffect(() => {
@@ -184,7 +174,7 @@ export default function Movies(props) {
       />
       {isLoadingData ? (
         <Preloader />
-      ) : filterMovies.length === 0 ? (
+      ) : errorMessage ? (
         <div className="movies__error-container">
           <span className="movies__error">{errorMessage}</span>
         </div>
@@ -197,7 +187,6 @@ export default function Movies(props) {
             saveMovie={saveMovie}
             deleteMovie={deleteMovie}
             savedMovies={savedMovies}
-            setSavedMovies={setSavedMovies}
             filterMovies={filterMovies}
           />
           <button

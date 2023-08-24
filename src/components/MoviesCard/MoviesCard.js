@@ -12,7 +12,7 @@ export default function MoviesCard(props) {
     : "movie-item__button-like-white";
 
   const moviesDeleteButtonClassName = `movie-item__button-delete ${
-    isMovieSaved && "movie-item__button-delete_visible"
+    props.movie && "movie-item__button-delete_visible"
   }`;
 
   React.useEffect(() => {
@@ -39,7 +39,7 @@ export default function MoviesCard(props) {
       duration: props.movie.duration,
       year: props.movie.year,
       description: props.movie.description,
-      image: props.movie.image.url,
+      image: props.movie.image,
       trailerLink: props.movie.trailerLink,
       nameRU: props.movie.nameRU,
       nameEN: props.movie.nameEN,
@@ -47,7 +47,7 @@ export default function MoviesCard(props) {
       movieId: props.movie.id,
     };
     if (props.location.pathname === "/saved-movies") {
-      props.deleteMovie(props.movie);
+      props.deleteMovie(props.movie._id);
     } else {
       const selectedMovie = props.savedMovies.find(
         (movie) => movie.movieId === props.movie.id
@@ -69,7 +69,11 @@ export default function MoviesCard(props) {
       >
         <img
           className="movie-item__image"
-          src={`https://api.nomoreparties.co/${props.movie.image.url}`}
+          src={
+            props.location.pathname === "/saved-movies"
+              ? props.movie.image
+              : `https://api.nomoreparties.co/${props.movie.image.url}`
+          }
           alt={props.movie.nameRu || props.movie.nameEN}
         />
       </a>
@@ -94,6 +98,7 @@ export default function MoviesCard(props) {
             <button
               className={`${moviesDeleteButtonClassName} opacity`}
               type="button"
+              onClick={handleSaveOrDeleteMovie}
             />
           )}
         </div>

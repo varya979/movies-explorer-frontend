@@ -2,10 +2,24 @@
   font-family: 'Inter', Arial, sans-serif;
   max-width: 1280px;
   min-width: 320px;
+  width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 70px 0;
   flex-grow: 1;
+  position: relative;
+}
+
+.saved-movies__error-container {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.saved-movies__error {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
 }
 
 @media screen and (max-width: 1025px) {

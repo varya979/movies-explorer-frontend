@@ -154,8 +154,6 @@ export default function App() {
                     <>
                       <Header isLoggedIn={isLoggedIn} />
                       <Movies
-                        // isLoggedIn={isLoggedIn}
-                        // setIsLoggedIn={setIsLoggedIn}
                         location={location}
                         setApiErrorMessage={setApiErrorMessage}
                         apiErrorMessage={apiErrorMessage}

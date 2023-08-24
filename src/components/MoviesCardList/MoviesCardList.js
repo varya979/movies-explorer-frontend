@@ -21,16 +21,15 @@ export default function MoviesCardList(props) {
                 saveMovie={props.saveMovie}
                 deleteMovie={props.deleteMovie}
                 savedMovies={props.savedMovies}
-                setSavedMovies={props.setSavedMovies}
               />
             ))}
         </ul>
       )}
       {props.location.pathname === "/saved-movies" && (
-        <ul className="movies-list">
-          {props.savedMovies.map((movie) => (
+        <ul className="movies-list movies-list_visiable">
+          {props.filterMovies.map((movie) => (
             <MoviesCard
-              key={movie.id}
+              key={movie.id || movie._id}
               movie={movie}
               location={props.location}
               saveMovie={props.saveMovie}
