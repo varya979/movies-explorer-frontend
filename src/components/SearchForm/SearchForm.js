@@ -24,9 +24,7 @@ export default function SearchForm(props) {
       props.searchMovies(searchInputValue, checkboxState);
       props.setApiErrorMessage("");
     } else {
-      props.location.pathname === "/movies" &&
-        props.setApiErrorMessage("Нужно ввести ключевое слово");
-      // : onResetForm(checked);
+      props.setApiErrorMessage("Нужно ввести ключевое слово");
     }
   };
 

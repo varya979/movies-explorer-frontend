@@ -114,16 +114,16 @@ export default function Profile(props) {
               <button
                 className={`profile__button-submit ${
                   !isValid ||
-                  values.name === currentUser.name ||
-                  values.email === currentUser.email
+                  (values.name === currentUser.name &&
+                    values.email === currentUser.email)
                     ? "profile__button-submit_disabled"
                     : "opacity"
                 }`}
                 type="submit"
                 disabled={
                   !isValid ||
-                  values.name === currentUser.name ||
-                  values.email === currentUser.email
+                  (values.name === currentUser.name &&
+                    values.email === currentUser.email)
                 }
               >
                 Сохранить

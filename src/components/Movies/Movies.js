@@ -84,6 +84,7 @@ export default function Movies(props) {
         setAllMoviesFromApiMovies(movies);
       }
     } catch (err) {
+      console.log(err);
       setErrorMessage(
         "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
       );
@@ -99,6 +100,9 @@ export default function Movies(props) {
       setSavedMovies(movies);
     } catch (err) {
       console.log(err);
+      setErrorMessage(
+        "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+      );
     }
   };
 
@@ -131,6 +135,9 @@ export default function Movies(props) {
       getSavedMovies();
     } catch (err) {
       console.log(err);
+      setErrorMessage(
+        "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+      );
     }
   };
 
@@ -142,6 +149,9 @@ export default function Movies(props) {
       });
     } catch (err) {
       console.log(err);
+      setErrorMessage(
+        "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+      );
     }
   };
 

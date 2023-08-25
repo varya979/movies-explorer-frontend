@@ -73,6 +73,10 @@ export default function App() {
       })
       .catch((err) => {
         setIsLoggedIn(false);
+        console.log(err);
+        handleApiMessagePopupOpen(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
         err.includes("409")
           ? setApiErrorMessage("Пользователь с таким email уже существует.")
           : setApiErrorMessage("При регистрации пользователя произошла ошибка");
@@ -91,6 +95,10 @@ export default function App() {
       })
       .catch((err) => {
         setIsLoggedIn(false);
+        console.log(err);
+        handleApiMessagePopupOpen(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
         err.includes("401")
           ? setApiErrorMessage("Вы ввели неправильный логин или пароль.")
           : setApiErrorMessage("При авторизации произошла ошибка.");
@@ -113,6 +121,10 @@ export default function App() {
         handleApiMessagePopupOpen("Профиль пользователя успешно обновлен.");
       })
       .catch((err) => {
+        console.log(err);
+        handleApiMessagePopupOpen(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
         err.includes("409")
           ? setApiErrorMessage("Пользователь с таким email уже существует.")
           : setApiErrorMessage("При обновлении профиля произошла ошибка.");

@@ -63,7 +63,7 @@ export default function Register(props) {
           id="password"
           name="password"
           type="password"
-          minLengthValue="2"
+          minLengthValue="6"
           maxLengthValuegth="30"
           placeholderText="Пароль"
           value={values.password || ""}
