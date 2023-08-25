@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function NotFoundPage() {
   const navigate = useNavigate();
 
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate(-3);
 
   return (
     <section className="not-found-page">

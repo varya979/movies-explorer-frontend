@@ -212,37 +212,45 @@ export default function App() {
               }
             />
 
-            <Route
-              path="/signin"
-              element={
-                <div className="page">
-                  <FormPageHeader title={"Рады видеть!"} />
-                  <Login
-                    handleLogIn={handleLogIn}
-                    apiErrorMessage={apiErrorMessage}
-                    setApiErrorMessage={setApiErrorMessage}
-                    isLoggedIn={isLoggedIn}
-                    navigate={navigate}
-                  />
-                </div>
-              }
-            />
+            {isLoggedIn === false ? (
+              <Route
+                path="/signin"
+                element={
+                  <div className="page">
+                    <FormPageHeader title={"Рады видеть!"} />
+                    <Login
+                      handleLogIn={handleLogIn}
+                      apiErrorMessage={apiErrorMessage}
+                      setApiErrorMessage={setApiErrorMessage}
+                      isLoggedIn={isLoggedIn}
+                      navigate={navigate}
+                    />
+                  </div>
+                }
+              />
+            ) : (
+              ""
+            )}
 
-            <Route
-              path="/signup"
-              element={
-                <div className="page">
-                  <FormPageHeader title={"Добро пожаловать!"} />
-                  <Register
-                    handleRegister={handleRegister}
-                    apiErrorMessage={apiErrorMessage}
-                    setApiErrorMessage={setApiErrorMessage}
-                    isLoggedIn={isLoggedIn}
-                    navigate={navigate}
-                  />
-                </div>
-              }
-            />
+            {isLoggedIn === false ? (
+              <Route
+                path="/signup"
+                element={
+                  <div className="page">
+                    <FormPageHeader title={"Добро пожаловать!"} />
+                    <Register
+                      handleRegister={handleRegister}
+                      apiErrorMessage={apiErrorMessage}
+                      setApiErrorMessage={setApiErrorMessage}
+                      isLoggedIn={isLoggedIn}
+                      navigate={navigate}
+                    />
+                  </div>
+                }
+              />
+            ) : (
+              ""
+            )}
 
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
