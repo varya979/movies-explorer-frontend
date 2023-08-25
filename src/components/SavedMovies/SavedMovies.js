@@ -17,6 +17,10 @@ export default function SavedMovies(props) {
   const { searchMovie, changeCheckbox } = useMoviesSearchAndFiltration();
 
   React.useEffect(() => {
+    getSavedMovies();
+  }, []);
+
+  React.useEffect(() => {
     setListOfSavedMovies(savedMovies);
     setFilterMovies(savedMovies);
   }, [savedMovies]);
@@ -32,6 +36,18 @@ export default function SavedMovies(props) {
     searchedMovies.length === 0 || shortMovies.length === 0
       ? setErrorMessage("Ничего не найдено")
       : setErrorMessage("");
+  };
+
+  const getSavedMovies = async () => {
+    try {
+      const movies = await apiMain.getMovies();
+      setSavedMovies(movies);
+    } catch (err) {
+      console.log(err);
+      setErrorMessage(
+        "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+      );
+    }
   };
 
   const changeCheckboxState = (checkboxState) => {

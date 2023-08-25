@@ -24,7 +24,7 @@ export default function FilterCheckbox(props) {
             type="checkbox"
             id="checkbox"
             name="checkbox"
-            defaultCheckedchecked={props.isCheckboxChecked}
+            defaultChecked={props.isCheckboxChecked}
             onChange={changeCheckboxState}
           />
         )}
