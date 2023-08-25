@@ -109,6 +109,7 @@ export default function App() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("searchInputValue");
     localStorage.removeItem("checkboxValue");
+    localStorage.removeItem("apiMovies");
     setApiErrorMessage("");
     setIsLoggedIn(false);
   }

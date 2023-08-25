@@ -24,6 +24,7 @@ import {
 
 export default function Movies(props) {
   const width = useResize();
+  const allApiMoviesFromLS = JSON.parse(localStorage.getItem("apiMovies"));
   const [allMoviesFromApiMovies, setAllMoviesFromApiMovies] = React.useState(
     []
   );
@@ -45,25 +46,27 @@ export default function Movies(props) {
   }`;
 
   React.useEffect(() => {
-    getApiMovies();
+    allApiMoviesFromLS === null && getApiMovies();
     getSavedMovies();
     setIsMoviesBlockVisible(true);
   }, []);
 
   React.useEffect(() => {
-    const searchInputValue = localStorage.getItem("searchInputValue");
-    const checkboxState = localStorage.getItem("checkboxValue");
-    if (searchInputValue) {
-      setIsCheckboxChecked(checkboxState === "true" ? true : false);
+    const searchInputValueFromLS = localStorage.getItem("searchInputValue");
+    const checkboxStateFormLS = localStorage.getItem("checkboxValue");
+    const apiMoviesFromLS = JSON.parse(localStorage.getItem("apiMovies"));
+
+    if (searchInputValueFromLS) {
+      setIsCheckboxChecked(checkboxStateFormLS === "true" ? true : false);
       const searchedMovies = searchMovie(
-        allMoviesFromApiMovies,
-        searchInputValue
+        apiMoviesFromLS,
+        searchInputValueFromLS
       );
       const shortMovies = changeCheckbox(searchedMovies, isCheckboxChecked);
       setFilterMovies(shortMovies);
       setIsMoviesBlockVisible(true);
     }
-  }, [allMoviesFromApiMovies]);
+  }, [isCheckboxChecked]);
 
   React.useEffect(() => {
     if (width >= SCREEN_L) {
@@ -77,11 +80,12 @@ export default function Movies(props) {
 
   const getApiMovies = async () => {
     try {
-      setIsLoadingData(true);
       if (allMoviesFromApiMovies.length === 0) {
+        setIsLoadingData(true);
         props.setApiErrorMessage("");
         const movies = await apiMovies.getMovies();
         setAllMoviesFromApiMovies(movies);
+        localStorage.setItem("apiMovies", JSON.stringify(movies));
       }
     } catch (err) {
       console.log(err);
@@ -109,9 +113,9 @@ export default function Movies(props) {
   const searchMovies = async (searchInputValue, checkboxState) => {
     setIsCheckboxChecked(checkboxState);
     setIsLoadingData(true);
-    getApiMovies();
-    const searchedMovies = searchMovie(
-      allMoviesFromApiMovies,
+    // getApiMovies();
+    const searchedMovies = await searchMovie(
+      allApiMoviesFromLS,
       searchInputValue
     );
     const shortMovies = changeCheckbox(searchedMovies, checkboxState);

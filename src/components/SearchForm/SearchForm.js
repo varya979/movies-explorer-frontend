@@ -59,6 +59,7 @@ export default function SearchForm(props) {
       <FilterCheckbox
         isCheckboxChecked={props.isCheckboxChecked}
         changeCheckboxState={changeCheckboxState}
+        location={props.location}
       />
       <hr className="search__line" />
     </section>
