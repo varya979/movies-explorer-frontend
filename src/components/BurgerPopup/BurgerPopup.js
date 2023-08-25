@@ -48,7 +48,11 @@ export default function BurgerPopup(props) {
             </NavLink>
           </nav>
         </div>
-        <AccountLogo onClose={props.onClose} />
+        <AccountLogo
+          onClose={props.onClose}
+          location={props.location}
+          isBurgerPopupOpen={props.isOpen}
+        />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@
   padding: 0 0 0 60px;
 }
 
-.navigation__link {
+.navigation__link-dark {
   color: #000;
   font-weight: 400;
   font-size: 13px;
@@ -14,11 +14,20 @@
   padding-right: 16px;
 }
 
-.navigation__link:nth-of-type(2) {
+.navigation__link-light {
+  color: #fff;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  text-decoration: none;
+  padding-right: 16px;
+}
+
+.navigation__link-dark:nth-of-type(2) {
   padding-right: 0;
 }
 
-.navigation__link_active {
+.navigation__link_active .navigation__link_active {
   font-weight: 500;
 }
 

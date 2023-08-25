@@ -141,7 +141,7 @@ export default function App() {
               path="/"
               element={
                 <>
-                  <Header />
+                  <Header isLoggedIn={isLoggedIn} location={location} />
                   <Main />
                   <Footer />
                 </>
@@ -156,7 +156,7 @@ export default function App() {
                   isLoggedIn={isLoggedIn}
                   component={
                     <>
-                      <Header isLoggedIn={isLoggedIn} />
+                      <Header isLoggedIn={isLoggedIn} location={location} />
                       <Movies
                         location={location}
                         setApiErrorMessage={setApiErrorMessage}
@@ -177,7 +177,7 @@ export default function App() {
                   isLoggedIn={isLoggedIn}
                   component={
                     <>
-                      <Header isLoggedIn={isLoggedIn} />
+                      <Header isLoggedIn={isLoggedIn} location={location} />
                       <SavedMovies
                         location={location}
                         setApiErrorMessage={setApiErrorMessage}
@@ -198,7 +198,7 @@ export default function App() {
                   isLoggedIn={isLoggedIn}
                   component={
                     <>
-                      <Header isLoggedIn={isLoggedIn} />
+                      <Header isLoggedIn={isLoggedIn} location={location} />
                       <Profile
                         apiErrorMessage={apiErrorMessage}
                         setApiErrorMessage={setApiErrorMessage}
