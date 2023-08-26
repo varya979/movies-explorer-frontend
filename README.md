@@ -6,6 +6,6 @@
 
 **Ссылка на pull-request дипломной работы**: https://github.com/varya979/movies-explorer-frontend/pull/2
 
-**Ссылка на api дипломной работы**: https://varya-diploma.nomoredomains.rocks/saved-movies
+**Ссылка на frontend дипломной работы**: https://varya-diploma.nomoredomains.rocks/saved-movies
 
-**Ссылка на frontend дипломной работы**: https://api.varya-diploma.nomoredomains.rocks/saved-movies
+**Ссылка на api дипломной работы**: https://api.varya-diploma.nomoredomains.rocks/saved-movies
