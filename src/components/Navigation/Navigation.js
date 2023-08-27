@@ -18,7 +18,7 @@ export default function Navigation(props) {
             to="/movies"
             className={({ isActive }) =>
               `navigation__link-dark opacity
-          ${isActive ? "navigation__link_active" : ""}`
+          ${isActive ? "navigation__link-dark_active" : ""}`
             }
           >
             Фильмы
@@ -27,7 +27,7 @@ export default function Navigation(props) {
             to="/saved-movies"
             className={({ isActive }) =>
               `navigation__link-dark opacity
-          ${isActive ? "navigation__link_active" : ""}`
+          ${isActive ? "navigation__link-dark_active" : ""}`
             }
           >
             Сохранённые фильмы
