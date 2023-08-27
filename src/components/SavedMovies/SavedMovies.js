@@ -22,8 +22,11 @@ export default function SavedMovies(props) {
 
   React.useEffect(() => {
     setListOfSavedMovies(savedMovies);
-    setFilterMovies(savedMovies);
   }, [savedMovies]);
+
+  React.useEffect(() => {
+    setFilterMovies(savedMovies);
+  }, []);
 
   const searchMovies = async (searchInputValue, checkboxState) => {
     setIsCheckboxChecked(checkboxState);
