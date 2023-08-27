@@ -1,10 +1,11 @@
 import React from "react";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { SavedMoviesContext } from "../../contexts/SavedMoviesContext";
 
 export default function MoviesCard(props) {
   const currentUser = React.useContext(CurrentUserContext);
-
+  const [savedMovies, setSavedMovies] = React.useContext(SavedMoviesContext);
   const [isMovieSaved, setIsMovieSaved] = React.useState(false);
 
   const moviesLikeButtonClassName = isMovieSaved
@@ -17,7 +18,7 @@ export default function MoviesCard(props) {
 
   React.useEffect(() => {
     if (props.location.pathname === "/movies") {
-      const isMovieOwn = props.savedMovies.some(
+      const isMovieOwn = savedMovies.some(
         (movie) =>
           movie.movieId === props.movie.id &&
           movie.owner._id === currentUser._id
@@ -49,7 +50,7 @@ export default function MoviesCard(props) {
     if (props.location.pathname === "/saved-movies") {
       props.deleteMovie(props.movie._id);
     } else {
-      const selectedMovie = props.savedMovies.find(
+      const selectedMovie = savedMovies.find(
         (movie) => movie.movieId === props.movie.id
       );
       isMovieSaved

@@ -20,7 +20,6 @@ export default function MoviesCardList(props) {
                 location={props.location}
                 saveMovie={props.saveMovie}
                 deleteMovie={props.deleteMovie}
-                savedMovies={props.savedMovies}
               />
             ))}
         </ul>
@@ -34,7 +33,6 @@ export default function MoviesCardList(props) {
               location={props.location}
               saveMovie={props.saveMovie}
               deleteMovie={props.deleteMovie}
-              savedMovies={props.savedMovies}
             />
           ))}
         </ul>

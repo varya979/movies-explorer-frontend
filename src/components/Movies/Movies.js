@@ -134,30 +134,35 @@ export default function Movies(props) {
     }
   };
 
-  const saveMovie = async (movie) => {
-    try {
-      await apiMain.postMovie(movie);
-      getSavedMovies(); // если я уберу данный запрос к api (в getSavedMovies()), то не смогу удалять лайк без обновления useEffect при монтировании, в котором есть обращение к api за сохраненными фильмами.
-    } catch (err) {
-      console.log(err);
-      setErrorMessage(
-        "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-      );
-    }
+  const saveMovie = (movie) => {
+    apiMain
+      .postMovie(movie)
+      .then((postedMovie) => {
+        setSavedMovies([...savedMovies, postedMovie]);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
+      });
   };
 
-  const deleteMovie = async (movieId) => {
-    try {
-      const deletedMovie = await apiMain.deleteMovie(movieId);
-      setSavedMovies((movies) => {
-        return movies.filter((movie) => movie._id !== deletedMovie._id);
+  const deleteMovie = (movieId) => {
+    apiMain
+      .deleteMovie(movieId)
+      .then((deletedMovie) => {
+        setSavedMovies((movies) => {
+          return movies.filter((movie) => movie._id !== deletedMovie._id);
+        });
+        getSavedMovies();
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
       });
-    } catch (err) {
-      console.log(err);
-      setErrorMessage(
-        "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-      );
-    }
   };
 
   const showMoreMovies = () => {
