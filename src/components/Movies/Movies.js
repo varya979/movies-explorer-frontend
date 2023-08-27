@@ -136,7 +136,7 @@ export default function Movies(props) {
   const saveMovie = async (movie) => {
     try {
       await apiMain.postMovie(movie);
-      getSavedMovies();
+      // getSavedMovies();
     } catch (err) {
       console.log(err);
       setErrorMessage(
