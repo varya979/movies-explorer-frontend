@@ -16,12 +16,14 @@ export default function Profile(props) {
   const [isEditBtnUnlock, setIsEditBtnUnlock] = React.useState(false);
 
   function handleEditButtonClick() {
-    setIsEditBtnUnlock(true);
+    setIsEditBtnUnlock(!isEditBtnUnlock);
+    values.email = currentUser.email;
+    values.name = currentUser.name;
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-
+    setIsEditBtnUnlock(!isEditBtnUnlock);
     props.handleUpdateUser({
       email: values.email,
       name: values.name,
@@ -89,7 +91,7 @@ export default function Profile(props) {
               type="text"
               minLengthValue="2"
               maxLengthValuegth="30"
-              placeholderText={currentUser.name}
+              placeholderText="имя"
               value={values.name || ""}
               onChange={handleChange}
               pattern="[a-zA-Zа-яА-Я \-]{2,30}"
@@ -103,7 +105,7 @@ export default function Profile(props) {
               type="email"
               minLengthValue="2"
               maxLengthValuegth="30"
-              placeholderText={currentUser.email}
+              placeholderText="email"
               value={values.email || ""}
               onChange={handleChange}
               pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$"
@@ -114,16 +116,16 @@ export default function Profile(props) {
               <button
                 className={`profile__button-submit ${
                   !isValid ||
-                  (values.name === currentUser.name &&
-                    values.email === currentUser.email)
+                  (currentUser.name === values.name &&
+                    currentUser.email === values.email)
                     ? "profile__button-submit_disabled"
                     : "opacity"
                 }`}
                 type="submit"
                 disabled={
                   !isValid ||
-                  (values.name === currentUser.name &&
-                    values.email === currentUser.email)
+                  (currentUser.name === values.name &&
+                    currentUser.email === values.email)
                 }
               >
                 Сохранить

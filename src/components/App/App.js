@@ -6,7 +6,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
-import NotFoundPage from "../NotFoundPage/NotFoundPage";
+import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
 import Profile from "../Profile/Profile";
 import FormPageHeader from "../FormPageHeader/FormPageHeader";
 import Login from "../Login/Login";
