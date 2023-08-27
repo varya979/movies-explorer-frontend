@@ -13,6 +13,7 @@ import { useMoviesSearchAndFiltration } from "../../hooks/useMoviesSearchAndFilt
 import { SavedMoviesContext } from "../../contexts/SavedMoviesContext";
 
 import {
+  SCREEN_S,
   SCREEN_M,
   SCREEN_L,
   VISIBLE_CARDS_COUNT_S,
@@ -69,11 +70,11 @@ export default function Movies(props) {
   }, [isCheckboxChecked]);
 
   React.useEffect(() => {
-    if (width >= SCREEN_L) {
+    if (width >= SCREEN_L && width > SCREEN_M) {
       setVisibleMoviesCount(VISIBLE_CARDS_COUNT_L);
-    } else if (width < SCREEN_L && width > SCREEN_M) {
+    } else if (width < SCREEN_L && width > SCREEN_S) {
       setVisibleMoviesCount(VISIBLE_CARDS_COUNT_M);
-    } else if (width <= SCREEN_M) {
+    } else if (width <= SCREEN_S) {
       setVisibleMoviesCount(VISIBLE_CARDS_COUNT_S);
     }
   }, [width]);

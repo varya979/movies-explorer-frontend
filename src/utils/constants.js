@@ -8,3 +8,5 @@ export const VISIBLE_CARDS_COUNT_L = 12;
 
 export const VISIBLE_CARDS_COUNT_MORE_S_M = 2;
 export const VISIBLE_CARDS_COUNT_MORE_L = 3;
+
+export const SHORT_MOVIE_DURATION = 40;

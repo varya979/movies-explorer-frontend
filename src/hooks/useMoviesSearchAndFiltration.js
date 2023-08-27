@@ -1,5 +1,7 @@
 import React from "react";
 
+import { SHORT_MOVIE_DURATION } from "../utils/constants";
+
 export function useMoviesSearchAndFiltration(formType) {
   const [searchInputValue, setSearchInputValue] = React.useState("");
 
@@ -18,7 +20,9 @@ export function useMoviesSearchAndFiltration(formType) {
 
   const changeCheckbox = (searchedMovies, checkboxState) => {
     if (!!checkboxState) {
-      return searchedMovies.filter((movie) => movie.duration <= 40);
+      return searchedMovies.filter(
+        (movie) => movie.duration <= SHORT_MOVIE_DURATION
+      );
     } else {
       return searchedMovies;
     }
