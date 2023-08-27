@@ -137,7 +137,7 @@ export default function Movies(props) {
   const saveMovie = async (movie) => {
     try {
       await apiMain.postMovie(movie);
-      // getSavedMovies();
+      getSavedMovies(); // если я уберу данный запрос к api (в getSavedMovies()), то не смогу удалять лайк без обновления useEffect при монтировании, в котором есть обращение к api за сохраненными фильмами.
     } catch (err) {
       console.log(err);
       setErrorMessage(
