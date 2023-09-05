@@ -7,9 +7,24 @@
   align-items: center;
 }
 
-.account-logo__img {
+.account-logo_light {
+  color: #fff;
+}
+
+.account-logo__img-dark {
   background: url("../../images/header_link.svg") no-repeat;
   background-color: #F9F9F9;
+  background-position: center;
+  width: 26px;
+  height: 30px;
+  margin: 0 0 0 18px;
+  border-radius: 4px;
+  padding: 0;
+}
+
+.account-logo__img-light {
+  background: url("../../images/header_link-light.svg") no-repeat;
+  background-color: #073042;
   background-position: center;
   width: 26px;
   height: 30px;

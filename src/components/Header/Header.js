@@ -10,6 +10,13 @@ import AccountLogo from "../../components/AccountLogo/AccountLogo";
 export default function Header(props) {
   const [isBurgerPopupOpen, setIsBurgerPopupOpen] = useState(false);
 
+  const lightHeaderLocationAfterLogin =
+    props.location.pathname === "/movies" ||
+    props.location.pathname === "/saved-movies" ||
+    props.location.pathname === "/profile";
+
+  const darkHeaderLocationAfterLogin = props.location.pathname === "/";
+
   function handleOpenBurgerPopup() {
     setIsBurgerPopupOpen(true);
   }
@@ -38,13 +45,16 @@ export default function Header(props) {
           </div>
         </header>
       )}
-      {props.isLoggedIn && (
+      {props.isLoggedIn && lightHeaderLocationAfterLogin && (
         <header className="header header_light">
           <div className="header__wrapper header__wrapper_movies">
             <Logo />
-            <Navigation />
+            <Navigation location={props.location} />
             <div className="header__account-logo-visibility">
-              <AccountLogo />
+              <AccountLogo
+                location={props.location}
+                isBurgerPopupOpen={isBurgerPopupOpen}
+              />
             </div>
             <button
               className="header__account-button opacity"
@@ -53,9 +63,28 @@ export default function Header(props) {
           </div>
         </header>
       )}
+      {props.isLoggedIn && darkHeaderLocationAfterLogin && (
+        <header className="header header_dark">
+          <div className="header__wrapper header__wrapper_movies">
+            <Logo />
+            <Navigation location={props.location} />
+            <div className="header__account-logo-visibility">
+              <AccountLogo
+                location={props.location}
+                isBurgerPopupOpen={isBurgerPopupOpen}
+              />
+            </div>
+            <button
+              className="header__account-button header__account-button_light opacity"
+              onClick={handleOpenBurgerPopup}
+            ></button>
+          </div>
+        </header>
+      )}
       <BurgerPopup
         isOpen={isBurgerPopupOpen}
         onClose={handleCloseBurgerPopup}
+        location={props.location}
       />
     </>
   );

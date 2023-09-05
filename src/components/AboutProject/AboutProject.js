@@ -4,7 +4,7 @@ import LandingTitle from "../LandingTitle/LandingTitle";
 
 export default function AboutProject() {
   return (
-    <section className="about-project">
+    <section className="about-project" id="about-project">
       <LandingTitle title={"О проекте"} />
       <div className="about-project__info">
         <article className="about-project__article">

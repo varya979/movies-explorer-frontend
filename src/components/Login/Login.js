@@ -3,21 +3,34 @@ import React from "react";
 import FormPageForm from "../FormPageForm/FormPageForm";
 import FormPageFieldset from "../FormPageFieldset/FormPageFieldset";
 
+import { useFormValidation } from "../../hooks/useFormValidation";
+
 export default function Login(props) {
+  const { values, handleChange, errors, isValid } = useFormValidation(
+    props.setApiErrorMessage
+  );
+
+  React.useEffect(() => {
+    props.isLoggedIn && props.navigate("/");
+  }, []);
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    props.handleLogIn(values.email, values.password);
+  }
+
   return (
     <main className="login form-page-main">
       <FormPageForm
         name="login"
-        handleClick={props.handleLogin}
         submitButtonTitle={"Войти"}
         formTitle={"Ещё не зарегистрированы?"}
         formLink={"Регистрация"}
         pageName={"login"}
         url={"/signup"}
-        /* появление ошибки и ее текст будут
-        изменены при реализации валидации */
-        isInputHasError={false}
-        errorText={"Что-то пошло не так..."}
+        handleSubmit={handleSubmit}
+        isValid={isValid}
+        apiErrorMessage={props.apiErrorMessage}
       >
         <FormPageFieldset
           labelName="E-mail"
@@ -27,9 +40,10 @@ export default function Login(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="E-mail"
-          value={props.email}
-          onChange={props.handleChangeEmail}
-          isInputHasError={false}
+          value={values.email || ""}
+          onChange={handleChange}
+          pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$"
+          errors={errors.email}
         />
         <FormPageFieldset
           labelName="Пароль"
@@ -39,9 +53,9 @@ export default function Login(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="Пароль"
-          value={props.password}
-          onChange={props.handleChangePassword}
-          isInputHasError={false}
+          value={values.password || ""}
+          onChange={handleChange}
+          errors={errors.password}
         />
       </FormPageForm>
     </main>

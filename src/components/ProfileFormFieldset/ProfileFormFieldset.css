@@ -6,6 +6,7 @@
   justify-content: space-between;
   border: none;
   padding: 0;
+  position: relative;
 }
 
 .profile-form-field__label {
@@ -23,6 +24,10 @@
   width: 85%;
 }
 
+.profile-form-field__input:invalid {
+  color: #FF3055;
+}
+
 .profile-form-field__input::placeholder {
   color: #e0e0e0;
   font-size: 12px;
@@ -35,6 +40,16 @@
 
 .profile-form-field__input:focus {
   outline: 1px dashed #F5F5F5;
+}
+
+.profile-form-field__error {
+  font-size: 10px;
+  font-weight: 400;
+  color: #FF3055;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 18px;
 }
 
 @media screen and (max-width: 670px) {

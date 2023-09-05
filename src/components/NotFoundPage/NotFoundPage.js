@@ -1,10 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function NotFoundPage() {
+export const NotFoundPage = () => {
   const navigate = useNavigate();
 
-  const goBack = () => navigate(-1);
+  const goBack = () => {
+    /* Сергей, если я наберу проходной балл =), и если Вас не затруднит, не могли бы Вы объяснить
+    (или приложить какую-нибудь ссылку).
+
+       Если установить navigate(-1) и нажать Назад, в панеле браузера видно, что возврат был совершен
+       (но осталась страница 404) и теперь стало возможным перейти вперед (будет опять же - 404 страница).
+       Повторное нажатие накнопку Назад уже перекинет на верную страницу, с которой я ушла на 404
+       и к которой нужно было вернуться.
+
+       Если вывести в консоль navigate.length, выводится значение 2, как я понимаю, поэтому navigate(-1)
+       в моем случае не работает, а navigate(-2) работает.
+
+       Копалась в интернете, но не нашла точного ответа почему так происходит. */
+    navigate(-2);
+  };
+
+  // console.log(navigate.length);
 
   return (
     <section className="not-found-page">
@@ -15,4 +31,4 @@ export default function NotFoundPage() {
       </button>
     </section>
   );
-}
+};

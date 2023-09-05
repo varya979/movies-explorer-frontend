@@ -1,16 +1,21 @@
 .form {
   font-family: 'Inter', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .form__error {
-  visibility: hidden;
   color: #FF3055;
   font-size: 10px;
   font-weight: 400;
 }
 
-.form__error_active {
-  visibility: visible;
+.form__error_register {
+  padding-top: 52px;
+}
+
+.form__error_login {
+  padding-top: 145px;
 }
 
 .form__button-submit {
@@ -25,11 +30,11 @@
 }
 
 .form__button-submit_login {
-  margin: 156px 0 3px;
+  margin: 11px 0 3px;
 }
 
 .form__button-submit_register {
-  margin: 68px 0 3px;
+  margin: 8px 0 3px;
 }
 
 .form__button-submit_disabled {
@@ -54,12 +59,20 @@
     font-size: 12px;
   }
 
+  .form__error_register {
+    padding-top: 140px;
+  }
+
+  .form__error_login {
+    padding-top: 235px;
+  }
+
   .form__button-submit_register {
-    margin: 158px 0 3px;
+    margin: 10px 0 3px;
   }
 
   .form__button-submit_login {
-    margin: 245px 0 3px;
+    margin: 10px 0 3px;
   }
 
   .form__title {

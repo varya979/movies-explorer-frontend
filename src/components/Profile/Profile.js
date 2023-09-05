@@ -3,34 +3,39 @@ import { Link } from "react-router-dom";
 
 import ProfileFormFieldset from "../ProfileFormFieldset/ProfileFormFieldset";
 
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useFormValidation } from "../../hooks/useFormValidation";
+
 export default function Profile(props) {
-  const [name, setName] = React.useState("Виталий");
-  const [email, setEmail] = React.useState("pochta@yandex.ru");
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const { values, handleChange, errors, isValid } = useFormValidation(
+    props.setApiErrorMessage
+  );
+
   const [isEditBtnUnlock, setIsEditBtnUnlock] = React.useState(false);
 
-  function handleChangeName(evt) {
-    setName(evt.target.value);
+  function handleEditButtonClick() {
+    setIsEditBtnUnlock(!isEditBtnUnlock);
+    values.email = currentUser.email;
+    values.name = currentUser.name;
   }
 
-  function handleChangeEmail(evt) {
-    setEmail(evt.target.value);
-  }
-
-  function handleEditButtonClick(evt) {
-    setIsEditBtnUnlock(true);
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    setIsEditBtnUnlock(!isEditBtnUnlock);
+    props.handleUpdateUser({
+      email: values.email,
+      name: values.name,
+    });
   }
 
   return (
     <>
       <main className="profile">
-        <h1 className="profile__title">Привет, {name}!</h1>
+        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
         {!isEditBtnUnlock ? (
-          <form
-            className="profile__form"
-            action="#"
-            method="post"
-            // noValidate
-          >
+          <form className="profile__form" name="profile-blocked" noValidate>
             <ProfileFormFieldset
               labelName="Имя"
               id="name"
@@ -39,8 +44,8 @@ export default function Profile(props) {
               minLengthValue="2"
               maxLengthValuegth="30"
               placeholderText="Имя"
-              value={name}
-              onChange={handleChangeName}
+              value={currentUser.name}
+              onChange={handleChange}
               disabled={"disabled"}
             />
             <hr className="profile__line" />
@@ -52,8 +57,8 @@ export default function Profile(props) {
               minLengthValue="2"
               maxLengthValuegth="30"
               placeholderText="E-mail"
-              value={email}
-              onChange={handleChangeEmail}
+              value={currentUser.email}
+              onChange={handleChange}
               disabled={"disabled"}
             />
             <div className="profile__button-container">
@@ -63,7 +68,11 @@ export default function Profile(props) {
               >
                 Редактировать
               </button>
-              <Link to="/" className="profile__link opacity">
+              <Link
+                to="/"
+                className="profile__link opacity"
+                onClick={props.handleLogOut}
+              >
                 Выйти из аккаунта
               </Link>
             </div>
@@ -71,9 +80,9 @@ export default function Profile(props) {
         ) : (
           <form
             className="profile__form"
-            action="#"
-            method="post"
-            // noValidate
+            name="profile"
+            onSubmit={handleSubmit}
+            noValidate
           >
             <ProfileFormFieldset
               labelName="Имя"
@@ -82,9 +91,11 @@ export default function Profile(props) {
               type="text"
               minLengthValue="2"
               maxLengthValuegth="30"
-              placeholderText="Имя"
-              value={name}
-              onChange={handleChangeName}
+              placeholderText="имя"
+              value={values.name || ""}
+              onChange={handleChange}
+              pattern="[a-zA-Zа-яА-Я \-]{2,30}"
+              errors={errors.name}
             />
             <hr className="profile__line" />
             <ProfileFormFieldset
@@ -94,26 +105,28 @@ export default function Profile(props) {
               type="email"
               minLengthValue="2"
               maxLengthValuegth="30"
-              placeholderText="E-mail"
-              value={email}
-              onChange={handleChangeEmail}
+              placeholderText="email"
+              value={values.email || ""}
+              onChange={handleChange}
+              pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$"
+              errors={errors.email}
             />
             <div className="profile__button-submit-container">
-              <span className="profile__error">
-                {/* появление ошибки и ее текст, а также кнопка
-                сохранить будут изменены при реализации валидации */}
-                {!props.isInputHasError &&
-                  "При обновлении профиля произошла ошибка."}
-              </span>
+              <span className="profile__error">{props.apiErrorMessage}</span>
               <button
                 className={`profile__button-submit ${
-                  !props.isInputHasError
+                  !isValid ||
+                  (currentUser.name === values.name &&
+                    currentUser.email === values.email)
                     ? "profile__button-submit_disabled"
                     : "opacity"
-                }
-                `}
+                }`}
                 type="submit"
-                disabled={!props.isInputHasError}
+                disabled={
+                  !isValid ||
+                  (currentUser.name === values.name &&
+                    currentUser.email === values.email)
+                }
               >
                 Сохранить
               </button>

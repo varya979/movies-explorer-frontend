@@ -43,6 +43,7 @@
   padding-right: 30px;
 }
 
+
 .header__link_green {
   color: #000;
   line-height: 32px;
@@ -79,6 +80,10 @@
     width: 44px;
     padding: 0;
   }
+
+  .header__account-button_light {
+    background: url("../../images/header__burger-icon_light-open.svg");
+  }
 }
 
 @media screen and (max-width: 670px) {
@@ -108,5 +113,9 @@
     background: url("../../images/header__burger-icon-open_small.svg") no-repeat;
     height: 43px;
     width: 40px;
+  }
+
+  .header__account-button_light {
+    background: url("../../images/header__burger-icon-light-open_small.svg") no-repeat;
   }
 }

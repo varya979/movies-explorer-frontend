@@ -3,21 +3,34 @@ import React from "react";
 import FormPageForm from "../FormPageForm/FormPageForm";
 import FormPageFieldset from "../FormPageFieldset/FormPageFieldset";
 
+import { useFormValidation } from "../../hooks/useFormValidation";
+
 export default function Register(props) {
+  const { values, handleChange, errors, isValid } = useFormValidation(
+    props.setApiErrorMessage
+  );
+
+  React.useEffect(() => {
+    props.isLoggedIn && props.navigate("/");
+  }, []);
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    props.handleRegister(values.name, values.email, values.password);
+  }
+
   return (
     <main className="register form-page-main">
       <FormPageForm
         name="register"
-        handleClick={props.handleRegister}
         submitButtonTitle={"Зарегистрироваться"}
         formTitle={"Уже зарегистрированы?"}
         formLink={"Войти"}
         pageName={"register"}
         url={"/signin"}
-        /* появление ошибки и ее текст будут
-        изменены при реализации валидации */
-        isInputHasError={true}
-        errorText={"Что-то пошло не так..."}
+        handleSubmit={handleSubmit}
+        isValid={isValid}
+        apiErrorMessage={props.apiErrorMessage}
       >
         <FormPageFieldset
           labelName="Имя"
@@ -27,9 +40,10 @@ export default function Register(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="Имя"
-          value={props.name}
-          onChange={props.handleChangeName}
-          isInputHasError={false}
+          value={values.name || ""}
+          onChange={handleChange}
+          pattern="[a-zA-Zа-яА-Я \-]{2,30}"
+          errors={errors.name}
         />
         <FormPageFieldset
           labelName="E-mail"
@@ -39,21 +53,22 @@ export default function Register(props) {
           minLengthValue="2"
           maxLengthValuegth="30"
           placeholderText="E-mail"
-          value={props.email}
-          onChange={props.handleChangeEmail}
-          isInputHasError={false}
+          value={values.email || ""}
+          onChange={handleChange}
+          pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$"
+          errors={errors.email}
         />
         <FormPageFieldset
           labelName="Пароль"
           id="password"
           name="password"
           type="password"
-          minLengthValue="2"
+          minLengthValue="6"
           maxLengthValuegth="30"
           placeholderText="Пароль"
-          value={props.password}
-          onChange={props.handleChangePassword}
-          isInputHasError={true}
+          value={values.password || ""}
+          onChange={handleChange}
+          errors={errors.password}
         />
       </FormPageForm>
     </main>

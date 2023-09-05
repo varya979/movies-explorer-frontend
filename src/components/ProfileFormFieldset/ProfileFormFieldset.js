@@ -13,11 +13,13 @@ export default function ProfileFormFieldset(props) {
           type={props.type}
           minLength={props.minLengthValue}
           maxLength={props.maxLengthValue}
-          required
           value={props.value}
           onChange={props.onChange}
           disabled={props.disabled}
+          pattern={props.pattern}
+          required
         />
+        <span className="profile-form-field__error">{props.errors}</span>
       </fieldset>
     </>
   );
